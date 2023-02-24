@@ -6,12 +6,12 @@ import org.joml.Vector4f;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL15.*;
-import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
+
 
 public class Kotak extends Object2d{
     double cx,cy,panjang,lebar;
     double panjang2,lebar2;
+    float Xtop,Ytop,Xbot,Ybot;
 
 
     public Kotak(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color,
@@ -23,6 +23,7 @@ public class Kotak extends Object2d{
         this.lebar = lebar;
         CreateKotak();
         setupVAOVBO();
+        
 
 
     }
@@ -31,16 +32,23 @@ public class Kotak extends Object2d{
 
         vertices.clear();
 
-        panjang2 = (float)(this.panjang/2f);
-        lebar2 = (float)(this.lebar/2f);
+        panjang2 = (float)(panjang/2f);
+        lebar2 = (float)(lebar/2f);
+        Xtop = (float)(cx + panjang2);
+        Xbot = (float)(cx - panjang2 );
+        Ytop = (float)(cy + lebar2 );
+        Ybot = (float)(cy - lebar2 );
 
-        vertices.add(new Vector3f((float)(panjang2 + this.cx),(float)(lebar2 + this.cy),0.0f));
 
-        vertices.add(new Vector3f((float)(panjang2 + this.cx),(float)(lebar2 - this.cy),0.0f));
 
-        vertices.add(new Vector3f((float)(panjang2 - this.cx),(float)(lebar2 - this.cy),0.0f));
+        vertices.add(new Vector3f(Xtop,Ytop,0.0f));
 
-        vertices.add(new Vector3f((float)(panjang2 - this.cx),(float)(lebar2 + this.cy),0.0f));
+        vertices.add(new Vector3f(Xtop,Ybot,0.0f));
+
+        vertices.add(new Vector3f(Xbot,Ybot,0.0f));
+
+        vertices.add(new Vector3f(Xbot,Ytop,0.0f));
+
 
 
     }

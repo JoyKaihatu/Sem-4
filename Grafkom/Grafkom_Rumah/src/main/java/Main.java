@@ -4,6 +4,7 @@ import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Main {
     private ArrayList<Object2d> objectsRectangle = new ArrayList<>();
     private ArrayList<Object2d> objectsCircle =  new ArrayList<>();
     private ArrayList<Object2d> Kotak = new ArrayList<>();
+    private ArrayList<Object2d> Segitiga =  new ArrayList<>();
 
 
     public void init(){
@@ -271,8 +273,23 @@ public class Main {
                 ),
                 new ArrayList<>(),
                 new Vector4f(1.0f,1.0f,0.0f,1.0f),
-                0.0f,0.0f,0.3f,0.3f
+                0.0f,0.0f,0.5f,0.5f
                 ));
+
+        Segitiga.add(new Segitiga(
+                Arrays.asList(
+                        //shaderFile lokasi menyesuaikan objectnya
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.vert"
+                                        , GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.frag"
+                                        , GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,0.0f,1.0f),
+                0.6,0.6,0.0,0.0
+        ));
 
 
 
@@ -300,9 +317,15 @@ public class Main {
 //                object.draw();
 //            }
 
-            for(Object2d object: Kotak){
+//            for(Object2d object: Kotak){
+//                object.draw();
+//            }
+
+            for(Object2d object: Segitiga){
                 object.draw();
             }
+
+
 
 
 
