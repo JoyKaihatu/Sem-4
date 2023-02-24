@@ -5,6 +5,9 @@ import org.joml.Vector4f;
 
 import java.util.List;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
+
 public class Circle extends Object2d {
 
     double r,cx,cy;
@@ -28,13 +31,30 @@ public class Circle extends Object2d {
         //clear vertices
         vertices.clear();
 
-        for (float i = 0; i < 360; i+=0.1)
+        for (float i = 0; i < 360; i+=0.01)
         {
-            x = cx + r * Math.cos(Math.toRadians(i));
-            y = cy + r * Math.sin(Math.toRadians(i));
+            x = cx + ((r-0.07) * Math.cos(Math.toRadians(i)));
+            y = cy + ((r) * Math.sin(Math.toRadians(i)));
             vertices.add(new Vector3f((float) x, (float) y, 0.0f));
+
         }
     }
+
+    public void draw(){
+        drawSetup();
+
+//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+        glDrawArrays(GL_TRIANGLE_FAN,0,vertices.size());
+
+        //GL_LINES
+        //GL_LINE_STRIP
+        //GL_LINE_LOOP
+        //GL_TRIANGLES
+        //GL_TRIANGLE_FAN
+        //GL_POINT
+
+    }
+
 
 
 }

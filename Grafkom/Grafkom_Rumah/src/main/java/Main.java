@@ -1,8 +1,5 @@
 
-import Engine.Object2d;
-import Engine.Rectangle;
-import Engine.ShaderProgram;
-import Engine.Window;
+import Engine.*;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL;
@@ -21,6 +18,9 @@ public class Main {
     private Window window = new Window(800,600,"Hello World");
     private ArrayList<Object2d> objects = new ArrayList<>();
     private ArrayList<Object2d> objectsRectangle = new ArrayList<>();
+    private ArrayList<Object2d> objectsCircle =  new ArrayList<>();
+    private ArrayList<Object2d> Kotak = new ArrayList<>();
+
 
     public void init(){
         window.init();
@@ -243,6 +243,37 @@ public class Main {
 
         ));
 
+        objectsCircle.add(
+                new Circle(
+                Arrays.asList(
+                        //shaderFile lokasi menyesuaikan objectnya
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.vert"
+                                        , GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.frag"
+                                        , GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(1.0f,0.0f,0.0f,1.0f),
+                0.4f,0.5f,0.0f
+        ));
+
+        Kotak.add(new Kotak(
+                Arrays.asList(
+                        //shaderFile lokasi menyesuaikan objectnya
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.vert"
+                                        , GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData
+                                ("resources/shaders/scene.frag"
+                                        , GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,0.0f,1.0f),
+                0.0f,0.0f,0.3f,0.3f
+                ));
+
 
 
     }
@@ -259,10 +290,17 @@ public class Main {
 //                object.draw();
 //            }
 
-            for(Object2d object: objects){
-                object.drawWithVerticesColor();
-            }
-            for(Object2d object: objectsRectangle){
+//            for(Object2d object: objects){
+//                object.drawWithVerticesColor();
+//            }
+//            for(Object2d object: objectsRectangle){
+//                object.draw();
+//            }
+//            for(Object2d object: objectsCircle){
+//                object.draw();
+//            }
+
+            for(Object2d object: Kotak){
                 object.draw();
             }
 
