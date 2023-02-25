@@ -4,7 +4,6 @@ import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +14,7 @@ import static org.lwjgl.opengl.GL20.*;
 
 
 public class Main {
+
 
     private Window window = new Window(800,600,"Hello World");
     private ArrayList<Object2d> objects = new ArrayList<>();
@@ -27,6 +27,15 @@ public class Main {
     public void init(){
         window.init();
         GL.createCapabilities();
+        List<ShaderProgram.ShaderModuleData> shader = Arrays.asList(
+                //shaderFile lokasi menyesuaikan objectnya
+                new ShaderProgram.ShaderModuleData
+                        ("resources/shaders/scene.vert"
+                                , GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData
+                        ("resources/shaders/scene.frag"
+                                , GL_FRAGMENT_SHADER)
+        );
 
         //code
 //        objects.add(new Object2d(
@@ -56,15 +65,7 @@ public class Main {
 
         //Background Biru
         objectsRectangle.add(new Rectangle(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
+                shader,
                 new ArrayList<>(
                         List.of(
                                 new Vector3f(1.0f,1.0f,0.0f),
@@ -73,7 +74,7 @@ public class Main {
                                 new Vector3f(1.0f,-1.0f,0.0f)
 
                         )
-                ), new Vector4f(0.0f,0.0f,1.0f,1.0f),
+                ), new Vector4f(0.0f,0.0235f,0.7176f,1.0f),
         Arrays.asList(0,1,2,1,2,3)
 
         ));
@@ -81,15 +82,7 @@ public class Main {
 
         //Background Hijau
         objectsRectangle.add(new Rectangle(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
+                shader,
                 new ArrayList<>(
                         List.of(
                                 new Vector3f(1.0f,-0.5f,0.0f),
@@ -98,22 +91,14 @@ public class Main {
                                 new Vector3f(1.0f,-1.0f,0.0f)
 
                         )
-                ), new Vector4f(0.0f,1.0f,0.0f,1.0f),
+                ), new Vector4f(0.0f,0.5019f,0.0f,1.0f),
                 Arrays.asList(0,1,2,1,2,3)
 
         ));
 
         //Body Rumah Kuning
         objectsRectangle.add(new Rectangle(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
+                shader,
                 new ArrayList<>(
                         List.of(
                                 new Vector3f(0.65f,0.0f,0.0f), // Top right
@@ -122,27 +107,19 @@ public class Main {
                                 new Vector3f(0.65f,-0.6f,0.0f) //Bot Right
 
                         )
-                ), new Vector4f(1.0f,1.0f,0.0f,1.0f),
+                ), new Vector4f(0.5019f,0.5019f,0.0f,1.0f),
                 Arrays.asList(0,1,2,1,2,3)
 
         ));
 
         //Trapesium Merah
         objectsRectangle.add(new Rectangle(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
+                shader,
                 new ArrayList<>(
                         List.of(
                                 new Vector3f(0.6f,0.2f,0.0f),//Top Right
                                 new Vector3f(-0.6f,0.2f,0.0f),//Top Left
-                                new Vector3f(-0.7f,-0.2f,0.0f),//Bot Left
+                                new Vector3f(-0.73f,-0.2f,0.0f),//Bot Left
                                 new Vector3f(0.7f,-0.2f,0.0f)// Bot Right
 
                         )
@@ -153,62 +130,29 @@ public class Main {
 
         //Segitiga Atap Kuning
         objectsRectangle.add(new Rectangle(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
+                shader,
                 new ArrayList<>(
                         List.of(
-                                new Vector3f(-0.525f,0.15f,0.0f), // Top right
+                                new Vector3f(-0.565f,0.15f,0.0f), // Top
                                 //new Vector3f(-0.65f,0.0f,0.0f),// Top Left
                                 new Vector3f(-0.65f,-0.1f,0.0f), // Bot left
-                                new Vector3f(-0.4f,-0.1f,0.0f) //Bot Right
+//                                new Vector3f(-0.4f,-0.1f,0.0f), //Bot Right
+                                new Vector3f(-0.65f,-0.2f,0.0f), //Bot bot Left
+                                new Vector3f(-0.45f,-0.2f,0.0f) //Bot bot Right
+
+
+
 
                         )
-                ), new Vector4f(1.0f,1.0f,0.0f,1.0f),
-                Arrays.asList(0,1,2)
-
-        ));
-        //Bagian Bawah Segitiga Atap Kuning
-        objectsRectangle.add(new Rectangle(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(
-                        List.of(
-                                new Vector3f(-0.4f,-0.1f,0.0f), // Top right
-                                new Vector3f(-0.65f,-0.1f,0.0f),// Top Left
-                                new Vector3f(-0.65f,-0.2f,0.0f),//Bot Left
-                                new Vector3f(-0.4f,-0.2f,0.0f)// Bot Right
-
-                        )
-                ), new Vector4f(1.0f,1.0f,0.f,1.0f),
+                ), new Vector4f(0.5019f,0.5019f,0.0f,1.0f),
                 Arrays.asList(0,1,2,3)
 
         ));
 
+
         //Cerobong Asap
         objectsRectangle.add(new Rectangle(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
+                shader,
                 new ArrayList<>(
                         List.of(
                                 new Vector3f(0.5f,0.3f,0.0f),//Top Right
@@ -223,15 +167,7 @@ public class Main {
         ));
 
         objectsRectangle.add(new Rectangle(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
+                shader,
                 new ArrayList<>(
                         List.of(
                                 new Vector3f(0.525f,0.4f,0.0f),//Top Right
@@ -244,52 +180,77 @@ public class Main {
                 Arrays.asList(0,1,2,3)
 
         ));
-
-        objectsCircle.add(
-                new Circle(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,0.0f,0.0f,1.0f),
-                0.4f,0.5f,0.0f
+        objectsCircle.add(new Circle(
+                shader, new ArrayList<>(List.of()),
+                new Vector4f(1.0f,1.0f,0.0f,1.0f),
+                0.15,-0.7,0.7
         ));
 
-        Kotak.add(new Kotak(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,1.0f,0.0f,1.0f),
-                0.0f,0.0f,0.5f,0.5f
-                ));
+        objectsRectangle.add(new Rectangle(
+                shader,
+                new ArrayList<>(
+                        List.of(
+                                new Vector3f(0.525f,0.4f,0.0f),//Top Right
+                                new Vector3f(0.375f,0.4f,0.0f),//Top Left
+                                new Vector3f(0.375f,0.3f,0.0f),//Bot Left
+                                new Vector3f(0.525f,0.3f,0.0f)// Bot Right
 
-        Segitiga.add(new Segitiga(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,1.0f,0.0f,1.0f),
-                0.6,0.6,0.0,0.0
+                        )
+                ), new Vector4f(1.0f,0.0f,0.0f,1.0f),
+                Arrays.asList(0,1,2,3)
+
         ));
+        objectsCircle.add(new Circle(
+                shader, new ArrayList<>(List.of()),
+                new Vector4f(0.0f,0.0235f,0.7176f,1.0f),
+                0.15,-0.65,0.7
+        ));
+
+//        objectsCircle.add(
+//                new Circle(
+//                Arrays.asList(
+//                        //shaderFile lokasi menyesuaikan objectnya
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,0.0f,0.0f,1.0f),
+//                0.4f,0.5f,0.0f
+//        ));
+//
+//        Kotak.add(new Kotak(
+//                Arrays.asList(
+//                        //shaderFile lokasi menyesuaikan objectnya
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,1.0f,0.0f,1.0f),
+//                0.0f,0.0f,0.5f,0.5f
+//                ));
+//
+//        Segitiga.add(new Segitiga(
+//                Arrays.asList(
+//                        //shaderFile lokasi menyesuaikan objectnya
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,1.0f,0.0f,1.0f),
+//                0.6,0.6,0.0,0.0
+//        ));
 
 
 
@@ -310,20 +271,20 @@ public class Main {
 //            for(Object2d object: objects){
 //                object.drawWithVerticesColor();
 //            }
-//            for(Object2d object: objectsRectangle){
-//                object.draw();
-//            }
-//            for(Object2d object: objectsCircle){
-//                object.draw();
-//            }
+            for(Object2d object: objectsRectangle){
+                object.draw();
+            }
+            for(Object2d object: objectsCircle){
+                object.draw();
+            }
 
 //            for(Object2d object: Kotak){
 //                object.draw();
 //            }
 
-            for(Object2d object: Segitiga){
-                object.draw();
-            }
+//            for(Object2d object: Segitiga){
+//                object.draw();
+//            }
 
 
 

@@ -33,7 +33,7 @@ public class Circle extends Object2d {
 
         for (float i = 0; i < 360; i+=0.01)
         {
-            x = cx + ((r-0.07) * Math.cos(Math.toRadians(i)));
+            x = cx + ((r-0.03) * Math.cos(Math.toRadians(i)));
             y = cy + ((r) * Math.sin(Math.toRadians(i)));
             vertices.add(new Vector3f((float) x, (float) y, 0.0f));
 

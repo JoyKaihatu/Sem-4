@@ -23,7 +23,7 @@ public class Kotak extends Object2d{
         this.lebar = lebar;
         CreateKotak();
         setupVAOVBO();
-        
+
 
 
     }
