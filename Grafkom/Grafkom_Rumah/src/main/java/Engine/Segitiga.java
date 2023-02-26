@@ -9,6 +9,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Segitiga extends Object2d{
     double alas,tinggi,cx,cy;
+    double x,y;
 
 
     public Segitiga(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color,
@@ -25,9 +26,12 @@ public class Segitiga extends Object2d{
     public void CreateSegitiga(){
         vertices.clear();
 
-        vertices.add(new Vector3f((float)cx,(float)(cy + (tinggi/2f)),0.0f));
-        vertices.add(new Vector3f((float)(cx - (alas/2f)),(float)(cy-(tinggi/2f)),0.0f));
-        vertices.add(new Vector3f((float)(cx + (alas/2f)),(float)(cy-(tinggi/2f)),0.0f));
+
+        for (float i = 315; i <= 675; i+=135) {
+            x = cx + ((alas) * Math.cos(Math.toRadians(i)));
+            y = cy + ((tinggi) * Math.sin(Math.toRadians(i)));
+            vertices.add(new Vector3f((float) x, (float) y, 0.0f));
+        }
 
     }
 

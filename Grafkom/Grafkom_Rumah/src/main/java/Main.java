@@ -1,8 +1,11 @@
 
 import Engine.*;
+import Engine.Rectangle;
+import Engine.Window;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +25,7 @@ public class Main {
     private ArrayList<Object2d> objectsCircle =  new ArrayList<>();
     private ArrayList<Object2d> Kotak = new ArrayList<>();
     private ArrayList<Object2d> Segitiga =  new ArrayList<>();
+    private ArrayList<Object2d> Star =  new ArrayList<>();
 
 
     public void init(){
@@ -36,6 +40,7 @@ public class Main {
                         ("resources/shaders/scene.frag"
                                 , GL_FRAGMENT_SHADER)
         );
+        List<Integer> starIndex = Arrays.asList(0,3,3,1,1,4,4,2,2,0);
 
         //code
 //        objects.add(new Object2d(
@@ -183,7 +188,7 @@ public class Main {
         objectsCircle.add(new Circle(
                 shader, new ArrayList<>(List.of()),
                 new Vector4f(1.0f,1.0f,0.0f,1.0f),
-                0.15,-0.7,0.7
+                0.15,-0.7,0.7,0,0
         ));
 
         objectsRectangle.add(new Rectangle(
@@ -203,55 +208,61 @@ public class Main {
         objectsCircle.add(new Circle(
                 shader, new ArrayList<>(List.of()),
                 new Vector4f(0.0f,0.0235f,0.7176f,1.0f),
-                0.15,-0.65,0.7
+                0.15,-0.65,0.7,0,0
         ));
 
 //        objectsCircle.add(
 //                new Circle(
-//                Arrays.asList(
-//                        //shaderFile lokasi menyesuaikan objectnya
-//                        new ShaderProgram.ShaderModuleData
-//                                ("resources/shaders/scene.vert"
-//                                        , GL_VERTEX_SHADER),
-//                        new ShaderProgram.ShaderModuleData
-//                                ("resources/shaders/scene.frag"
-//                                        , GL_FRAGMENT_SHADER)
-//                ),
+//                shader,
 //                new ArrayList<>(),
 //                new Vector4f(1.0f,0.0f,0.0f,1.0f),
-//                0.4f,0.5f,0.0f
+//                0.4f,0.5f,0.0f,0
 //        ));
 //
-//        Kotak.add(new Kotak(
-//                Arrays.asList(
-//                        //shaderFile lokasi menyesuaikan objectnya
-//                        new ShaderProgram.ShaderModuleData
-//                                ("resources/shaders/scene.vert"
-//                                        , GL_VERTEX_SHADER),
-//                        new ShaderProgram.ShaderModuleData
-//                                ("resources/shaders/scene.frag"
-//                                        , GL_FRAGMENT_SHADER)
-//                ),
-//                new ArrayList<>(),
-//                new Vector4f(1.0f,1.0f,0.0f,1.0f),
-//                0.0f,0.0f,0.5f,0.5f
-//                ));
+        Kotak.add(new Kotak(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,0.0f,1.0f),
+                0.0f,0.0f,0.5f,0.5f
+                ));
 //
-//        Segitiga.add(new Segitiga(
-//                Arrays.asList(
-//                        //shaderFile lokasi menyesuaikan objectnya
-//                        new ShaderProgram.ShaderModuleData
-//                                ("resources/shaders/scene.vert"
-//                                        , GL_VERTEX_SHADER),
-//                        new ShaderProgram.ShaderModuleData
-//                                ("resources/shaders/scene.frag"
-//                                        , GL_FRAGMENT_SHADER)
-//                ),
-//                new ArrayList<>(),
-//                new Vector4f(1.0f,1.0f,0.0f,1.0f),
-//                0.6,0.6,0.0,0.0
-//        ));
+        Segitiga.add(new Segitiga(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,0.0f,1.0f),
+                0.2,0.3,0.0,0.0
+        ));
 
+        Star.add(new Star(shader,
+                new ArrayList<>(),
+                new Vector4f((204f/255f),(204f/255f),0.0f,1.0f),
+                starIndex,-0.3f,0.5f,0.05f));
+
+        Star.add(new Star(shader,
+                new ArrayList<>(),
+                new Vector4f((204f/255f),(204f/255f),0.0f,1.0f),
+                starIndex,-0.1f,0.7f,0.03f));
+
+        Star.add(new Star(shader,
+                new ArrayList<>(),
+                new Vector4f((204f/255f),(204f/255f),0.0f,1.0f),
+                starIndex,0.5f,0.85f,0.03f));
+
+        objectsCircle.add(new Circle(
+                shader, new ArrayList<>(List.of()),
+                new Vector4f((128f/255f),(128f/255f),(128f/255f),1.0f),
+                0.05,0.58,0.55,1,0
+        ));
+        objectsCircle.add(new Circle(
+                shader, new ArrayList<>(List.of()),
+                new Vector4f((128f/255f),(128f/255f),(128f/255f),1.0f),
+                0.03,0.52,0.51,1,0.02
+        ));
+        objectsCircle.add(new Circle(
+                shader, new ArrayList<>(List.of()),
+                new Vector4f((128f/255f),(128f/255f),(128f/255f),1.0f),
+                -0.01,0.46,0.48,1,0.04
+        ));
 
 
     }
@@ -277,14 +288,17 @@ public class Main {
             for(Object2d object: objectsCircle){
                 object.draw();
             }
+//            for(Object2d object: Segitiga){
+//                object.draw();
+//            }
 
 //            for(Object2d object: Kotak){
 //                object.draw();
 //            }
 
-//            for(Object2d object: Segitiga){
-//                object.draw();
-//            }
+            for(Object2d object: Star){
+                object.draw();
+            }
 
 
 

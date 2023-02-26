@@ -10,8 +10,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Kotak extends Object2d{
     double cx,cy,panjang,lebar;
-    double panjang2,lebar2;
-    float Xtop,Ytop,Xbot,Ybot;
+    double x,y;
 
 
     public Kotak(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color,
@@ -30,28 +29,18 @@ public class Kotak extends Object2d{
 
     public void CreateKotak(){
 
+        //clear vertices
         vertices.clear();
 
-        panjang2 = (float)(panjang/2f);
-        lebar2 = (float)(lebar/2f);
-        Xtop = (float)(cx + panjang2);
-        Xbot = (float)(cx - panjang2 );
-        Ytop = (float)(cy + lebar2 );
-        Ybot = (float)(cy - lebar2 );
+        for (float i = 45; i < 405; i+=90) {
+            x = cx + ((panjang) * Math.cos(Math.toRadians(i)));
+            y = cy + ((lebar) * Math.sin(Math.toRadians(i)));
+            vertices.add(new Vector3f((float) x, (float) y, 0.0f));
+        }
 
 
 
-        vertices.add(new Vector3f(Xtop,Ytop,0.0f));
-
-        vertices.add(new Vector3f(Xtop,Ybot,0.0f));
-
-        vertices.add(new Vector3f(Xbot,Ybot,0.0f));
-
-        vertices.add(new Vector3f(Xbot,Ytop,0.0f));
-
-
-
-    }
+        }
 
     public void draw(){
         drawSetup();

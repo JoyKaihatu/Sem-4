@@ -11,15 +11,24 @@ import static org.lwjgl.opengl.GL15.*;
 public class Circle extends Object2d {
 
     double r,cx,cy;
-    double x,y;
+    double x,y,offset;
+    int pick;
 
 
-    public Circle(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, double r, double cx, double cy){
+    public Circle(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color,
+                  double r, double cx, double cy, int pick,double offset){
         super(shaderModuleDataList, vertices, color);
         this.r =  r;
         this.cx = cx;
         this.cy = cy;
-        createCircle();
+        this.offset = offset;
+        if (pick == 0){
+            createCircle();
+        }
+        else if (pick == 1){
+            createElipse();
+        }
+
         setupVAOVBO();
 
 
@@ -35,6 +44,19 @@ public class Circle extends Object2d {
         {
             x = cx + ((r-0.03) * Math.cos(Math.toRadians(i)));
             y = cy + ((r) * Math.sin(Math.toRadians(i)));
+            vertices.add(new Vector3f((float) x, (float) y, 0.0f));
+
+        }
+    }
+    public void createElipse()
+    {
+        //clear vertices
+        vertices.clear();
+
+        for (float i = 0; i < 360; i+=0.01)
+        {
+            x = cx + ((r+0.07) * Math.cos(Math.toRadians(i)));
+            y = cy + ((r+offset) * Math.sin(Math.toRadians(i)));
             vertices.add(new Vector3f((float) x, (float) y, 0.0f));
 
         }
