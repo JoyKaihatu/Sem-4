@@ -26,6 +26,8 @@ public class Object2d extends ShaderProgram{
 
     Vector4f color;
 
+
+
     public Object2d(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color){
         super(shaderModuleDataList);
         this.vertices = vertices;
@@ -111,6 +113,27 @@ public class Object2d extends ShaderProgram{
 
         glDrawArrays(GL_TRIANGLES,0,vertices.size());
     }
+
+    public void drawLine(){
+        drawSetup();
+
+        glLineWidth(3);
+        glPointSize(3);
+
+        //GL_LINES
+        //GL_LINE_STRIP
+        //GL_LINE_LOOP
+        //GL_TRIANGLES
+        //GL_TRIANGLE_FAN
+        //GL_POINT
+
+        glDrawArrays(GL_LINE_STRIP,0,vertices.size());
+    }
+    public void addVertices(Vector3f newVertices){
+        vertices.add(newVertices);
+        setupVAOVBO();
+    }
+
 
     public void drawWithVerticesColor(){
         drawSetupWithVerticesColor();

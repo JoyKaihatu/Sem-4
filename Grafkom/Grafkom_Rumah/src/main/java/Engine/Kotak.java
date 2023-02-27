@@ -27,6 +27,30 @@ public class Kotak extends Object2d{
 
     }
 
+    public double getCx() {
+        return cx;
+    }
+
+    public double getCy() {
+        return cy;
+    }
+
+    public double getPanjang() {
+        return panjang;
+    }
+
+    public double getLebar() {
+        return lebar;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
     public void CreateKotak(){
 
         //clear vertices

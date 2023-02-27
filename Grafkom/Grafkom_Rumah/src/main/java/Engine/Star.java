@@ -43,6 +43,9 @@ public class Star extends Object2d{
     public void draw(){
         drawSetup();
 
+        glLineWidth(1);
+        glPointSize(1);
+
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
         glDrawElements(GL_LINES,index.size(),GL_UNSIGNED_INT,0);
 //        glDrawArrays(GL_LINE_LOOP,0,vertices.size());

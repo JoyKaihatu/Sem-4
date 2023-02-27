@@ -2,6 +2,7 @@
 import Engine.*;
 import Engine.Rectangle;
 import Engine.Window;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL;
@@ -27,6 +28,9 @@ public class Main {
     private ArrayList<Object2d> Segitiga =  new ArrayList<>();
     private ArrayList<Object2d> Star =  new ArrayList<>();
 
+    private ArrayList<Object2d> objectsPointsControl =  new ArrayList<>();
+    private ArrayList<Object2d> KotakKhusus = new ArrayList<>();
+
 
     public void init(){
         window.init();
@@ -43,6 +47,10 @@ public class Main {
         List<Integer> starIndex = Arrays.asList(0,3,3,1,1,4,4,2,2,0);
 
         //code
+        objectsPointsControl.add(new Object2d(
+                shader,new ArrayList<>(),new Vector4f(0.0f,1.0f,1.0f,1.0f)
+        ));
+
 //        objects.add(new Object2d(
 //                Arrays.asList(
 //                        //shaderFile lokasi menyesuaikan objectnya
@@ -273,6 +281,7 @@ public class Main {
                     0.0f, 0.0f,
                     0.0f);
             GL.createCapabilities();
+            input();
 
             //code
 //            for(Object2d object: objects){
@@ -282,12 +291,12 @@ public class Main {
 //            for(Object2d object: objects){
 //                object.drawWithVerticesColor();
 //            }
-            for(Object2d object: objectsRectangle){
-                object.draw();
-            }
-            for(Object2d object: objectsCircle){
-                object.draw();
-            }
+//            for(Object2d object: objectsRectangle){
+//                object.draw();
+//            }
+//            for(Object2d object: objectsCircle){
+//                object.draw();
+//            }
 //            for(Object2d object: Segitiga){
 //                object.draw();
 //            }
@@ -296,10 +305,16 @@ public class Main {
 //                object.draw();
 //            }
 
-            for(Object2d object: Star){
+//            for(Object2d object: Star){
+//                object.draw();
+//            }
+
+            for(Object2d object: objectsPointsControl){
+                object.drawLine();
+            }
+            for(Object2d object: KotakKhusus){
                 object.draw();
             }
-
 
 
 
@@ -313,6 +328,49 @@ public class Main {
             // invoked during this call.
             glfwPollEvents();
         }
+    }
+
+    public void input(){
+        Kotak h;
+        List<ShaderProgram.ShaderModuleData> shader = Arrays.asList(
+                //shaderFile lokasi menyesuaikan objectnya
+                new ShaderProgram.ShaderModuleData
+                        ("resources/shaders/scene.vert"
+                                , GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData
+                        ("resources/shaders/scene.frag"
+                                , GL_FRAGMENT_SHADER)
+        );
+        if(window.isKeyPressed(GLFW_KEY_W)){
+            System.out.println("W");
+        }
+        if(window.getMouseInput().isLeftButtonPressed()){
+            Vector2f pos = window.getMouseInput().getCurrentPos();
+//            System.out.println("x : "+ pos.x + " y : "+pos.y);
+            pos.x = (pos.x - (window.getWidth())/2.0f)/(window.getWidth()/2.0f);
+            pos.y = (pos.y - (window.getHeight())/2.0f)/(-window.getHeight()/2.0f);
+            if((!(pos.x > 1 || pos.x < -0.97)&&!(pos.y >0.97 || pos.y < -1))){
+                System.out.println("x : "+ pos.x + " y : "+pos.y);
+
+                objectsPointsControl.get(0).addVertices(new Vector3f(pos.x, pos.y,0));
+                KotakKhusus.add(new Kotak(shader,new ArrayList<>(List.of())
+                        ,new Vector4f(1.0f,0.0f,0.0f,1.0f),
+                        pos.x,pos.y,0.02,0.02));
+
+                for(Object2d object: KotakKhusus){
+                    if (object instanceof Kotak){
+                        h = (Kotak) object;
+                        h.getCx();
+                    }
+                }
+
+
+
+
+            }
+        }
+
+
     }
     public void run() {
 
