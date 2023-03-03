@@ -21,6 +21,8 @@ public class Main {
 
 
     private Window window = new Window(800,600,"Hello World");
+    private Kotak DragKotak = null;
+    private Object2d garis = null;
     private ArrayList<Object2d> objects = new ArrayList<>();
     private ArrayList<Object2d> objectsRectangle = new ArrayList<>();
     private ArrayList<Object2d> objectsCircle =  new ArrayList<>();
@@ -29,12 +31,14 @@ public class Main {
     private ArrayList<Object2d> Star =  new ArrayList<>();
 
     private ArrayList<Object2d> objectsPointsControl =  new ArrayList<>();
-    private ArrayList<Object2d> KotakKhusus = new ArrayList<>();
+    private ArrayList<Kotak> KotakKhusus = new ArrayList<>();
+
 
 
     public void init(){
         window.init();
         GL.createCapabilities();
+
         List<ShaderProgram.ShaderModuleData> shader = Arrays.asList(
                 //shaderFile lokasi menyesuaikan objectnya
                 new ShaderProgram.ShaderModuleData
@@ -332,6 +336,7 @@ public class Main {
 
     public void input(){
         Kotak h;
+        boolean found = false;
         List<ShaderProgram.ShaderModuleData> shader = Arrays.asList(
                 //shaderFile lokasi menyesuaikan objectnya
                 new ShaderProgram.ShaderModuleData
@@ -352,22 +357,37 @@ public class Main {
             if((!(pos.x > 1 || pos.x < -0.97)&&!(pos.y >0.97 || pos.y < -1))){
                 System.out.println("x : "+ pos.x + " y : "+pos.y);
 
-                objectsPointsControl.get(0).addVertices(new Vector3f(pos.x, pos.y,0));
-                KotakKhusus.add(new Kotak(shader,new ArrayList<>(List.of())
-                        ,new Vector4f(1.0f,0.0f,0.0f,1.0f),
-                        pos.x,pos.y,0.02,0.02));
 
-                for(Object2d object: KotakKhusus){
-                    if (object instanceof Kotak){
-                        h = (Kotak) object;
-                        h.getCx();
+
+
+                for (Kotak Kotak : KotakKhusus){
+                    if (Kotak.contains(pos.x,pos.y)){
+                        DragKotak = Kotak;
+                        found = true;
+//                        for (Object2d garis: objectsPointsControl){
+//                            if(garis.contain(pos.x,pos.y)){
+//
+//                            }
+//                        }
+                        break;
                     }
+                }
+                if(!found && DragKotak == null){
+                    KotakKhusus.add(new Kotak(shader,new ArrayList<>(List.of())
+                            ,new Vector4f(1.0f,0.0f,0.0f,1.0f),
+                            pos.x,pos.y,0.05,0.05));
+                    objectsPointsControl.get(0).addVertices(new Vector3f(pos.x, pos.y,0));
+                }else if(DragKotak != null){
+                    DragKotak.move(pos.x,pos.y);
                 }
 
 
 
-
             }
+
+        }
+        else if(!window.getMouseInput().isLeftButtonPressed()){
+            DragKotak = null;
         }
 
 

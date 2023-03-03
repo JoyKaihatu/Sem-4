@@ -30,26 +30,24 @@ public class Kotak extends Object2d{
     public double getCx() {
         return cx;
     }
+    public boolean contains(double x, double y){
+        double kanan,kiri,atas,bawah;
+        kanan = this.cx + (this.panjang/2);
+        kiri = this.cx - (this.panjang/2);
+        atas = this.cy + (this.lebar/2);
+        bawah = this.cy - (this.lebar/2);
 
-    public double getCy() {
-        return cy;
+        return x >= kiri && x < kanan &&
+                y >= bawah && y < atas;
+
+    }
+    public void move(double x, double y){
+        this.cx = x;
+        this.cy = y;
+        CreateKotak();
+        setupVAOVBO();
     }
 
-    public double getPanjang() {
-        return panjang;
-    }
-
-    public double getLebar() {
-        return lebar;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
 
     public void CreateKotak(){
 
@@ -82,4 +80,25 @@ public class Kotak extends Object2d{
         //GL_POINT
 
     }
+
+    public double getCy() {
+        return cy;
+    }
+
+    public double getPanjang() {
+        return panjang;
+    }
+
+    public double getLebar() {
+        return lebar;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
 }

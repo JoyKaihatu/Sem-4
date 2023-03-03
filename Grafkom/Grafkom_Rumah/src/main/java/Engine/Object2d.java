@@ -150,4 +150,9 @@ public class Object2d extends ShaderProgram{
 
         glDrawArrays(GL_TRIANGLES,0,vertices.size());
     }
+
+//    public Vector3f contain(double x, double y){
+//
+//
+//    }
 }

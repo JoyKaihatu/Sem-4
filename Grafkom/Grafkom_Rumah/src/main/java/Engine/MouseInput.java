@@ -13,8 +13,8 @@ public class MouseInput {
     private boolean leftButtonPressed;
     private Vector2f previousPos;
     private boolean rightButtonPressed;
-//    private boolean leftButtonRelease;
-//    private boolean rightButtonRelease;
+    private boolean leftButtonRelease;
+    private boolean rightButtonRelease;
 
     public MouseInput(long windowHandle) {
         previousPos = new Vector2f(-1, -1);
@@ -37,6 +37,9 @@ public class MouseInput {
         glfwSetMouseButtonCallback(windowHandle, (handle, button, action, mode) -> {
             leftButtonPressed = button == GLFW_MOUSE_BUTTON_1 && action == GLFW_PRESS;
             rightButtonPressed = button == GLFW_MOUSE_BUTTON_2 && action == GLFW_PRESS;
+            leftButtonRelease = button == GLFW_MOUSE_BUTTON_1 && action == GLFW_RELEASE;
+            rightButtonRelease = button == GLFW_MOUSE_BUTTON_2 && action == GLFW_RELEASE;
+
         });
 
 //        glfwSetMouseButtonCallback(windowHandle, (handle, button, action, mode) -> {
@@ -84,8 +87,11 @@ public class MouseInput {
         return rightButtonPressed;
     }
 
-//    public boolean isleftButtonRelease(){
-//        return leftButtonRelease;
-//    }
+    public boolean isleftButtonRelease(){
+        return leftButtonRelease;
+    }
+    public boolean isRightButtonRelease(){
+        return rightButtonRelease;
+    }
 
 }
