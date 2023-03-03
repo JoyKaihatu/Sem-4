@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.glClearColor;
@@ -337,6 +338,8 @@ public class Main {
     public void input(){
         Kotak h;
         boolean found = false;
+        List<Vector3f> vec ;
+        int save = 0;
         List<ShaderProgram.ShaderModuleData> shader = Arrays.asList(
                 //shaderFile lokasi menyesuaikan objectnya
                 new ShaderProgram.ShaderModuleData
@@ -357,20 +360,15 @@ public class Main {
             if((!(pos.x > 1 || pos.x < -0.97)&&!(pos.y >0.97 || pos.y < -1))){
                 System.out.println("x : "+ pos.x + " y : "+pos.y);
 
-
-
-
                 for (Kotak Kotak : KotakKhusus){
                     if (Kotak.contains(pos.x,pos.y)){
                         DragKotak = Kotak;
                         found = true;
-//                        for (Object2d garis: objectsPointsControl){
-//                            if(garis.contain(pos.x,pos.y)){
-//
-//                            }
-//                        }
+
+
                         break;
                     }
+                    save += 1;
                 }
                 if(!found && DragKotak == null){
                     KotakKhusus.add(new Kotak(shader,new ArrayList<>(List.of())
@@ -378,7 +376,9 @@ public class Main {
                             pos.x,pos.y,0.05,0.05));
                     objectsPointsControl.get(0).addVertices(new Vector3f(pos.x, pos.y,0));
                 }else if(DragKotak != null){
+                    objectsPointsControl.get(0).move(pos.x,pos.y,save);
                     DragKotak.move(pos.x,pos.y);
+
                 }
 
 
@@ -386,8 +386,9 @@ public class Main {
             }
 
         }
-        else if(!window.getMouseInput().isLeftButtonPressed()){
+        else if(window.getMouseInput().isleftButtonRelease()){
             DragKotak = null;
+            save = 0;
         }
 
 

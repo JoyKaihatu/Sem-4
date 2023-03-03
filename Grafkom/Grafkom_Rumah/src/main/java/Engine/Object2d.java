@@ -151,8 +151,28 @@ public class Object2d extends ShaderProgram{
         glDrawArrays(GL_TRIANGLES,0,vertices.size());
     }
 
-//    public Vector3f contain(double x, double y){
-//
-//
-//    }
+    public List<Vector3f> getVertices() {
+        return vertices;
+    }
+    public void move(double x, double y, int save){
+        vertices.set(save,new Vector3f((float)x,(float)y,0.f));
+        setupVAOVBO();
+
+    }
+    public int  getIndex(float x, float y){
+        int index = 0;
+        for(int i = 0; i < vertices.size(); i++){
+            System.out.println(vertices.get(i).x + "Vertices X");
+            System.out.println(vertices.get(i).y + "Vertices Y");
+            if(vertices.get(i).x == x && vertices.get(i).y == y){
+                break;
+            }
+            index++;
+        }
+        System.out.println(index);
+        return index;
+
+    }
+
+
 }
