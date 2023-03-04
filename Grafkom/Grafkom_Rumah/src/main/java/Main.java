@@ -23,6 +23,7 @@ public class Main {
 
     private Window window = new Window(800,600,"Hello World");
     private Kotak DragKotak = null;
+    private int SimpanIndex = 0;
     private Object2d garis = null;
     private ArrayList<Object2d> objects = new ArrayList<>();
     private ArrayList<Object2d> objectsRectangle = new ArrayList<>();
@@ -340,6 +341,7 @@ public class Main {
         boolean found = false;
         List<Vector3f> vec ;
         int save = 0;
+
         List<ShaderProgram.ShaderModuleData> shader = Arrays.asList(
                 //shaderFile lokasi menyesuaikan objectnya
                 new ShaderProgram.ShaderModuleData
@@ -360,14 +362,17 @@ public class Main {
             if((!(pos.x > 1 || pos.x < -0.97)&&!(pos.y >0.97 || pos.y < -1))){
                 System.out.println("x : "+ pos.x + " y : "+pos.y);
 
+
+
                 for (Kotak Kotak : KotakKhusus){
                     if (Kotak.contains(pos.x,pos.y)){
                         DragKotak = Kotak;
                         found = true;
-
+                        SimpanIndex = save;
 
                         break;
                     }
+
                     save += 1;
                 }
                 if(!found && DragKotak == null){
@@ -376,7 +381,7 @@ public class Main {
                             pos.x,pos.y,0.05,0.05));
                     objectsPointsControl.get(0).addVertices(new Vector3f(pos.x, pos.y,0));
                 }else if(DragKotak != null){
-                    objectsPointsControl.get(0).move(pos.x,pos.y,save);
+                    objectsPointsControl.get(0).move(pos.x,pos.y,SimpanIndex);
                     DragKotak.move(pos.x,pos.y);
 
                 }
