@@ -87,7 +87,7 @@ public class MouseInput {
         return rightButtonPressed;
     }
 
-    public boolean isleftButtonRelease(){
+    public boolean isLeftButtonReleased(){
         return leftButtonRelease;
     }
     public boolean isRightButtonRelease(){
