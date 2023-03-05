@@ -19,7 +19,6 @@ public class Main {
     ArrayList<Object2d> objects = new ArrayList<>();
 
     ArrayList<Object2d> objectsRectangle = new ArrayList<>();
-
     ArrayList<Object2d> objectsCircle = new ArrayList<>();
 
     ArrayList<Object2d> objectsElips = new ArrayList<>();
