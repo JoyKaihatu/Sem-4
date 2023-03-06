@@ -36,6 +36,7 @@ public class Main {
     private ArrayList<Kotak> KotakKhusus = new ArrayList<>();
     private ArrayList<Object2d> titikBerzier = new ArrayList<>();
     private ArrayList<Object2d> objectsRectCircle = new ArrayList<>();
+    private ArrayList<Object2d> objectSphere =  new ArrayList<>();
 
     int tes;
 
@@ -103,6 +104,7 @@ public class Main {
         objectsPointsControl.add(new Object2d(
                 shader,new ArrayList<>(),new Vector4f(0.0f,1.0f,1.0f,1.0f)
         ));
+
 
         titikBerzier.add(new Object2d(Arrays.asList(
                 new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
@@ -332,6 +334,10 @@ public class Main {
                 -0.01,0.46,0.48,1,0.04
         ));
 
+        objectSphere.add(new Sphere(shader,new ArrayList<>(),
+                new Vector4f((128f/255f),(128f/255f),(128f/255f),1.0f),
+                        new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.3f,0.3f,0.3f,12,10));
+
 
     }
     public void loop(){
@@ -377,6 +383,9 @@ public class Main {
             }
             for (Object2d object : titikBerzier){
                 object.drawLineBerzier();
+            }
+            for(Object2d object: objectSphere){
+                object.draw();
             }
 
 
