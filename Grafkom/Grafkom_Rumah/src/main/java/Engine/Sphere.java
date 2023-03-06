@@ -21,7 +21,7 @@ public class Sphere extends CircleNew{
         this.sectorCount = sectorCount;
         this.stackCount = stackCount;
         this.radiusZ = radiusZ;
-        createRectangle();
+        createSphere();
         setupVAOVBO();
     }
 

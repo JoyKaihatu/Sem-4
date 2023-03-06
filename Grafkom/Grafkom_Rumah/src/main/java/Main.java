@@ -336,7 +336,7 @@ public class Main {
 
         objectSphere.add(new Sphere(shader,new ArrayList<>(),
                 new Vector4f((128f/255f),(128f/255f),(128f/255f),1.0f),
-                        new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.3f,0.3f,0.3f,12,10));
+                        new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.3f,0.3f,0.3f,10,5));
 
 
     }
