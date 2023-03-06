@@ -16,12 +16,20 @@ public class Sphere extends CircleNew{
     public Sphere(List<ShaderModuleData> shaderModuleDataList,
                   List<Vector3f> vertices, Vector4f color,
                   List<Float> centerPoint, Float radiusX,Float radiusY
-            ,Float radiusZ, int sectorCount,int stackCount) {
+            ,Float radiusZ, int sectorCount,int stackCount,int pilih) {
         super(shaderModuleDataList, vertices, color, centerPoint, radiusX,radiusY);
         this.sectorCount = sectorCount;
         this.stackCount = stackCount;
         this.radiusZ = radiusZ;
-        createSphere();
+        if (pilih == 0){
+            createSphere();
+        }
+        else if (pilih == 1){
+            Hyperboloid();
+        }
+        else if (pilih == 2){
+            Hyperboloid2();
+        }
         setupVAOVBO();
     }
 
@@ -38,6 +46,60 @@ public class Sphere extends CircleNew{
             x = radiusX * (float)Math.cos(StackAngle);
             y = radiusY * (float)Math.cos(StackAngle);
             z = radiusZ * (float)Math.sin(StackAngle);
+
+            for (int j = 0; j <= sectorCount; ++j)
+            {
+                sectorAngle = j * sectorStep;
+                Vector3f temp_vector = new Vector3f();
+                temp_vector.x = centerPoint.get(0) + x * (float)Math.cos(sectorAngle);
+                temp_vector.y = centerPoint.get(1) + y * (float)Math.sin(sectorAngle);
+                temp_vector.z = centerPoint.get(2) + z;
+                vertices.add(temp_vector);
+            }
+        }
+    }
+
+    public void Hyperboloid(){
+        vertices.clear();
+        float pi = (float)Math.PI;
+
+        float sectorStep = 2 * (float)Math.PI / sectorCount;
+        float stackStep = (float)Math.PI / stackCount;
+        float sectorAngle, StackAngle, x, y, z;
+
+        for (int i = 0; i <= stackCount; ++i)
+        {
+            StackAngle = pi / 2 - i * stackStep;
+            x = radiusX * (float)(1/Math.cos(StackAngle));
+            y = radiusY * (float)(1/Math.cos(StackAngle));
+            z = radiusZ * (float)(Math.tan(StackAngle));
+
+            for (int j = 0; j <= sectorCount; ++j)
+            {
+                sectorAngle = j * sectorStep;
+                Vector3f temp_vector = new Vector3f();
+                temp_vector.x = centerPoint.get(0) + x * (float)Math.cos(sectorAngle);
+                temp_vector.y = centerPoint.get(1) + y * (float)Math.sin(sectorAngle);
+                temp_vector.z = centerPoint.get(2) + z;
+                vertices.add(temp_vector);
+            }
+        }
+    }
+
+    public void Hyperboloid2(){
+        vertices.clear();
+        float pi = (float)Math.PI;
+
+        float sectorStep = 2 * (float)Math.PI / sectorCount;
+        float stackStep = (float)Math.PI / stackCount;
+        float sectorAngle, StackAngle, x, y, z;
+
+        for (int i = 0; i <= stackCount; ++i)
+        {
+            StackAngle = pi / 2 - i * stackStep;
+            x = radiusX * (float)Math.tan(StackAngle);
+            y = radiusY * (float)Math.tan(StackAngle);
+            z = radiusZ * (float)(1/Math.cos(StackAngle));
 
             for (int j = 0; j <= sectorCount; ++j)
             {
