@@ -25,13 +25,12 @@ public class Main {
 
     ArrayList<Object2d> objectsStar = new ArrayList<>();
 
-    ArrayList<Object2d> objectsRectCircle = new ArrayList<>();
-
     ArrayList<Object2d> objectsTriangleCircle = new ArrayList<>();
 
     ArrayList<Object2d> objectsPointsControl = new ArrayList<>();
-
     ArrayList<Object2d> titikBerzier = new ArrayList<>();
+    ArrayList<Object2d> objectsRectCircle = new ArrayList<>();
+
 
     int index;
     int indexKotak;
@@ -358,7 +357,6 @@ public class Main {
             glfwPollEvents();
         }
     }
-
     public void run() {
         init();
         loop();
