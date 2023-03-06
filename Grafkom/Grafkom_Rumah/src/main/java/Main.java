@@ -34,8 +34,55 @@ public class Main {
 
     private ArrayList<Object2d> objectsPointsControl =  new ArrayList<>();
     private ArrayList<Kotak> KotakKhusus = new ArrayList<>();
+    private ArrayList<Object2d> titikBerzier = new ArrayList<>();
+    private ArrayList<Object2d> objectsRectCircle = new ArrayList<>();
 
+    int tes;
 
+    public int factorial(int angka){
+        int hasil = 1;
+        for (int i=2;i<=angka;i++){
+            hasil = hasil * i;
+        }
+        return hasil;
+    }
+
+    public int kombinasi(int n, int r){
+        if (r < 0 || r > n) {
+            return 0;
+        }return factorial(n)/(factorial(r)*factorial(n-r));
+    }
+
+    public void berzier(ArrayList<Object2d> objects){
+        int indexBerzier = 0;
+        for (float t=0;t<=1;t+=0.01f){
+            float x = 0;
+            float y = 0;
+            int n = objects.size()-1;
+            for (int i=0;i<=n;i++){
+                int koefisien = kombinasi(n, i);
+                float term = koefisien * (float) Math.pow(1-t, n-i) * (float) Math.pow(t, i);
+//                System.out.println("cek: " + objects.get(i).getCenterx() + " " + objects.get(i).getCentery());
+                x += term * objects.get(i).getCenterx();
+                y += term * objects.get(i).getCentery();
+            }
+//            System.out.println(x + " " + y);
+//            System.out.println(titikBerzier.get(0).getCenterx() + " " + titikBerzier.get(0).getCentery());
+//            System.out.println(titikBerzier.get(titikBerzier.size()-1).getCenterx() + " " + titikBerzier.get(titikBerzier.size()-1).getCentery());
+            if (tes == 0){
+                titikBerzier.get(0).addVertices(new Vector3f(x, y, 0));
+            }
+            if (tes == 1){
+                titikBerzier.get(0).move(x,y,indexBerzier);
+                indexBerzier += 1;
+            }
+        }
+        if (tes == 0){
+            tes = 1;
+        }
+//        titikBerzier.get(0).addVertices(new Vector3f(objects.get(objects.size()-1).getCenterx(), objects.get(objects.size()-1).getCentery(), 0));
+//        System.out.println(titikBerzier.toString());
+    }
 
     public void init(){
         window.init();
@@ -55,6 +102,13 @@ public class Main {
         //code
         objectsPointsControl.add(new Object2d(
                 shader,new ArrayList<>(),new Vector4f(0.0f,1.0f,1.0f,1.0f)
+        ));
+
+        titikBerzier.add(new Object2d(Arrays.asList(
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+        ), new ArrayList<>(),
+                new Vector4f(1.0f, 1.0f, 1.0f, 1.0f) // ini untuk warna garisnya
         ));
 
 //        objects.add(new Object2d(
@@ -321,6 +375,9 @@ public class Main {
             for(Object2d object: KotakKhusus){
                 object.draw();
             }
+            for (Object2d object : titikBerzier){
+                object.drawLineBerzier();
+            }
 
 
 
@@ -380,9 +437,25 @@ public class Main {
                             ,new Vector4f(1.0f,0.0f,0.0f,1.0f),
                             pos.x,pos.y,0.05,0.05));
                     objectsPointsControl.get(0).addVertices(new Vector3f(pos.x, pos.y,0));
+                    objectsRectCircle.add(new RectangleCircle(Arrays.asList(
+                            new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                            new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                    ), new ArrayList<>(
+                            List.of(
+                                    new Vector3f(),
+                                    new Vector3f(),
+                                    new Vector3f(),
+                                    new Vector3f()
+                            )
+                    ), new Vector4f(1.0f, 0.0f, 0.0f, 1.0f),
+                            pos.x, pos.y, 0.1f
+                    ));
+                    berzier(objectsRectCircle);
                 }else if(DragKotak != null){
                     objectsPointsControl.get(0).move(pos.x,pos.y,SimpanIndex);
+                    objectsRectCircle.get(SimpanIndex).moves(pos.x, pos.y);
                     DragKotak.move(pos.x,pos.y);
+                    berzier(objectsRectCircle);
 
                 }
 

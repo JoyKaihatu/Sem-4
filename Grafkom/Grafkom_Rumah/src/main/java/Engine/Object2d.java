@@ -173,6 +173,32 @@ public class Object2d extends ShaderProgram{
         return index;
 
     }
+    public void drawLineBerzier(){
+        drawSetup();
+        // draw the vertices
+        glLineWidth(5); // ketebalan garis
+        glPointSize(1); // besar kecil vertex
+        //wajib
+        //GL_LINES
+        //GL_LINE_STRIP
+        //GL_LINE_LOOP
+        //GL_TRIANGLES
+        //GL_TRIANGLE_FAN
+        //GL_POINT
+
+        glDrawArrays(GL_LINE_STRIP,0, vertices.size());
+//        glDrawArrays(GL_LINE_LOOP,0, vertices.size());
+    }
+    public float getCenterx(){
+        return 0;
+    }
+
+    public float getCentery(){
+        return 0;
+    }
+
+    public void moves(float centerx, float centery){
+    }
 
 
 }
