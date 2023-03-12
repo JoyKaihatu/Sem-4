@@ -22,7 +22,7 @@ public class Sphere extends CircleNew{
         this.stackCount = stackCount;
         this.radiusZ = radiusZ;
         if (pilih == 0){
-            createSphere();
+            Ellipsoid();
         }
         else if (pilih == 1){
             Hyperboloid();
@@ -30,87 +30,126 @@ public class Sphere extends CircleNew{
         else if (pilih == 2){
             Hyperboloid2();
         }
+        else if (pilih == 3){
+            EllipticCone();
+        }
+        else if(pilih == 4){
+            EllipticParaboloid();
+        }
+        else if(pilih == 5){
+            HyperboloidParaboloid();
+        }
         setupVAOVBO();
     }
 
-    public void createSphere(){
-        float pi = (float)Math.PI;
+    public void Ellipsoid(){
 
-        float sectorStep = 2 * (float)Math.PI / sectorCount;
-        float stackStep = (float)Math.PI / stackCount;
-        float sectorAngle, StackAngle, x, y, z;
+        vertices.clear();
 
-        for (int i = 0; i <= stackCount; ++i)
-        {
-            StackAngle = pi / 2 - i * stackStep;
-            x = radiusX * (float)Math.cos(StackAngle);
-            y = radiusY * (float)Math.cos(StackAngle);
-            z = radiusZ * (float)Math.sin(StackAngle);
+        ArrayList<Vector3f> temp = new ArrayList<>();
 
-            for (int j = 0; j <= sectorCount; ++j)
-            {
-                sectorAngle = j * sectorStep;
-                Vector3f temp_vector = new Vector3f();
-                temp_vector.x = centerPoint.get(0) + x * (float)Math.cos(sectorAngle);
-                temp_vector.y = centerPoint.get(1) + y * (float)Math.sin(sectorAngle);
-                temp_vector.z = centerPoint.get(2) + z;
-                vertices.add(temp_vector);
+        for(double v = -Math.PI/2; v<= Math.PI/2; v+=Math.PI/60){
+            for(double u = -Math.PI; u<= Math.PI; u+=Math.PI/60){
+                float x = radiusX * (float)(Math.cos(v) * Math.cos(u));
+                float y = radiusY * (float)(Math.cos(v) * Math.sin(u));
+                float z = radiusZ * (float)(Math.sin(v));
+                temp.add(new Vector3f(x + centerPoint.get(0),y + centerPoint.get(1),z + centerPoint.get(2)));
             }
         }
+        vertices=temp;
+
+
     }
 
     public void Hyperboloid(){
         vertices.clear();
-        float pi = (float)Math.PI;
 
-        float sectorStep = 2 * (float)Math.PI / sectorCount;
-        float stackStep = (float)Math.PI / stackCount;
-        float sectorAngle, StackAngle, x, y, z;
+        ArrayList<Vector3f> temp = new ArrayList<>();
 
-        for (int i = 0; i <= stackCount; ++i)
-        {
-            StackAngle = pi / 2 - i * stackStep;
-            x = radiusX * (float)(1/Math.cos(StackAngle));
-            y = radiusY * (float)(1/Math.cos(StackAngle));
-            z = radiusZ * (float)(Math.tan(StackAngle));
-
-            for (int j = 0; j <= sectorCount; ++j)
-            {
-                sectorAngle = j * sectorStep;
-                Vector3f temp_vector = new Vector3f();
-                temp_vector.x = centerPoint.get(0) + x * (float)Math.cos(sectorAngle);
-                temp_vector.y = centerPoint.get(1) + y * (float)Math.sin(sectorAngle);
-                temp_vector.z = centerPoint.get(2) + z;
-                vertices.add(temp_vector);
+        for(double v = -Math.PI/2; v<= Math.PI/2; v+=Math.PI/60){
+            for(double u = -Math.PI; u<= Math.PI; u+=Math.PI/60){
+                float x = radiusX * (float)((1/Math.cos(v)) * Math.cos(u));
+                float y = radiusY * (float)((1/Math.cos(v)) * Math.sin(u));
+                float z = radiusZ * (float)(Math.tan(v));
+                temp.add(new Vector3f(x + centerPoint.get(0),y + centerPoint.get(1),z + centerPoint.get(2)));
             }
         }
+        vertices=temp;
     }
 
     public void Hyperboloid2(){
         vertices.clear();
-        float pi = (float)Math.PI;
 
-        float sectorStep = 2 * (float)Math.PI / sectorCount;
-        float stackStep = (float)Math.PI / stackCount;
-        float sectorAngle, StackAngle, x, y, z;
+        ArrayList<Vector3f> temp = new ArrayList<>();
 
-        for (int i = 0; i <= stackCount; ++i)
-        {
-            StackAngle = pi / 2 - i * stackStep;
-            x = radiusX * (float)Math.tan(StackAngle);
-            y = radiusY * (float)Math.tan(StackAngle);
-            z = radiusZ * (float)(1/Math.cos(StackAngle));
-
-            for (int j = 0; j <= sectorCount; ++j)
-            {
-                sectorAngle = j * sectorStep;
-                Vector3f temp_vector = new Vector3f();
-                temp_vector.x = centerPoint.get(0) + x * (float)Math.cos(sectorAngle);
-                temp_vector.y = centerPoint.get(1) + y * (float)Math.sin(sectorAngle);
-                temp_vector.z = centerPoint.get(2) + z;
-                vertices.add(temp_vector);
+        for(double v = -Math.PI/2; v<= Math.PI/2; v+=Math.PI/60){
+            for(double u = -Math.PI/2; u<= Math.PI/2; u+=Math.PI/60){
+                float x = radiusX * (float)(Math.tan(v) * Math.cos(u));
+                float y = radiusY * (float)(Math.tan(v) * Math.sin(u));
+                float z = radiusZ * (float)((1/Math.cos(v)));
+                temp.add(new Vector3f(x + centerPoint.get(0),y + centerPoint.get(1),z + centerPoint.get(2)));
             }
         }
+
+        for(double v = -Math.PI/2; v<= Math.PI/2; v+=Math.PI/60){
+            for(double u = Math.PI/2; u<= 3 * (Math.PI/2); u+=Math.PI/60){
+                float x = radiusX * (float)(Math.tan(v) * Math.cos(u));
+                float y = radiusY * (float)(Math.tan(v) * Math.sin(u));
+                float z = radiusZ * (float)((1/Math.cos(v)));
+                temp.add(new Vector3f(x + centerPoint.get(0),y + centerPoint.get(1),z + centerPoint.get(2)));
+            }
+        }
+
+        vertices=temp;
+    }
+
+    public void EllipticCone(){
+        vertices.clear();
+
+        ArrayList<Vector3f> temp = new ArrayList<>();
+
+        for(double v = -Math.PI/2; v<= Math.PI/2; v+=Math.PI/60){
+            for(double u = -Math.PI; u<= Math.PI; u+=Math.PI/60){
+                float x = (float)((radiusX * v) * Math.cos(u));
+                float y = (float)((radiusY * v) * Math.sin(u));
+                float z = (float)(radiusZ * v);
+                temp.add(new Vector3f(x + centerPoint.get(0),y + centerPoint.get(1),z + centerPoint.get(2)));
+            }
+        }
+        vertices=temp;
+    }
+
+    public void EllipticParaboloid(){
+        vertices.clear();
+
+        ArrayList<Vector3f> temp = new ArrayList<>();
+
+        for(double v = 0; v<= Math.PI/2; v+=Math.PI/60){
+            for(double u = -Math.PI; u<= Math.PI; u+=Math.PI/60){
+                float x = (float)((radiusX * v) * Math.cos(u));
+                float y = (float)((radiusY * v) * Math.sin(u));
+                float z = (float)(v * v);
+                temp.add(new Vector3f(x + centerPoint.get(0),y + centerPoint.get(1),z + centerPoint.get(2)));
+            }
+        }
+        vertices=temp;
+    }
+
+
+    public void HyperboloidParaboloid(){
+        vertices.clear();
+
+        ArrayList<Vector3f> temp = new ArrayList<>();
+
+        for(double v = 0; v<= Math.PI/2; v+=Math.PI/60){
+            for(double u = -Math.PI; u<= Math.PI; u+=Math.PI/60){
+                float x = (float)((radiusX * v) * Math.tan(u));
+                float y = (float)((radiusY * v) * (1/Math.cos(u)));
+                float z = (float)(v * v);
+                temp.add(new Vector3f(x + centerPoint.get(0),y + centerPoint.get(1),z + centerPoint.get(2)));
+            }
+        }
+        vertices=temp;
     }
     public void createBoxVertices()
     {
