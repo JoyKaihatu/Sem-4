@@ -1,5 +1,6 @@
 
 import Engine.*;
+import Engine.Object;
 import Engine.Rectangle;
 import Engine.Window;
 import org.joml.Vector2f;
@@ -37,8 +38,10 @@ public class Main {
     private ArrayList<Object2d> titikBerzier = new ArrayList<>();
     private ArrayList<Object2d> objectsRectCircle = new ArrayList<>();
     private ArrayList<Object2d> objectSphere =  new ArrayList<>();
+    private ArrayList<Object> objectSphere3D =  new ArrayList<>();
 
     int tes;
+    float rot = 0;
 
     public int factorial(int angka){
         int hasil = 1;
@@ -336,7 +339,35 @@ public class Main {
 
         objectSphere.add(new Sphere(shader,new ArrayList<>(),
                 new Vector4f((128f/255f),(128f/255f),(128f/255f),1.0f),
-                        new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.2f,0.2f,0.2f,100,50,5));
+                        new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.1f,0.1f,0.1f,100,50,0));
+
+        objectSphere.add(new Sphere(shader,new ArrayList<>(),
+                new Vector4f((128f/255f),(128f/255f),(128f/255f),1.0f),
+                new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.1f,0.1f,0.1f,100,50,0));
+
+        objectSphere.add(new Sphere(shader,new ArrayList<>(),
+                new Vector4f(1.0f,(128f/255f),(128f/255f),1.0f),
+                new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.1f,0.1f,0.1f,100,50,0));
+
+        objectSphere.get(0).scaleObject(3.0f,3.0f,3.0f);
+        objectSphere.get(1).scaleObject(1.5f,1.5f,1.0f);
+
+        objectSphere.get(1).translateObject(0.4f,0.4f,0.4f);
+        objectSphere.get(2).translateObject(0.4f,-0.4f,0.4f);
+
+        objectSphere.add(new Sphere(shader,new ArrayList<>(),
+                new Vector4f(1.0f,(128f/255f),(128f/255f),1.0f),
+                new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.1f,0.1f,0.1f,100,50,0));
+        objectSphere.get(3).translateObject(-0.4f,0.4f,0.4f);
+        objectSphere.add(new Sphere(shader,new ArrayList<>(),
+                new Vector4f(1.0f,(128f/255f),(128f/255f),1.0f),
+                new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.1f,0.1f,0.1f,100,50,0));
+        objectSphere.add(new Sphere(shader,new ArrayList<>(),
+                new Vector4f(1.0f,(128f/255f),(128f/255f),1.0f),
+                new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.1f,0.1f,0.1f,100,50,0));
+        objectSphere.get(4).translateObject(-0.4f,-0.4f,-0.4f);
+
+//        rot+=0.0001;
 
 
     }
@@ -375,18 +406,27 @@ public class Main {
 //                object.draw();
 //            }
 
-            for(Object2d object: objectsPointsControl){
-                object.drawLine();
-            }
-            for(Object2d object: KotakKhusus){
-                object.draw();
-            }
-            for (Object2d object : titikBerzier){
-                object.drawLineBerzier();
-            }
+//            for(Object2d object: objectsPointsControl){
+//                object.drawLine();
+//            }
+//            for(Object2d object: KotakKhusus){
+//                object.draw();
+//            }
+//            for (Object2d object : titikBerzier){
+//                object.drawLineBerzier();
+//            }
             for(Object2d object: objectSphere){
                 object.draw();
             }
+
+
+
+
+
+
+//                objectSphere.get(2).rotateObject(rot,0.0f,1.0f,0.0f);
+
+
 
 
 
@@ -418,7 +458,26 @@ public class Main {
                                 , GL_FRAGMENT_SHADER)
         );
         if(window.isKeyPressed(GLFW_KEY_W)){
-            System.out.println("W");
+            System.out.println(objectSphere.get(1).getMatrix());
+            System.out.println(objectSphere.get(1).getMatrix().get(3,2));
+
+        }
+        if(window.isKeyPressed(GLFW_KEY_F)){
+            objectSphere.get(2).rotateObject((float)Math.toRadians(0.5f),0.0f,0.0f,1.0f);
+            objectSphere.get(1).rotateObject((float)Math.toRadians(0.5f),0.0f,0.0f,1.0f);
+            System.out.println(objectSphere.get(1).getMatrix());
+        }
+        if(window.isKeyPressed(GLFW_KEY_G)){
+            float x1 = objectSphere.get(1).getMatrix().get(3,0);
+            float x2 = objectSphere.get(1).getMatrix().get(3,1);
+            float x3 = objectSphere.get(1).getMatrix().get(3,2);
+            objectSphere.get(1).translateObject(-x1,-x2,-x3);
+            objectSphere.get(1).rotateObject(0.005f,0.0f,0.0f,1.0f);
+            objectSphere.get(1).translateObject(x1,x2,x3);
+
+//            objectSphere.get(2).translateObject(-0.4f,0.4f,-0.4f);
+//            objectSphere.get(2).rotateObject(0.003f,0.0f,1.0f,0.0f);
+//            objectSphere.get(2).translateObject(0.4f,-0.4f,0.4f);
         }
         if(window.getMouseInput().isLeftButtonPressed()){
             Vector2f pos = window.getMouseInput().getCurrentPos();

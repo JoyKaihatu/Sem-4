@@ -7,16 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.GL_POLYGON;
 
-public class Sphere extends CircleNew{
+public class Sphere3D extends CircleNew{
     int sectorCount;
     int stackCount;
     Float radiusZ;
-    public Sphere(List<ShaderModuleData> shaderModuleDataList,
-                  List<Vector3f> vertices, Vector4f color,
-                  List<Float> centerPoint, Float radiusX,Float radiusY
-            ,Float radiusZ, int sectorCount,int stackCount,int pilih) {
+    public Sphere3D(List<ShaderModuleData> shaderModuleDataList,
+                    List<Vector3f> vertices, Vector4f color,
+                    List<Float> centerPoint, Float radiusX, Float radiusY
+            , Float radiusZ, int sectorCount, int stackCount, int pilih) {
         super(shaderModuleDataList, vertices, color, centerPoint, radiusX,radiusY);
         this.sectorCount = sectorCount;
         this.stackCount = stackCount;
@@ -38,9 +37,6 @@ public class Sphere extends CircleNew{
         }
         else if(pilih == 5){
             HyperboloidParaboloid();
-        }
-        else if(pilih == 6){
-            createBoxVertices();
         }
         setupVAOVBO();
     }
