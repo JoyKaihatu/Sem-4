@@ -362,10 +362,14 @@ public class Main {
         objectSphere.add(new Sphere(shader,new ArrayList<>(),
                 new Vector4f(1.0f,(128f/255f),(128f/255f),1.0f),
                 new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.1f,0.1f,0.1f,100,50,0));
-        objectSphere.add(new Sphere(shader,new ArrayList<>(),
-                new Vector4f(1.0f,(128f/255f),(128f/255f),1.0f),
-                new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.1f,0.1f,0.1f,100,50,0));
-        objectSphere.get(4).translateObject(-0.4f,-0.4f,-0.4f);
+        objectSphere.get(4).translateObject(0.0f,-0.6f,0.4f);
+//        objectSphere.add(new Sphere(shader,new ArrayList<>(),
+//                new Vector4f(1.0f,(128f/255f),(128f/255f),1.0f),
+//                new ArrayList<>(List.of(objectSphere.get(4).getMatrix().get(3,0),
+//                        objectSphere.get(4).getMatrix().get(3,1),
+//                        objectSphere.get(4).getMatrix().get(3,2))),0.1f,0.1f,0.1f,100,50,0));
+//        objectSphere.get(5).translateObject(-0.2f,-0.2f,-0.2f);
+//        objectSphere.get(5).scaleObject(0.5f,0.5f,0.5f);
 
 //        rot+=0.0001;
 
@@ -458,14 +462,22 @@ public class Main {
                                 , GL_FRAGMENT_SHADER)
         );
         if(window.isKeyPressed(GLFW_KEY_W)){
-            System.out.println(objectSphere.get(1).getMatrix());
-            System.out.println(objectSphere.get(1).getMatrix().get(3,2));
+            System.out.println(objectSphere.get(4).getMatrix());
+            System.out.println("_-----------");
+            System.out.println(objectSphere.get(5).getMatrix());
+
 
         }
         if(window.isKeyPressed(GLFW_KEY_F)){
-            objectSphere.get(2).rotateObject((float)Math.toRadians(0.5f),0.0f,0.0f,1.0f);
-            objectSphere.get(1).rotateObject((float)Math.toRadians(0.5f),0.0f,0.0f,1.0f);
-            System.out.println(objectSphere.get(1).getMatrix());
+            objectSphere.get(2).rotateObject((float)Math.toRadians(0.2f),0.0f,0.0f,1.0f);
+            objectSphere.get(1).rotateObject((float)Math.toRadians(0.1f),0.0f,0.0f,1.0f);
+            objectSphere.get(3).rotateObject(0.3f,0.0f,0.0f,1.0f);
+            objectSphere.get(4).rotateObject(0.1f,0.0f,0.0f,1.0f);
+//            objectSphere.get(5).update(objectSphere.get(4).getMatrix().get(3,0),
+//                    objectSphere.get(4).getMatrix().get(3,1),
+//                    objectSphere.get(4).getMatrix().get(3,2));
+
+            System.out.println(objectSphere.get(4).getMatrix());
         }
         if(window.isKeyPressed(GLFW_KEY_G)){
             float x1 = objectSphere.get(1).getMatrix().get(3,0);
@@ -478,6 +490,9 @@ public class Main {
 //            objectSphere.get(2).translateObject(-0.4f,0.4f,-0.4f);
 //            objectSphere.get(2).rotateObject(0.003f,0.0f,1.0f,0.0f);
 //            objectSphere.get(2).translateObject(0.4f,-0.4f,0.4f);
+        }
+        if(window.isKeyPressed(GLFW_KEY_H)){
+//            objectSphere.get(5).rotateObject(0.1f,0.0f,0.0f,1.0f);
         }
         if(window.getMouseInput().isLeftButtonPressed()){
             Vector2f pos = window.getMouseInput().getCurrentPos();

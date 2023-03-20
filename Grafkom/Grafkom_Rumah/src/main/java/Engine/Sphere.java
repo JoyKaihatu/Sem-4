@@ -245,4 +245,10 @@ public class Sphere extends CircleNew{
         glDrawArrays(GL_LINE_STRIP, 0, vertices.size());
     }
 
+    @Override
+    public void update(float x, float y, float z) {
+        centerPoint.set(0,x);
+        centerPoint.set(1,y);
+        centerPoint.set(2,z);
+    }
 }

@@ -207,6 +207,8 @@ public class Object2d extends ShaderProgram{
     public Matrix4f getMatrix(){
         return model;
     }
+    public void update(float x, float y, float z){
+    }
 
     public void translateObject(Float offsetX, Float offsetY, Float offsetZ){
         model = new Matrix4f().translate(offsetX,offsetY,offsetZ).mul(new Matrix4f(model));
