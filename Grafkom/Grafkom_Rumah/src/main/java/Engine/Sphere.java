@@ -243,6 +243,9 @@ public class Sphere extends CircleNew{
         glLineWidth(1);
         glPointSize(0);
         glDrawArrays(GL_LINE_STRIP, 0, vertices.size());
+        for (Object2d child:childObject){
+            child.draw();
+        }
     }
 
     @Override
@@ -251,4 +254,5 @@ public class Sphere extends CircleNew{
         centerPoint.set(1,y);
         centerPoint.set(2,z);
     }
+
 }

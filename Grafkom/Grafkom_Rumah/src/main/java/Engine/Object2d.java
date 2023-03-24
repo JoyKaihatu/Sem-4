@@ -4,6 +4,7 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL15.*;
@@ -17,6 +18,7 @@ public class Object2d extends ShaderProgram{
     List<Vector3f>verticesColor;
 
     int vao;
+    List<Object2d> childObject;
 
     int vbo;
 
@@ -39,6 +41,7 @@ public class Object2d extends ShaderProgram{
         uniformsMap.createUniform("model");
         this.color = color;
         model = new Matrix4f().identity();
+        childObject =  new ArrayList<>();
     }
 
     public Object2d(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, List<Vector3f> verticesColor){
@@ -47,6 +50,18 @@ public class Object2d extends ShaderProgram{
         this.verticesColor = verticesColor;
         setupVAOVBOWithVerticesColor();
 
+    }
+
+    public void setVertices(List<Vector3f> vertices) {
+        this.vertices = vertices;
+    }
+
+    public List<Object2d> getChildObject() {
+        return childObject;
+    }
+
+    public void setChildObject(List<Object2d> childObject) {
+        this.childObject = childObject;
     }
 
     public void setupVAOVBO(){
@@ -115,8 +130,13 @@ public class Object2d extends ShaderProgram{
         //GL_TRIANGLES
         //GL_TRIANGLE_FAN
         //GL_POINT
+        System.out.println(childObject.size());
 
         glDrawArrays(GL_TRIANGLES,0,vertices.size());
+        for (Object2d child:childObject){
+            System.out.println("Kepanggil");
+            child.draw();
+        }
     }
 
     public void drawLine(){
@@ -195,11 +215,18 @@ public class Object2d extends ShaderProgram{
 //        glDrawArrays(GL_LINE_LOOP,0, vertices.size());
     }
     public float getCenterx(){
-        return 0;
+        return vertices.get(0).x;
     }
 
     public float getCentery(){
-        return 0;
+        return vertices.get(0).y;
+    }
+    public float getCenterz(){
+        return vertices.get(0).z;
+    }
+    public void setCenterPoint(List<Vector3f> verticesBaru){
+        this.vertices = verticesBaru;
+
     }
 
     public void moves(float centerx, float centery){
@@ -212,14 +239,24 @@ public class Object2d extends ShaderProgram{
 
     public void translateObject(Float offsetX, Float offsetY, Float offsetZ){
         model = new Matrix4f().translate(offsetX,offsetY,offsetZ).mul(new Matrix4f(model));
+        for (Object2d child:childObject){
+            child.translateObject(offsetX,offsetY,offsetZ);
+        }
+
     }
 
     public void rotateObject(Float degree, Float x, Float y, Float z){
         model = new Matrix4f().rotate(degree,x,y,z).mul(new Matrix4f(model));
+        for (Object2d child:childObject){
+            child.rotateObject(degree,x,y,z);
+        }
     }
 
     public void scaleObject(Float scaleX, Float scaleY, Float scaleZ){
         model = new Matrix4f().scale(scaleX,scaleY,scaleZ).mul(new Matrix4f(model));
+        for (Object2d child:childObject){
+            child.scaleObject(scaleX,scaleY,scaleZ);
+        }
     }
 
 }
