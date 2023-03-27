@@ -127,10 +127,12 @@ def gradient_descent(X, Y, iterations, alpha):
         if i % 100 == 0:
             print("Iteration: ", i)
             print("Accuracy: ", get_accuracy(get_predictions(A2), Y))
+        if i % 1000 == 0:
+            setWeights(W1, b1, W2, b2)
     setWeights(W1, b1, W2, b2)
 
 
-# gradient_descent(X_train, Y_train, 501, 0.10)
+# gradient_descent(X_train, Y_train, 10000, 0.10)
 
 # W1, b1, W2, b2 = gradient_descent_init(X_train, Y_train, 50, 0.10)
 #
@@ -142,22 +144,23 @@ def gradient_descent(X, Y, iterations, alpha):
 
 def make_predictions(X, W1, b1, W2, b2):
     _, _, _, A2 = forward_prop(W1, b1, W2, b2, X)
-    print(A2)
     predictions = get_predictions(A2)
     return predictions
 
 
-def test_prediction(index, W1, b1, W2, b2):
+def test_prediction(index, W1, b1, W2, b2 ,count = 0):
     current_image = X_train[:, index, None]
     prediction = make_predictions(X_train[:, index, None], W1, b1, W2, b2)
     label = Y_train[index]
     print("Prediction: ", prediction)
     print("Label: ", label)
+    print()
 
-    current_image = current_image.reshape((28, 28)) * 255
-    plt.gray()
-    plt.imshow(current_image, interpolation='nearest')
-    plt.show()
+    # current_image = current_image.reshape((28, 28)) * 255
+    # plt.gray()
+    # plt.imshow(current_image, interpolation='nearest')
+    # plt.show()
+
 
 
 W1, b1, W2, b2 = getSavedWeights()
