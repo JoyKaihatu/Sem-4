@@ -18,10 +18,26 @@ public class Main {
 
 
     private Window window = new Window(800,600,"Hello World");
+    private ArrayList<Object2d> flappy = new ArrayList<>();
 
     public void init(){
         window.init();
         GL.createCapabilities();
+
+        List<ShaderProgram.ShaderModuleData> shader = Arrays.asList(
+                //shaderFile lokasi menyesuaikan objectnya
+                new ShaderProgram.ShaderModuleData
+                        ("resources/shaders/scene.vert"
+                                , GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData
+                        ("resources/shaders/scene.frag"
+                                , GL_FRAGMENT_SHADER)
+        );
+
+        flappy.add(new Circle(shader, new ArrayList<>(), new Vector4f(0.0f,1.0f,1.0f,1.0f),
+                0.5,0.0,0.0,0,0.0));
+
+
 
     }
     public void loop(){
@@ -32,7 +48,11 @@ public class Main {
                     0.0f);
             GL.createCapabilities();
             input();
-            
+
+            for(Object2d object: flappy){
+                object.draw();
+            }
+
 
             // Restore state
             glDisableVertexAttribArray(0);
