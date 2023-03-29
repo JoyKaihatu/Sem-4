@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         // write your code here
@@ -29,6 +28,8 @@ class No1_C14220227{
     public No1_C14220227(){
 
     }
+
+
 
     public void insert(String filename, String nama, String nrp){
         this.filename = filename;
