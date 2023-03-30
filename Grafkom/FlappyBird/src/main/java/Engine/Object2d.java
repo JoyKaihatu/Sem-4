@@ -132,7 +132,7 @@ public class Object2d extends ShaderProgram{
         //GL_POINT
         System.out.println(childObject.size());
 
-        glDrawArrays(GL_TRIANGLES,0,vertices.size());
+        glDrawArrays(GL_LINES,0,vertices.size());
         for (Object2d child:childObject){
             System.out.println("Kepanggil");
             child.draw();

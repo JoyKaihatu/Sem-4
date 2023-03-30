@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.glClearColor;
@@ -34,9 +35,11 @@ public class Main {
                                 , GL_FRAGMENT_SHADER)
         );
 
-        flappy.add(new Circle(shader, new ArrayList<>(), new Vector4f(0.0f,1.0f,1.0f,1.0f),
-                0.5,0.0,0.0,0,0.0));
-
+        flappy.add(new Sphere(shader,new ArrayList<>(),
+                new Vector4f((1f),(226f/255f),(74f/255f),1.0f),
+                new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.5f,0.5f,0.3f,100,50,0));
+        flappy.get(0).getChildObject().add(new Circle(shader,new ArrayList<>(), new Vector4f(1.0f,0.0f,0.0f,1.0f),
+                0.2f,0.0f,0.0f,0,0.0f));
 
 
     }
@@ -76,8 +79,15 @@ public class Main {
                                 , GL_FRAGMENT_SHADER)
         );
         if(window.isKeyPressed(GLFW_KEY_W)){
-
+            flappy.get(0).rotateObject(0.1f,0f,1.0f,0f);
         }
+        if(window.isKeyPressed(GLFW_KEY_S)){
+            flappy.get(0).rotateObject(0.1f,1.0f,0.0f,0.0f);
+        }
+        if(window.isKeyPressed(GLFW_KEY_A)){
+            flappy.get(0).rotateObject(0.1f,0.0f,0.0f,1.0f);
+        }
+
 
         if(window.getMouseInput().isLeftButtonPressed()){
             Vector2f pos = window.getMouseInput().getCurrentPos();

@@ -241,7 +241,7 @@ public class Sphere extends CircleNew{
         // Draw the vertices
         glLineWidth(1);
         glPointSize(0);
-        glDrawArrays(GL_LINE_STRIP, 0, vertices.size());
+        glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size());
         for (Object2d child:childObject){
             child.draw();
         }

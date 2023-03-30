@@ -57,9 +57,10 @@ public class Circle extends Object2d {
         {
             x = cx + ((r+0.07) * Math.cos(Math.toRadians(i)));
             y = cy + ((r+offset) * Math.sin(Math.toRadians(i)));
-            vertices.add(new Vector3f((float) x, (float) y, 0.0f));
+            vertices.add(new Vector3f((float) x, (float) y, -1.0f));
 
         }
+
     }
 
     public void draw(){
