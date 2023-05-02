@@ -28,8 +28,12 @@ public class Circle extends Object2d {
         else if (pick == 1){
             createElipse();
         }
+        else if (pick == 2){
+            createCirclePlat();
+        }
 
         setupVAOVBO();
+
 
 
 
@@ -45,6 +49,20 @@ public class Circle extends Object2d {
             x = cx + ((r-0.03) * Math.cos(Math.toRadians(i)));
             y = cy + ((r) * Math.sin(Math.toRadians(i)));
             vertices.add(new Vector3f((float) x, (float) y, 0.0f));
+
+        }
+    }
+
+    public void createCirclePlat()
+    {
+        //clear vertices
+        vertices.clear();
+
+        for (float i = 0; i < 360; i+=0.01)
+        {
+            x = cx + ((r-0.03) * Math.cos(Math.toRadians(i)));
+            y = cy + ((r) * Math.sin(Math.toRadians(i)));
+            vertices.add(new Vector3f((float) x, 0.0f , (float) y));
 
         }
     }

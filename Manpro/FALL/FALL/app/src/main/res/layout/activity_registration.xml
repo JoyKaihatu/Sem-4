@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registration"
+    android:background="@drawable/gradient">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cl">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="173dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_transparent" />
+
+        <TextView
+            android:id="@+id/textViewUsr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="24dp"
+            android:text="Username"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+        <EditText
+            android:id="@+id/regUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Input Username"
+            android:fontFamily="@font/lato_semibold"
+            android:inputType="textPersonName"
+            android:textColor="@color/text"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/textViewUsr"
+            app:layout_constraintTop_toBottomOf="@+id/textViewUsr" />
+
+        <TextView
+            android:id="@+id/textViewPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Password"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="@+id/textViewUsr"
+            app:layout_constraintTop_toBottomOf="@+id/regUser" />
+
+        <EditText
+            android:id="@+id/regPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:fontFamily="@font/lato_semibold"
+            android:hint="Input Password"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toStartOf="@+id/textViewPass"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPass" />
+
+        <TextView
+            android:id="@+id/textViewAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Age"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="@+id/textViewPass"
+            app:layout_constraintTop_toBottomOf="@+id/regPass" />
+
+        <EditText
+            android:id="@+id/regAge"
+            android:layout_width="62dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:fontFamily="@font/lato_semibold"
+            android:inputType="numberSigned"
+            android:minHeight="48dp"
+            android:textColor="@color/text"
+            app:layout_constraintStart_toStartOf="@+id/textViewAge"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAge" />
+
+        <Button
+            android:id="@+id/buttonNextRegist"
+            android:layout_width="163dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="72dp"
+            android:backgroundTint="@color/button"
+            android:text="Next"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.584"
+            app:layout_constraintStart_toEndOf="@+id/regAge"
+            app:layout_constraintTop_toBottomOf="@+id/regPass" />
+
+        <!--        <TextView-->
+<!--            android:id="@+id/txtSignUp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="56dp"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:text="Sign Up/Register"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold|italic"-->
+<!--            android:textColor="@color/white"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

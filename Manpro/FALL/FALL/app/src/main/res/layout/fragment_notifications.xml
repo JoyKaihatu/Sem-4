@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.notifications.NotificationsFragment"
+    android:background="@color/bg">
+
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/profilepic4" />
+
+    <TextView
+        android:id="@+id/textViewProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="Profile"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <TextView
+        android:id="@+id/textViewNickN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:text="NickName"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_medium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfile" />
+
+    <EditText
+        android:id="@+id/editTextNickName"
+        android:layout_width="278dp"
+        android:layout_height="52dp"
+        android:editable="false"
+        android:ems="10"
+        android:enabled="true"
+        android:fontFamily="@font/lato_semibold"
+        android:inputType="textPersonName"
+        android:text="Loading!"
+        android:textColor="@color/text"
+        app:layout_constraintStart_toStartOf="@+id/textViewNickN"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNickN" />
+
+    <TextView
+        android:id="@+id/textViewUsrNm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Username"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_medium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/textViewNickN"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNickName" />
+
+    <EditText
+        android:id="@+id/editTextUsrNm"
+        android:layout_width="277dp"
+        android:layout_height="50dp"
+        android:editable="false"
+        android:ems="10"
+        android:enabled="true"
+        android:fontFamily="@font/lato_semibold"
+        android:inputType="textPersonName"
+        android:text="Loading!"
+        android:textColor="@color/text"
+        app:layout_constraintStart_toStartOf="@+id/textViewUsrNm"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUsrNm" />
+
+    <TextView
+        android:id="@+id/textViewAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Age"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_medium"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/textViewUsrNm"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsrNm" />
+
+    <EditText
+        android:id="@+id/editTextNumberAge"
+        android:layout_width="67dp"
+        android:layout_height="48dp"
+        android:editable="false"
+        android:ems="10"
+        android:enabled="false"
+        android:fontFamily="@font/lato_medium"
+        android:inputType="number"
+        android:text="Loading!"
+        android:textColor="@color/text"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewAge"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAge" />
+
+    <TextView
+        android:id="@+id/textViewSex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_medium"
+        android:text="Sex"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/textViewAge"
+        app:layout_constraintTop_toTopOf="@+id/textViewAge" />
+
+    <EditText
+        android:id="@+id/editTextSex"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
+        android:editable="true"
+        android:ems="10"
+        android:enabled="false"
+        android:fontFamily="@font/lato_semibold"
+        android:inputType="none"
+        android:text="Loading!"
+        android:textColor="@color/text"
+        app:layout_constraintStart_toStartOf="@+id/textViewSex"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSex"
+        tools:ignore="Deprecated" />
+
+    <TextView
+        android:id="@+id/textViewPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/lato_heavyitalic"
+        android:text="@string/changePass"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSex" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="124dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/button"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPass" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

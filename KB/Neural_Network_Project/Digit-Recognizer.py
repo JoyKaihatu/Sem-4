@@ -133,7 +133,7 @@ def gradient_descent(X, Y, iterations, alpha):
 
 
 
-# gradient_descent(X_train, Y_train, 10000, 0.10)
+gradient_descent(X_train, Y_train, 1, 0.10)
 
 # gradient_descent_init(X_train, Y_train, 50, 0.1)
 #

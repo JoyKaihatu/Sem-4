@@ -35,11 +35,14 @@ public class Main {
                                 , GL_FRAGMENT_SHADER)
         );
 
-        flappy.add(new Sphere(shader,new ArrayList<>(),
-                new Vector4f((1f),(226f/255f),(74f/255f),1.0f),
-                new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.5f,0.5f,0.3f,100,50,0));
-        flappy.get(0).getChildObject().add(new Circle(shader,new ArrayList<>(), new Vector4f(1.0f,0.0f,0.0f,1.0f),
-                0.2f,0.0f,0.0f,0,0.0f));
+//        flappy.add(new Sphere(shader,new ArrayList<>(),
+//                new Vector4f((1f),(226f/255f),(74f/255f),1.0f),
+//                new ArrayList<Float>(List.of(0.0f,0.0f,0.0f)),0.5f,0.5f,0.3f,100,50,0));
+//        flappy.get(0).getChildObject().add(new Circle(shader,new ArrayList<>(), new Vector4f(1.0f,0.0f,0.0f,1.0f),
+//                0.2f,0.0f,0.0f,0,0.0f));
+
+        flappy.add(new Circle(shader, new ArrayList<>(),new Vector4f(1.0f,0.0f,0.0f,1.0f),
+                0.5,0.0f,0.0f,2,0.0f));
 
 
     }
