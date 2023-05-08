@@ -133,7 +133,7 @@ def gradient_descent(X, Y, iterations, alpha):
 
 
 
-gradient_descent(X_train, Y_train, 1, 0.10)
+# gradient_descent(X_train, Y_train, 1, 0.10)
 
 # gradient_descent_init(X_train, Y_train, 50, 0.1)
 #
@@ -165,7 +165,7 @@ def test_prediction(index, W1, b1, W2, b2 ,count = 0):
 
 
 
-W1, b1, W2, b2 = getSavedWeights()
-
-for i in range(10):
-    test_prediction(i, W1, b1, W2, b2)
+# W1, b1, W2, b2 = getSavedWeights()
+#
+# for i in range(4):
+#     test_prediction(i, W1, b1, W2, b2)
