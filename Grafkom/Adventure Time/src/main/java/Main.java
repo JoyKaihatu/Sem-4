@@ -15,7 +15,7 @@ import static org.lwjgl.opengl.GL20.*;
 public class Main {
 
 
-    private Window window = new Window(800,800,"Adventure Time");
+    private Window window = new Window(800,600,"Adventure Time");
     private MouseInput mouseInput;
 
 
@@ -82,7 +82,7 @@ public class Main {
 
         window.init();
         GL.createCapabilities();
-        camera.setPosition(0,0.85f,4.5f);
+        camera.setPosition(0,0,1.0f);
         glEnable(GL_DEPTH_TEST);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         glDepthMask(true);
@@ -1513,9 +1513,9 @@ public class Main {
         for(Object2d object : flepi2){
             object.scaleObject(0.3f,0.3f,0.3f);
         }
-        for (Object2d object : flepi2){
-            object.translateObject(-0.5f,0.35f,-0.7f);
-        }
+//        for (Object2d object : flepi2){
+//            object.translateObject(-0.5f,0.35f,-0.7f);
+//        }
 
         for (Object2d object : flepi3){
             object.scaleObject(0.3f,0.3f,0.3f);
@@ -1558,19 +1558,19 @@ public class Main {
                 object.draw(camera,projection);
             }
 
-            for(Object2d object: flappy){
-                object.draw(camera, projection);
-            }
-            for (Object2d object: objects){
-                object.draw(camera,projection);
-            }
+//            for(Object2d object: flappy){
+//                object.draw(camera, projection);
+//            }
+//            for (Object2d object: objects){
+//                object.draw(camera,projection);
+//            }
 
             for (Object2d object: flepi2){
                 object.draw(camera,projection);
             }
-            for (Object2d object: flepi3){
-                object.draw(camera, projection);
-            }
+//            for (Object2d object: flepi3){
+//                object.draw(camera, projection);
+//            }
 
 
             // Restore state
@@ -1593,17 +1593,47 @@ public class Main {
                         ("resources/shaders/scene.frag"
                                 , GL_FRAGMENT_SHADER)
         );
+
+
+
         if (window.isKeyPressed(GLFW_KEY_W)){
             camera.moveUp(move);
+            for (Object2d object: flepi2){
+                Vector3f wa = object.getMatrix().transformPosition(new Vector3f(0.0f,0.0f,0.0f));
+                object.translateObject(0.0f,move,0.0f);
+            }
         }
+        if (window.isKeyPressed(GLFW_KEY_V)){
+            Vector3f wa = flepi2.get(0).getMatrix().transformPosition(new Vector3f(0.0f,0.0f,0.0f));
+            camera.rotate(0,-move, wa);
+        }
+
+        if (window.isKeyPressed(GLFW_KEY_C)){
+            Matrix4f wa = camera.getViewMatrix();
+            wa = new Matrix4f().rotate((float)Math.toRadians(-2),0.0f,1.0f,0.0f).mul(new Matrix4f(wa));
+            camera.setViewMatrix(wa);
+        }
+
         if (window.isKeyPressed(GLFW_KEY_A)){
             camera.moveLeft(move);
+            for (Object2d object: flepi2){
+                Vector3f wa = object.getMatrix().transformPosition(new Vector3f(0.0f,0.0f,0.0f));
+                object.translateObject(-move,0.0f,0.0f);
+            }
         }
         if (window.isKeyPressed(GLFW_KEY_S)){
             camera.moveDown(move);
+            for (Object2d object: flepi2){
+                Vector3f wa = object.getMatrix().transformPosition(new Vector3f(0.0f,0.0f,0.0f));
+                object.translateObject(0.0f,-move,0.0f);
+            }
         }
         if (window.isKeyPressed(GLFW_KEY_D)){
             camera.moveRight(move);
+            for (Object2d object: flepi2){
+                Vector3f wa = object.getMatrix().transformPosition(new Vector3f(0.0f,0.0f,0.0f));
+                object.translateObject(move,0.0f,0.0f);
+            }
         }
         if (window.isKeyPressed(GLFW_KEY_I)){
             camera.addRotation(move,0);
@@ -1619,9 +1649,21 @@ public class Main {
         }
         if (window.isKeyPressed(GLFW_KEY_LEFT_SHIFT)){
             camera.moveForward(move);
+            for (Object2d object: flepi2){
+                Vector3f wa = object.getMatrix().transformPosition(new Vector3f(0.0f,0.0f,0.0f));
+                object.translateObject(0.0f,0.0f,-move);
+            }
+
+        }
+        if (window.isKeyPressed(GLFW_KEY_M)){
+
         }
         if (window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)){
             camera.moveBackwards(move);
+            for (Object2d object: flepi2){
+                Vector3f wa = object.getMatrix().transformPosition(new Vector3f(0.0f,0.0f,0.0f));
+                object.translateObject(0.0f,0.0f,move);
+            }
         }
 
         if (window.getMouseInput().isLeftButtonPressed()){

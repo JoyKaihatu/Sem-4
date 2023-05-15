@@ -165,7 +165,7 @@ def test_prediction(index, W1, b1, W2, b2 ,count = 0):
 
 
 
-# W1, b1, W2, b2 = getSavedWeights()
-#
-# for i in range(4):
-#     test_prediction(i, W1, b1, W2, b2)
+W1, b1, W2, b2 = init_params()
+
+for i in range(4):
+    test_prediction(i, W1, b1, W2, b2)

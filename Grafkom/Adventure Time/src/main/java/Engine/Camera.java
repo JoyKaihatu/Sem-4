@@ -38,6 +38,9 @@ public class Camera {
         position.sub(direction);
         recalculate();
     }
+    public void rotate(float x,float y, Vector3f koor){
+        viewMatrix.translate(koor.x, koor.y, koor.z).rotateX(x).rotateY(y).translate(-koor.x, -koor.y, -koor.z);
+    }
 
     public void moveDown(float inc) {
         viewMatrix.positiveY(up).mul(inc);
@@ -73,8 +76,10 @@ public class Camera {
         viewMatrix.identity()
                 .rotateX(rotation.x)
                 .rotateY(rotation.y)
-                .translate(-position.x, -position.y, -position.z);
+                .translate(-position.x, -position.y, -position.z );
+
     }
+
 
     public void setPosition(float x, float y, float z) {
         position.set(x, y, z);
@@ -85,4 +90,9 @@ public class Camera {
         rotation.set(x, y);
         recalculate();
     }
+
+    public void setViewMatrix(Matrix4f viewMatrix) {
+        this.viewMatrix = viewMatrix;
+    }
+
 }
