@@ -1,5 +1,9 @@
-import pprint
+import numpy as np
+array = [0 for _ in range(10)]
+array.append(1)
+print(array)
+np.random.shuffle(array)
+print(array)
 
-tes = [[[None for _ in range(3)] for _ in range(3)] for _ in range (3)]
-
-pprint.pprint(tes)
+x = array[0] + 1
+print(x)

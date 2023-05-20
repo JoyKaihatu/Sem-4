@@ -1,141 +1,269 @@
 import random
-import pprint
-import numpy as np
+import pprint as pp
+
+
 class board:
     def __init__(self):
         self.board = [[None for _ in range(8)] for _ in range(8)]
-        self.list_kapal={"carrier":5, "submarine":1, "destroyer":3}
+        self.list_kapal = {"carrier": 5, "submarine": 1, "destroyer": 3}
         self.NoMissFlag = False
-        self.lastHit = [0,0]
-    def attack(self,row,column):
-        y = self.is_overlap(row,column)
+        self.lastHit = [0, 0]
+
+    def attack(self, row, column):
+        y = self.is_overlap(row, column)
 
         if y:
             return True, False
         elif not y:
-            if self.NoMissFlag == False:
-                x = self.is_hit(row,column)
-                return x,x
+            ApakahKena, tenggelamBool = self.is_hit(row, column)
+            return ApakahKena, tenggelamBool
 
-    def is_overlap(self,row,column):
-        if self.board[row][column] == "x":
+    def is_overlap(self, row, column):
+        if self.board[row][column] != None:
             print("Kotak ini sudah di tembak")
             return True
         else:
             return False
 
-    def is_sink(self):
+    def is_sink(self, Kapal):
+        self.list_kapal.__setitem__(Kapal, self.list_kapal.get(Kapal) - 1)
         if self.list_kapal.get("carrier") == 0:
-            self.list_kapal.__setitem__("carrier",self.list_kapal.get("carrier") - 1)
+            self.list_kapal.__setitem__("carrier", self.list_kapal.get("carrier") - 1)
             print("Carrier is sink")
-            return 0
+            return True
         elif self.list_kapal.get("destroyer") == 0:
             self.list_kapal.__setitem__("destroyer", self.list_kapal.get("destroyer") - 1)
+            print("Destroyer is sink")
+            return True
         elif self.list_kapal.get("submarine") == 0:
             self.list_kapal.__setitem__("submarine", self.list_kapal.get("submarine") - 1)
             print("Submarine is sink")
-            return 2
+            return True
+        else:
+            return False
 
-    def is_hit(self,row,column):
+    def is_hit(self, row, column):
         if self.board[row][column] in self.list_kapal:
             print("On Hit")
             self.NoMissFlag = True
-            self.board[row][column] = "x"
-            return True
+            statusTenggelam = self.is_sink(self.board[row][column])
+            self.board[row][column] = "X"
+            return True, statusTenggelam
         else:
             print("No Hit")
             self.NoMissFlag = False
-            self.board[row][column] = "x"
-            return False
+            self.board[row][column] = "O"
+            return False, False
 
     def isi_board(self):
         ship_list = ["carrier", "submarine", "destroyer"]
-        ship_size = [5,1,3]
+        ship_size = [5, 1, 3]
         ship_listPicker = 0
         while True:
             if ship_listPicker >= len(ship_list):
                 break
             count = 0
             isiKapalFlag = False
-            row = random.randint(0,7)
-            column = random.randint(0,7)
-            axis = random.randint(0,1)
-            print(row,column,axis)
+            row = random.randint(0, 7)
+            column = random.randint(0, 7)
+            axis = random.randint(0, 1)
+            print(row, column, axis)
 
             if axis == 0:
                 if row + ship_size[ship_listPicker] - 1 < len(self.board):
-                    for i in range(row,row + ship_size[ship_listPicker]):
+                    for i in range(row, row + ship_size[ship_listPicker]):
                         count = count + 1
                         if self.board[i][column] in self.list_kapal:
                             break
-                    print("count: ", count)
-
-                    if count == ship_size[ship_listPicker] :
+                    if count == ship_size[ship_listPicker]:
                         isiKapalFlag = True
-                    print("Flag Status : ", isiKapalFlag)
-                    if isiKapalFlag == True:
+                    if isiKapalFlag is True:
                         print(row, ship_size[ship_listPicker])
-                        for i in range(row,row + ship_size[ship_listPicker] ):
-                            self.board[i][column] = str(ship_list[ship_listPicker])
+                        for i in range(row, row + ship_size[ship_listPicker]):
+                            a = ship_list[ship_listPicker]
+                            self.board[i][column] = str(a)
                         ship_listPicker += 1
 
             if axis == 1:
                 if column + ship_size[ship_listPicker] - 1 < len(self.board):
-                    for i in range(column,column + ship_size[ship_listPicker] ):
+                    for i in range(column, column + ship_size[ship_listPicker]):
                         count = count + 1
                         if self.board[row][i] in self.list_kapal:
                             break
-                    print("count: ", count)
 
                     if count == ship_size[ship_listPicker]:
                         isiKapalFlag = True
 
-                    print("Flag Status : ", isiKapalFlag)
-
-                    if isiKapalFlag == True:
+                    if isiKapalFlag:
 
                         print(column, ship_size[ship_listPicker])
-                        for i in range(column,column + ship_size[ship_listPicker] ):
-                            self.board[row][i] = str(ship_list[ship_listPicker])
+                        for i in range(column, column + ship_size[ship_listPicker]):
+                            a = ship_list[ship_listPicker]
+                            self.board[row][i] = str(a)
                         ship_listPicker += 1
-
 
 
 class AI:
     def __init__(self):
-        self.boardLangkah = [[None for _ in range(8)] for _ in range(8)]
-        self.boardData = [[None for _ in range(8)] for _ in range(8)]
-        self.lastMove = [0,0]
-        self.sinkShip=[False,False,False]
-        self.boardFocus = False
-        self.aiFocusFire =[[]]
-        self.firstContact = [0,0]
+        self.langkahAI = [[None for _ in range(8)] for _ in range(8)]
+        self.boardAI = [[None for _ in range(8)] for _ in range(8)]
+        self.lastMove = [0, 0]
+        self.firstContact = [0, 0]
+        self.count = 0
+        self.firstContactFlag = False
+
+    def pick(self, onHitStatus=False, sinkStatus=False):
+
+        if onHitStatus is False and sinkStatus is False:
+            row, column = self.normalMove()
+            return row, column
+        elif onHitStatus is True and sinkStatus is True:
+            row, column = self.normalMove()
+            return row, column
+        elif onHitStatus is True and sinkStatus is False and self.firstContactFlag is False:
+            self.firstContactFlag = True
+            self.firstContact = self.lastMove
+            row, column = self.focusFire()
+            return row, column
+        elif onHitStatus is True and sinkStatus is False and self.firstContactFlag is True:
+            row, column = self.focusFire()
+            return row, column
+
     def normalMove(self):
-        while(True):
-            row = random.randint(0,7)
-            column = random.randint(0,7)
+        while True:
+            row = random.randint(0, 7)
+            column = random.randint(0, 7)
 
-            if self.boardLangkah[row][column] == None:
-                self.lastMove[0] = row
-                self.lastMove[1] = column
-                return row,column
+            if self.langkahAI[row][column] is None:
+                return row, column
 
-    #If isHit == True, Fungsi ini yang akan dijlankan
     def focusFire(self):
+        picky = self.firstContact
+
+        if self.count < 2:
+
+            while True:
+                if self.count > 2:
+                    break
+
+                # If Count == 0, Akan coba menembak ke arah Kanan dari First Contact
+                if self.count == 0:
+                    if picky[0] + 1 < len(self.langkahAI):
+                        if self.langkahAI[picky[0] + 1][picky[1]] is None:
+                            row = picky[0] + 1
+                            column = picky[1]
+                            return row, column
+                        elif self.langkahAI[picky[0] + 1][picky[1]] == "X":
+                            picky[0] = picky[0] + 1
+                        elif self.langkahAI[picky[0] + 1][picky[1]] == "O":
+                            self.count += 1
+                            picky = self.firstContact
+                    else:
+                        self.count += 1
+                        picky = self.firstContact
+
+                # If Count == 1, Akan coba menembak ke arah Kiri dari First Contact
+                elif self.count == 1:
+                    if picky[0] - 1 >= 0:
+                        if self.langkahAI[picky[0] - 1][picky[1]] is None:
+                            row = picky[0] - 1
+                            column = picky[1]
+                            return row, column
+                        elif self.langkahAI[picky[0] - 1][picky[1]] == "X":
+                            picky[0] = picky[0] - 1
+                        elif self.langkahAI[picky[0] - 1][picky[1]] == "O":
+                            self.count += 1
+                            picky = self.firstContact
+
+                    else:
+                        self.count += 1
+                        picky = self.firstContact
+
+        if self.count > 2 and self.count < 4:
+            while True:
+                if self.count > 3:
+                    break
+
+                # If Count == 2, Akan coba menembak ke arah Kanan dari First Contact
+                if self.count == 2:
+                    if picky[1] + 1 < len(self.langkahAI):
+                        if self.langkahAI[picky[0]][picky[1] + 1] is None:
+                            row = picky[0]
+                            column = picky[1] + 1
+                            return row, column
+                        elif self.langkahAI[picky[0]][picky[1] + 1] == "X":
+                            picky[1] = picky[1] + 1
+                        elif self.langkahAI[picky[0]][picky[1] + 1] == "O":
+                            self.count += 1
+                            picky = self.firstContact
+                    else:
+                        self.count += 1
+                        picky = self.firstContact
+
+                # If Count == 3, Akan coba menembak ke arah Kanan dari First Contact
+                if self.count == 3:
+                    if picky[1] - 1 < len(self.langkahAI):
+                        if self.langkahAI[picky[0]][picky[1] - 1] is None:
+                            row = picky[0]
+                            column = picky[1] - 1
+                            return row, column
+                        elif self.langkahAI[picky[0]][picky[1] - 1] == "X":
+                            picky[1] = picky[1] - 1
+                        elif self.langkahAI[picky[0]][picky[1] - 1] == "O":
+                            self.count += 1
+                            picky = self.firstContact
+                    else:
+                        self.count += 1
+                        picky = self.firstContact
 
 
-        pass
+board1 = board()
+board2 = board()
+ai = AI()
+konter = 0
+StartFlag = False
+onHitStatus = False
+sinkStatus = False
 
+board1.isi_board()
+board2.isi_board()
 
-    def makeBoard(self):
-        if self.sinkShip[0] == True:
-            self.aiFocusFire = [[[0,0] for _ in range(3)] for _ in range(3)]
-        else:
-            self.aiFocusFire = [[[0,0] for _ in range(5) for _ in range(5)]]
+ai.boardAI = board2.board
 
+pp.pprint(board1.board)
+gameplayStatus = False
+print()
+pp.pprint(board2.board)
+while True:
+    if konter == 0:
+        if StartFlag is False:
+            StartFlag = True
+            row, column = ai.pick()
+            ai.lastMove = row,column
+            gameplayStatus, _ = board1.attack(row, column)
 
+        elif StartFlag is True:
+            row, column = ai.pick(onHitStatus, sinkStatus)
+            ai.lastMove = row,column
+            gameplayStatus, _ = board1.attack(row, column)
 
+        print("LANGKAH AI: ")
+        print(row,column)
+        print()
 
-tes1 = board()
-tes1.isi_board()
-pprint.pprint(tes1.board)
+    elif konter == 1:
+        row = int(input("Input Row: "))
+        column = int(input("Input Column"))
+        board2.attack(row, column)
+
+    if gameplayStatus is False:
+        if konter == 0:
+            konter = 1
+        elif konter == 1:
+            konter = 0
+
+    print("board1 ")
+    pp.pprint(board1.board)
+    print()
+    print("board 2")
+    pp.pprint(board2.board)
