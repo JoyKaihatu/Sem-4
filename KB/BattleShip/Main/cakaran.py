@@ -1,9 +1,10 @@
-import numpy as np
-array = [0 for _ in range(10)]
-array.append(1)
-print(array)
-np.random.shuffle(array)
-print(array)
+ditct = {'a':5, 'b':3,'c':2}
 
-x = array[0] + 1
-print(x)
+wa = 'a'
+
+ari = [['a', 'b', 'c'], ['a', 'b', 'c'], ['a', 'b', 'c']]
+
+if ari[0][0] in ditct:
+    print("wa")
+else:
+    print("wawa")

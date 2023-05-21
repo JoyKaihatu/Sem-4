@@ -5,7 +5,7 @@ import pprint as pp
 class board:
     def __init__(self):
         self.board = [[None for _ in range(8)] for _ in range(8)]
-        self.list_kapal = {"carrier": 5, "submarine": 1, "destroyer": 3}
+        self.list_kapal = {'C': 5, 'S': 1, 'D': 3}
         self.NoMissFlag = False
         self.lastHit = [0, 0]
 
@@ -19,7 +19,7 @@ class board:
             return ApakahKena, tenggelamBool
 
     def is_overlap(self, row, column):
-        if self.board[row][column] != None:
+        if self.board[row][column] != None and self.board[row][column] not in self.list_kapal:
             print("Kotak ini sudah di tembak")
             return True
         else:
@@ -27,16 +27,16 @@ class board:
 
     def is_sink(self, Kapal):
         self.list_kapal.__setitem__(Kapal, self.list_kapal.get(Kapal) - 1)
-        if self.list_kapal.get("carrier") == 0:
-            self.list_kapal.__setitem__("carrier", self.list_kapal.get("carrier") - 1)
+        if self.list_kapal.get('C') == 0:
+            self.list_kapal.__setitem__('C', self.list_kapal.get('C') - 1)
             print("Carrier is sink")
             return True
-        elif self.list_kapal.get("destroyer") == 0:
-            self.list_kapal.__setitem__("destroyer", self.list_kapal.get("destroyer") - 1)
+        elif self.list_kapal.get('D') == 0:
+            self.list_kapal.__setitem__('D', self.list_kapal.get('D') - 1)
             print("Destroyer is sink")
             return True
-        elif self.list_kapal.get("submarine") == 0:
-            self.list_kapal.__setitem__("submarine", self.list_kapal.get("submarine") - 1)
+        elif self.list_kapal.get('S') == 0:
+            self.list_kapal.__setitem__('S', self.list_kapal.get('S') - 1)
             print("Submarine is sink")
             return True
         else:
@@ -47,16 +47,16 @@ class board:
             print("On Hit")
             self.NoMissFlag = True
             statusTenggelam = self.is_sink(self.board[row][column])
-            self.board[row][column] = "X"
+            self.board[row][column] = 'X'
             return True, statusTenggelam
         else:
             print("No Hit")
             self.NoMissFlag = False
-            self.board[row][column] = "O"
+            self.board[row][column] = 'O'
             return False, False
 
     def isi_board(self):
-        ship_list = ["carrier", "submarine", "destroyer"]
+        ship_list = ['C', 'S', 'D']
         ship_size = [5, 1, 3]
         ship_listPicker = 0
         while True:
@@ -67,18 +67,18 @@ class board:
             row = random.randint(0, 7)
             column = random.randint(0, 7)
             axis = random.randint(0, 1)
-            print(row, column, axis)
+
 
             if axis == 0:
                 if row + ship_size[ship_listPicker] - 1 < len(self.board):
                     for i in range(row, row + ship_size[ship_listPicker]):
                         count = count + 1
-                        if self.board[i][column] in self.list_kapal:
+                        if self.board[i][column] is not None:
                             break
                     if count == ship_size[ship_listPicker]:
                         isiKapalFlag = True
                     if isiKapalFlag is True:
-                        print(row, ship_size[ship_listPicker])
+
                         for i in range(row, row + ship_size[ship_listPicker]):
                             a = ship_list[ship_listPicker]
                             self.board[i][column] = str(a)
@@ -88,7 +88,7 @@ class board:
                 if column + ship_size[ship_listPicker] - 1 < len(self.board):
                     for i in range(column, column + ship_size[ship_listPicker]):
                         count = count + 1
-                        if self.board[row][i] in self.list_kapal:
+                        if self.board[row][i] is not None:
                             break
 
                     if count == ship_size[ship_listPicker]:
@@ -96,7 +96,7 @@ class board:
 
                     if isiKapalFlag:
 
-                        print(column, ship_size[ship_listPicker])
+
                         for i in range(column, column + ship_size[ship_listPicker]):
                             a = ship_list[ship_listPicker]
                             self.board[row][i] = str(a)
@@ -153,9 +153,9 @@ class AI:
                             row = picky[0] + 1
                             column = picky[1]
                             return row, column
-                        elif self.langkahAI[picky[0] + 1][picky[1]] == "X":
+                        elif self.langkahAI[picky[0] + 1][picky[1]] == 'X':
                             picky[0] = picky[0] + 1
-                        elif self.langkahAI[picky[0] + 1][picky[1]] == "O":
+                        elif self.langkahAI[picky[0] + 1][picky[1]] == 'O':
                             self.count += 1
                             picky = self.firstContact
                     else:
@@ -169,9 +169,9 @@ class AI:
                             row = picky[0] - 1
                             column = picky[1]
                             return row, column
-                        elif self.langkahAI[picky[0] - 1][picky[1]] == "X":
+                        elif self.langkahAI[picky[0] - 1][picky[1]] == 'X':
                             picky[0] = picky[0] - 1
-                        elif self.langkahAI[picky[0] - 1][picky[1]] == "O":
+                        elif self.langkahAI[picky[0] - 1][picky[1]] == 'O':
                             self.count += 1
                             picky = self.firstContact
 
@@ -191,9 +191,9 @@ class AI:
                             row = picky[0]
                             column = picky[1] + 1
                             return row, column
-                        elif self.langkahAI[picky[0]][picky[1] + 1] == "X":
+                        elif self.langkahAI[picky[0]][picky[1] + 1] == 'X':
                             picky[1] = picky[1] + 1
-                        elif self.langkahAI[picky[0]][picky[1] + 1] == "O":
+                        elif self.langkahAI[picky[0]][picky[1] + 1] == 'O':
                             self.count += 1
                             picky = self.firstContact
                     else:
@@ -207,9 +207,9 @@ class AI:
                             row = picky[0]
                             column = picky[1] - 1
                             return row, column
-                        elif self.langkahAI[picky[0]][picky[1] - 1] == "X":
+                        elif self.langkahAI[picky[0]][picky[1] - 1] == 'X':
                             picky[1] = picky[1] - 1
-                        elif self.langkahAI[picky[0]][picky[1] - 1] == "O":
+                        elif self.langkahAI[picky[0]][picky[1] - 1] == 'O':
                             self.count += 1
                             picky = self.firstContact
                     else:
@@ -240,12 +240,18 @@ while True:
             StartFlag = True
             row, column = ai.pick()
             ai.lastMove = row,column
-            gameplayStatus, _ = board1.attack(row, column)
+            gameplayStatus, sinkKah = board1.attack(row, column)
+            onHitStatus = gameplayStatus
+            sinkStatus = sinkKah
 
         elif StartFlag is True:
             row, column = ai.pick(onHitStatus, sinkStatus)
             ai.lastMove = row,column
-            gameplayStatus, _ = board1.attack(row, column)
+            gameplayStatus, sinkKah = board1.attack(row, column)
+            onHitStatus = gameplayStatus
+            sinkStatus = sinkKah
+
+        ai.langkahAI = board2.board
 
         print("LANGKAH AI: ")
         print(row,column)
@@ -254,7 +260,7 @@ while True:
     elif konter == 1:
         row = int(input("Input Row: "))
         column = int(input("Input Column"))
-        board2.attack(row, column)
+        gameplayStatus, _ = board2.attack(row, column)
 
     if gameplayStatus is False:
         if konter == 0:
@@ -262,8 +268,8 @@ while True:
         elif konter == 1:
             konter = 0
 
-    print("board1 ")
+    print("Board Saya ")
     pp.pprint(board1.board)
     print()
-    print("board 2")
+    print("Board AI")
     pp.pprint(board2.board)
