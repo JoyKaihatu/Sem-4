@@ -13,10 +13,10 @@ class board:
         y = self.is_overlap(row, column)
 
         if y:
-            return True, False
+            return False, False,True
         elif not y:
             ApakahKena, tenggelamBool = self.is_hit(row, column)
-            return ApakahKena, tenggelamBool
+            return ApakahKena, tenggelamBool, False
 
     def is_overlap(self, row, column):
         if self.board[row][column] != None and self.board[row][column] not in self.list_kapal:
@@ -229,7 +229,7 @@ board1.isi_board()
 board2.isi_board()
 
 ai.boardAI = board2.board
-
+overlapKah = False
 pp.pprint(board1.board)
 gameplayStatus = False
 print()
@@ -240,16 +240,18 @@ while True:
             StartFlag = True
             row, column = ai.pick()
             ai.lastMove = row,column
-            gameplayStatus, sinkKah = board1.attack(row, column)
+            gameplayStatus, sinkKah, isOverlap = board1.attack(row, column)
             onHitStatus = gameplayStatus
             sinkStatus = sinkKah
+            overlapKah = isOverlap
 
         elif StartFlag is True:
             row, column = ai.pick(onHitStatus, sinkStatus)
             ai.lastMove = row,column
-            gameplayStatus, sinkKah = board1.attack(row, column)
+            gameplayStatus, sinkKah, isOverlap = board1.attack(row, column)
             onHitStatus = gameplayStatus
             sinkStatus = sinkKah
+            overlapKah = isOverlap
 
         ai.langkahAI = board2.board
 
@@ -258,11 +260,11 @@ while True:
         print()
 
     elif konter == 1:
-        row = int(input("Input Row: "))
-        column = int(input("Input Column"))
-        gameplayStatus, _ = board2.attack(row, column)
+        row = random.randint(0,7)
+        column = random.randint(0,7)
+        gameplayStatus, _, isOverlap = board2.attack(row, column)
 
-    if gameplayStatus is False:
+    if gameplayStatus is False or overlapKah is False:
         if konter == 0:
             konter = 1
         elif konter == 1:
