@@ -1,0 +1,1020 @@
+[None, None, 'S', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, None]]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ [None, None, None, 'D', None, None, None, None],
+ [None, None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', None, 'O', None, None],
+ [None, None, None, 'O', None, None, None, None],
+ [None, None, None, 'O', None, None, None, 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None]]
+(4, 3)
+True
+
+On Hit
+Submarine is sink
+LANGKAH AI:
+6 2
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', None, 'O', None, None],
+ [None, None, None, 'X', None, None, None, None],
+ [None, None, None, 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, None]]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ [None, None, None, 'D', None, None, None, None],
+ [None, None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', None, 'O', None, None],
+ [None, None, None, 'O', None, None, None, None],
+ [None, None, None, 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, None]]
+(4, 3)
+True
+
+Row: 6
+Column: 0
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', None, 'O', None, None],
+ [None, None, None, 'X', None, None, None, None],
+ [None, None, None, 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, None]]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ [None, None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', None, 'O', None, None],
+ [None, None, None, 'O', None, None, None, None],
+ [None, None, None, 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, None]]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+7 7
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', None, 'O', None, None],
+ [None, None, None, 'X', None, None, None, None],
+ [None, None, None, 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ [None, None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', None, 'O', None, None],
+ [None, None, None, 'O', None, None, None, None],
+ [None, None, None, 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 7
+Column: 0
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', None, 'O', None, None],
+ [None, None, None, 'X', None, None, None, None],
+ [None, None, None, 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', None, 'O', None, None],
+ [None, None, None, 'O', None, None, None, None],
+ [None, None, None, 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+3 4
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, None, None, 'X', None, None, None, None],
+ [None, None, None, 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, None, None, 'O', None, None, None, None],
+ [None, None, None, 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 0
+Column: 7
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, None, None, 'X', None, None, None, None],
+ [None, None, None, 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, None, None, 'O', None, None, None, None],
+ [None, None, None, 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+5 2
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, None, None, 'X', None, None, None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, None, None, 'O', None, None, None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 0
+Column: 1
+Kotak ini sudah di tembak
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, None, None, 'X', None, None, None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, None, None, 'O', None, None, None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+4 1
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, None, None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, None, None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 2
+Column: 1
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, None, None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, None, None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+0 7
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, None, None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, None, None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 3
+Column: 1
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, None, None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, None, None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+2 1
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, None, None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, None, None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 3
+Column: 1
+Kotak ini sudah di tembak
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, None, None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, None, None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+4 5
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, None, None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 4
+Column: 1
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, None, None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+6 6
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 5
+Column: 1
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+1 2
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 6
+Column: 1
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, None, 'O', 'X', None, None, None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, None, 'O', 'O', None, None, None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+5 5
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, None, 'O', 'X', None, 'O', None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None],
+ ['O', None, None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, None, 'O', 'O', None, 'O', None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 7
+Column: 1
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, None, 'O', 'X', None, 'O', None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, None, 'O', 'O', None, 'O', None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+5 1
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, 'O', 'O', 'X', None, 'O', None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'C', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, 'O', 'O', 'O', None, 'O', None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 0
+Column: 2
+On Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, 'O', 'O', 'X', None, 'O', None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'X', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, 'O', 'O', 'O', None, 'O', None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, None, None, None, None, None, 'O']]
+(4, 3)
+True
+
+No Hit
+LANGKAH AI:
+7 2
+
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, 'O', 'O', 'X', None, 'O', None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, 'O', None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'X', 'C', 'C', 'X', None, 'O'],
+ ['O', None, None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, 'O', 'O', 'O', None, 'O', None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, 'O', None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 1
+Column: 2
+No Hit
+Board Saya
+[[None, None, 'C', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, 'O', 'O', 'X', None, 'O', None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, 'O', None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'X', 'C', 'C', 'X', None, 'O'],
+ ['O', None, 'O', None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None]]
+
+
+[[None, None, None, None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, 'O', 'O', 'O', None, 'O', None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, 'O', None, None, None, None, 'O']]
+(4, 3)
+True
+
+On Hit
+LANGKAH AI:
+0 2
+
+Board Saya
+[[None, None, 'X', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, 'O', 'O', 'X', None, 'O', None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, 'O', None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'X', 'C', 'C', 'X', None, 'O'],
+ ['O', None, 'O', None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None]]
+
+
+[[None, None, 'O', None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, 'O', 'O', 'O', None, 'O', None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, 'O', None, None, None, None, 'O']]
+(4, 3)
+True
+
+Row: 3
+Column: 2
+No Hit
+Board Saya
+[[None, None, 'X', 'C', 'C', 'C', 'C', 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'X', None, 'O', None, None],
+ [None, 'O', 'O', 'X', None, 'O', None, 'O'],
+ [None, None, 'X', 'D', None, None, 'O', None],
+ [None, None, 'O', None, None, None, None, 'O']]
+
+Board AI
+[['O', 'X', 'X', 'C', 'C', 'X', None, 'O'],
+ ['O', None, 'O', None, None, None, None, None],
+ ['O', 'O', None, None, None, None, None, None],
+ ['O', 'O', 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, None],
+ ['S', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None],
+ ['O', 'O', None, 'D', None, None, None, None]]
+
+
+[[None, None, 'O', None, None, None, None, 'O'],
+ [None, None, 'O', None, None, None, None, None],
+ [None, 'O', None, None, None, None, None, 'O'],
+ [None, None, None, 'O', 'O', 'O', None, None],
+ [None, 'O', None, 'O', None, 'O', None, None],
+ [None, 'O', 'O', 'O', None, 'O', None, 'O'],
+ [None, None, 'X', None, None, None, 'O', None],
+ [None, None, 'O', None, None, None, None, 'O']]
+(4, 3)
+True
+

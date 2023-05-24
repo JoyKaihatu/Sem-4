@@ -253,15 +253,19 @@ while True:
             sinkStatus = sinkKah
             overlapKah = isOverlap
 
-        ai.langkahAI = board2.board
+        if sinkStatus is True:
+            ai.langkahAI[row][column] = "X"
+        elif sinkStatus is False:
+            ai.langkahAI[row][column] = "O"
+
 
         print("LANGKAH AI: ")
         print(row,column)
         print()
 
     elif konter == 1:
-        row = random.randint(0,7)
-        column = random.randint(0,7)
+        row = input("Row: ")
+        column = input("Column: ")
         gameplayStatus, _, isOverlap = board2.attack(row, column)
 
     if gameplayStatus is False or overlapKah is False:
