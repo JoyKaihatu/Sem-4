@@ -4,66 +4,75 @@ import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Vector;
+import java.util.*;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
+import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
+import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 
 public class Sphere extends CircleNew{
     int sectorCount;
     int stackCount;
     Float radiusZ;
+    List<Vector3f> normal;
+    int nbo;
+
     public Sphere(List<ShaderModuleData> shaderModuleDataList,
                   List<Vector3f> vertices, Vector4f color,
                   List<Float> centerPoint, Float radiusX,Float radiusY
-            ,Float radiusZ,int pilih){
+            ,Float radiusZ, int sectorCount, int stackCount){
         super(shaderModuleDataList, vertices, color, centerPoint, radiusX,radiusY);
         this.radiusZ = radiusZ;
-        if (pilih == 0){
-            Ellipsoid();
-        }
-        else if (pilih == 1){
-            Hyperboloid();
-        }
-        else if (pilih == 2){
-            Hyperboloid2();
-        }
-        else if (pilih == 3){
-            EllipticCone();
-        }
-        else if(pilih == 4){
-            EllipticParaboloid();
-        }
-        else if(pilih == 5){
-            HyperboloidParaboloid();
-        }
-        else if(pilih == 6){
-            createBoxVertices();
-        }
-        else if(pilih == 7){
-            createCylinder();
-        }
-        else if (pilih == 8){
-            createTriangle();
-        }
-        else if (pilih == 9){
-            createCornerlessBox();
-        }
-        else if(pilih == 10){
-            createCylinderStengah();
-        }
-        else if (pilih == 11){
-            createParaboloid();
-        }
-        else if (pilih == 12){
-            createCylinderBerdiri();
-        }
-        else if(pilih == 13){
-            halfEllipsoid();
-        }
+        this.stackCount = sectorCount;
+        this.sectorCount = sectorCount;
+
+//        if (pilih == 0){
+//            Ellipsoid();
+//        }
+//        else if (pilih == 1){
+//            Hyperboloid();
+//        }
+//        else if (pilih == 2){
+//            Hyperboloid2();
+//        }
+//        else if (pilih == 3){
+//            EllipticCone();
+//        }
+//        else if(pilih == 4){
+//            EllipticParaboloid();
+//        }
+//        else if(pilih == 5){
+//            HyperboloidParaboloid();
+//        }
+//        else if(pilih == 6){
+//            createBoxVertices();
+//        }
+//        else if(pilih == 7){
+//            createCylinder();
+//        }
+//        else if (pilih == 8){
+//            createTriangle();
+//        }
+//        else if (pilih == 9){
+//            createCornerlessBox();
+//        }
+//        else if(pilih == 10){
+//            createCylinderStengah();
+//        }
+//        else if (pilih == 11){
+//            createParaboloid();
+//        }
+//        else if (pilih == 12){
+//            createCylinderBerdiri();
+//        }
+//        else if(pilih == 13){
+//            halfEllipsoid();
+//        }
+        loadObject();
         setupVAOVBO();
     }
 
@@ -427,7 +436,6 @@ public class Sphere extends CircleNew{
         vertices = temp;
     }
 
-
     public void Ellipsoid(){
 
         vertices.clear();
@@ -444,8 +452,6 @@ public class Sphere extends CircleNew{
         }
         vertices=temp;
     }
-
-
 
     public void Hyperboloid(){
         vertices.clear();
@@ -520,7 +526,6 @@ public class Sphere extends CircleNew{
         vertices=temp;
     }
 
-
     public void EllipticParaboloid(){
         vertices.clear();
 
@@ -552,7 +557,6 @@ public class Sphere extends CircleNew{
         vertices=temp;
     }
 
-
     public void HyperboloidParaboloid(){
         vertices.clear();
 
@@ -568,6 +572,7 @@ public class Sphere extends CircleNew{
         }
         vertices=temp;
     }
+
     public void createBoxVertices()
     {
         Vector3f temp = new Vector3f();
@@ -653,18 +658,266 @@ public class Sphere extends CircleNew{
         vertices.add(tempVertices.get(6));
         vertices.add(tempVertices.get(7));
     }
-    public void draw(Camera camera, Projection projection){
-        if(this.flag) {
-            drawSetup(camera, projection);
-            // Draw the vertices
-            glLineWidth(1);
-            glPointSize(2);
-            glDrawArrays(GL_POLYGON, 0, vertices.size());
-            for (Object2d child : childObject) {
-                child.draw(camera, projection);
-            }
+
+
+    public void loadObject(){
+        System.out.println("Code done");
+        vertices.clear();
+        Vector3f temp = new Vector3f();
+        ArrayList<Vector3f> tempVertices = new ArrayList<>();
+
+        Model n = null;
+
+        try {
+            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\grafkom-uts\\Adventure Time\\Kotak.obj"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        normal = n.normals;
+        tempVertices = n.vertices;
+
+        //kotak belakang
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(2));
+
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(3));
+        vertices.add(tempVertices.get(0));
+        //kotak depan
+        vertices.add(tempVertices.get(4));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(6));
+
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(4));
+        //kotak samping kiri
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(4));
+
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(4));
+        //kotak samping kanan
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(2));
+
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(3));
+        vertices.add(tempVertices.get(7));
+        //kotak bawah
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(6));
+
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(1));
+        //kotak atas
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(4));
+        vertices.add(tempVertices.get(7));
+
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(3));
+
     }
+
+
+    public void createBoxBaru(){
+        System.out.println("code");
+        vertices.clear();
+        Vector3f temp = new Vector3f();
+        ArrayList<Vector3f> tempVertices = new ArrayList<>();
+
+        //Titik 1 kiri atas belakang
+        temp.x = centerPoint.get(0) - radiusX / 2;
+        temp.y = centerPoint.get(1) + radiusY / 2;
+        temp.z = centerPoint.get(2) - radiusZ / 2;
+        tempVertices.add(temp);
+        temp = new Vector3f();
+        //Titik 2 kiri bawah belakang
+        temp.x = centerPoint.get(0) - radiusX / 2;
+        temp.y = centerPoint.get(1) - radiusY / 2;
+        temp.z = centerPoint.get(2) - radiusZ / 2;
+        tempVertices.add(temp);
+        temp = new Vector3f();
+        //Titik 3 kanan bawah belakang
+        temp.x = centerPoint.get(0) + radiusX / 2;
+        temp.y = centerPoint.get(1) - radiusY / 2;
+        temp.z = centerPoint.get(2) - radiusZ / 2;
+        tempVertices.add(temp);
+        temp = new Vector3f();
+        //Titik 4 kanan atas belakang
+        temp.x = centerPoint.get(0) + radiusX / 2;
+        temp.y = centerPoint.get(1) + radiusY / 2;
+        temp.z = centerPoint.get(2) - radiusZ / 2;
+        tempVertices.add(temp);
+        temp = new Vector3f();
+        //Titik 5 kiri atas depan
+        temp.x = centerPoint.get(0) - radiusX / 2;
+        temp.y = centerPoint.get(1) + radiusY / 2;
+        temp.z = centerPoint.get(2) + radiusZ / 2;
+        tempVertices.add(temp);
+        temp = new Vector3f();
+        //Titik 6 kiri bawah depan
+        temp.x = centerPoint.get(0) - radiusX / 2;
+        temp.y = centerPoint.get(1) - radiusY / 2;
+        temp.z = centerPoint.get(2) + radiusZ / 2;
+        tempVertices.add(temp);
+        temp = new Vector3f();
+        //Titik 7 kanan bawah depan
+        temp.x = centerPoint.get(0) + radiusX / 2;
+        temp.y = centerPoint.get(1) - radiusY / 2;
+        temp.z = centerPoint.get(2) + radiusZ / 2;
+        tempVertices.add(temp);
+        temp = new Vector3f();
+        //Titik 8 kanan atas depan
+        temp.x = centerPoint.get(0) + radiusX / 2;
+        temp.y = centerPoint.get(1) + radiusY / 2;
+        temp.z = centerPoint.get(2) + radiusZ / 2;
+        tempVertices.add(temp);
+        temp = new Vector3f();
+
+        //kotak belakang
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(2));
+
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(3));
+        vertices.add(tempVertices.get(0));
+        //kotak depan
+        vertices.add(tempVertices.get(4));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(6));
+
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(4));
+        //kotak samping kiri
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(4));
+
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(4));
+        //kotak samping kanan
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(2));
+
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(3));
+        vertices.add(tempVertices.get(7));
+        //kotak bawah
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(6));
+
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(1));
+        //kotak atas
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(4));
+        vertices.add(tempVertices.get(7));
+
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(3));
+
+        normal = new ArrayList<>(Arrays.asList(
+                new Vector3f(0.0f,  0.0f, -1.0f),
+                new Vector3f(0.0f,  0.0f, -1.0f),
+                new Vector3f(0.0f,  0.0f, -1.0f),
+                new Vector3f(0.0f,  0.0f, -1.0f),
+                new Vector3f(0.0f,  0.0f, -1.0f),
+                new Vector3f(0.0f,  0.0f, -1.0f),
+
+                new Vector3f(0.0f,  0.0f,  1.0f),
+                new Vector3f(0.0f,  0.0f,  1.0f),
+                new Vector3f(0.0f,  0.0f,  1.0f),
+                new Vector3f(0.0f,  0.0f,  1.0f),
+                new Vector3f(0.0f,  0.0f,  1.0f),
+                new Vector3f(0.0f,  0.0f,  1.0f),
+
+                new Vector3f(-1.0f,  0.0f,  0.0f),
+                new Vector3f(-1.0f,  0.0f,  0.0f),
+                new Vector3f(-1.0f,  0.0f,  0.0f),
+                new Vector3f(-1.0f,  0.0f,  0.0f),
+                new Vector3f(-1.0f,  0.0f,  0.0f),
+                new Vector3f(-1.0f,  0.0f,  0.0f),
+
+                new Vector3f(1.0f,  0.0f,  0.0f),
+                new Vector3f(1.0f,  0.0f,  0.0f),
+                new Vector3f(1.0f,  0.0f,  0.0f),
+                new Vector3f(1.0f,  0.0f,  0.0f),
+                new Vector3f(1.0f,  0.0f,  0.0f),
+                new Vector3f(1.0f,  0.0f,  0.0f),
+
+                new Vector3f(0.0f, -1.0f,  0.0f),
+                new Vector3f(0.0f, -1.0f,  0.0f),
+                new Vector3f( 0.0f, -1.0f,  0.0f),
+                new Vector3f(0.0f, -1.0f,  0.0f),
+                new Vector3f(0.0f, -1.0f,  0.0f),
+                new Vector3f(0.0f, -1.0f,  0.0f),
+
+                new Vector3f(0.0f,  1.0f,  0.0f),
+                new Vector3f(0.0f,  1.0f,  0.0f),
+                new Vector3f(0.0f,  1.0f,  0.0f),
+                new Vector3f(0.0f,  1.0f,  0.0f),
+                new Vector3f(0.0f,  1.0f,  0.0f),
+                new Vector3f(0.0f,  1.0f,  0.0f)
+        ));
+
+    }
+
+    @Override
+    public void setupVAOVBO() {
+        super.setupVAOVBO();
+
+        nbo = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER, nbo);
+        glBufferData(GL_ARRAY_BUFFER, Utils.listoFloat(normal), GL_STATIC_DRAW);
+
+        uniformsMap.createUniform("lightColor");
+        uniformsMap.createUniform("lightPos");
+    }
+
+    @Override
+    public void drawSetup(Camera camera, Projection projection) {
+        super.drawSetup(camera, projection);
+
+        glEnableVertexAttribArray(1);
+        glBindBuffer(GL_ARRAY_BUFFER, nbo);
+        glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
+
+        uniformsMap.setUniform("lightColor",new Vector3f(1.0f,1.0f,0.0f));
+        uniformsMap.setUniform("lightPos",new Vector3f(1.0f,1.0f,0.0f));
+
+    }
+
+
+
+//    public void draw(Camera camera, Projection projection){
+//        if(this.flag) {
+//            drawSetup(camera, projection);
+//            // Draw the vertices
+//            glLineWidth(1);
+//            glPointSize(2);
+//            glDrawArrays(GL_POLYGON, 0, vertices.size());
+//            for (Object2d child : childObject) {
+//                child.draw(camera, projection);
+//            }
+//        }
+//    }
 
     @Override
     public void update(float x, float y, float z) {

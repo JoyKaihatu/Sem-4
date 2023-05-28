@@ -40,7 +40,7 @@ public class Object2d extends ShaderProgram implements Cloneable{
     public Object2d(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color){
         super(shaderModuleDataList);
         this.vertices = vertices;
-        setupVAOVBO();
+//        setupVAOVBO();
         uniformsMap = new UniformsMap(getProgramId());
         uniformsMap.createUniform("uni_color");
         uniformsMap.createUniform("model");
@@ -144,7 +144,7 @@ public class Object2d extends ShaderProgram implements Cloneable{
         if (this.flag) {
             drawSetup(camera, projection);
 
-            glLineWidth(2);
+            glLineWidth(10);
             glPointSize(10);
 
             //GL_LINES
@@ -155,7 +155,7 @@ public class Object2d extends ShaderProgram implements Cloneable{
             //GL_POINT
             System.out.println(childObject.size());
 
-            glDrawArrays(GL_POLYGON,0,vertices.size());
+            glDrawArrays(GL_TRIANGLES,0,vertices.size());
             for (Object2d child:childObject){
                 child.draw(camera, projection);
             }

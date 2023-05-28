@@ -27,9 +27,9 @@ public class CircleNew extends Object2d {
 //        else if (pick == 1){
 //            createElipse();
 //        }
-
-        setupVAOVBO();
-
+//
+//        setupVAOVBO();
+//
 
 
     }
@@ -80,20 +80,20 @@ public class CircleNew extends Object2d {
         }
     }
 
-    public void draw(Camera camera, Projection projection){
-        drawSetup(camera, projection);
-
-//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        glDrawArrays(GL_POLYGON,0,vertices.size());
-
-        //GL_LINES
-        //GL_LINE_STRIP
-        //GL_LINE_LOOP
-        //GL_TRIANGLES
-        //GL_TRIANGLE_FAN
-        //GL_POINT
-
-    }
+//    public void draw(Camera camera, Projection projection){
+//        drawSetup(camera, projection);
+//
+////        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+//        glDrawArrays(GL_POLYGON,0,vertices.size());
+//
+//        //GL_LINES
+//        //GL_LINE_STRIP
+//        //GL_LINE_LOOP
+//        //GL_TRIANGLES
+//        //GL_TRIANGLE_FAN
+//        //GL_POINT
+//
+//    }
 
 
 
