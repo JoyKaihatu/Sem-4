@@ -1,5 +1,7 @@
 import random
 import pprint as pp
+import time
+import enum
 
 
 class board:
@@ -230,10 +232,10 @@ board2.isi_board()
 
 ai.boardAI = board2.board
 overlapKah = False
-pp.pprint(board1.board)
+# pp.pprint(board1.board)
 gameplayStatus = False
 print()
-pp.pprint(board2.board)
+# pp.pprint(board2.board)
 while True:
     if konter == 0:
         if StartFlag is False:
@@ -264,8 +266,8 @@ while True:
         print()
 
     elif konter == 1:
-        row = input("Row: ")
-        column = input("Column: ")
+        row = int(input("Row: "))
+        column = int(input("Column: "))
         gameplayStatus, _, isOverlap = board2.attack(row, column)
 
     if gameplayStatus is False or overlapKah is False:
@@ -274,8 +276,14 @@ while True:
         elif konter == 1:
             konter = 0
 
+    print("Gameplay Status: ",  gameplayStatus)
+    print("Overlap Status: ", overlapKah)
     print("Board Saya ")
     pp.pprint(board1.board)
     print()
     print("Board AI")
     pp.pprint(board2.board)
+    print("Langkah AI")
+    pp.pprint(ai.langkahAI)
+
+
