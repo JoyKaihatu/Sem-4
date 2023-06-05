@@ -671,7 +671,7 @@ public class Sphere extends CircleNew{
         Model n = null;
 
         try {
-            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\Grafkom\\Adventure Time\\src\\aset\\rubiks_cube.obj"));
+            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\Grafkom\\Adventure Time\\src\\aset\\LuffyTes.obj"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -888,6 +888,7 @@ public class Sphere extends CircleNew{
             uniformsMap.setUniform("pointLights["+i+"].constant", 1.0f );
             uniformsMap.setUniform("pointLights["+i+"].linear", 0.09f);
             uniformsMap.setUniform("pointLights["+i+"].quadratic", 0.032f);
+
         }
 
         //spotLight
