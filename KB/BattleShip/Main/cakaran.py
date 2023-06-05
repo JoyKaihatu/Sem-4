@@ -1,10 +1,9 @@
-ditct = {'a':5, 'b':3,'c':2}
+import random
 
-wa = 'a'
+tes = [i for i in range(1,27)]
 
-ari = [['a', 'b', 'c'], ['a', 'b', 'c'], ['a', 'b', 'c']]
+print(tes)
 
-if ari[0][0] in ditct:
-    print("wa")
-else:
-    print("wawa")
+for i in range(13):
+    a = random.randint(0,len(tes)-1)
+    print(tes.pop(a))

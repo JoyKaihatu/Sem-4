@@ -73,6 +73,7 @@ public class Sphere extends CircleNew{
 //            halfEllipsoid();
 //        }
         loadObject();
+//        createBoxBaru();
         setupVAOVBO();
     }
 
@@ -663,68 +664,35 @@ public class Sphere extends CircleNew{
     public void loadObject(){
         System.out.println("Code done");
         vertices.clear();
+        normal = new ArrayList<>();
         Vector3f temp = new Vector3f();
         ArrayList<Vector3f> tempVertices = new ArrayList<>();
 
         Model n = null;
 
         try {
-            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\grafkom-uts\\Adventure Time\\Kotak.obj"));
+            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\Grafkom\\Adventure Time\\src\\aset\\rubiks_cube.obj"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        normal = n.normals;
-        tempVertices = n.vertices;
 
-        //kotak belakang
-        vertices.add(tempVertices.get(0));
-        vertices.add(tempVertices.get(1));
-        vertices.add(tempVertices.get(2));
 
-        vertices.add(tempVertices.get(2));
-        vertices.add(tempVertices.get(3));
-        vertices.add(tempVertices.get(0));
-        //kotak depan
-        vertices.add(tempVertices.get(4));
-        vertices.add(tempVertices.get(5));
-        vertices.add(tempVertices.get(6));
 
-        vertices.add(tempVertices.get(6));
-        vertices.add(tempVertices.get(7));
-        vertices.add(tempVertices.get(4));
-        //kotak samping kiri
-        vertices.add(tempVertices.get(0));
-        vertices.add(tempVertices.get(1));
-        vertices.add(tempVertices.get(4));
-
-        vertices.add(tempVertices.get(1));
-        vertices.add(tempVertices.get(5));
-        vertices.add(tempVertices.get(4));
-        //kotak samping kanan
-        vertices.add(tempVertices.get(7));
-        vertices.add(tempVertices.get(6));
-        vertices.add(tempVertices.get(2));
-
-        vertices.add(tempVertices.get(2));
-        vertices.add(tempVertices.get(3));
-        vertices.add(tempVertices.get(7));
-        //kotak bawah
-        vertices.add(tempVertices.get(1));
-        vertices.add(tempVertices.get(5));
-        vertices.add(tempVertices.get(6));
-
-        vertices.add(tempVertices.get(6));
-        vertices.add(tempVertices.get(2));
-        vertices.add(tempVertices.get(1));
-        //kotak atas
-        vertices.add(tempVertices.get(0));
-        vertices.add(tempVertices.get(4));
-        vertices.add(tempVertices.get(7));
-
-        vertices.add(tempVertices.get(7));
-        vertices.add(tempVertices.get(0));
-        vertices.add(tempVertices.get(3));
+        for (Face face : n.faces){
+            Vector3f n1 = n.normals.get((int) face.normal.x - 1);
+            normal.add(n1);
+            Vector3f v1 = n.vertices.get((int) face.vertex.x - 1);
+            vertices.add(v1);
+            Vector3f n2 = n.normals.get((int) face.normal.y - 1);
+            normal.add(n2);
+            Vector3f v2 = n.vertices.get((int) face.vertex.y - 1);
+            vertices.add(v2);
+            Vector3f n3 = n.normals.get((int) face.normal.z - 1);
+            normal.add(n3);
+            Vector3f v3 = n.vertices.get((int) face.vertex.z - 1);
+            vertices.add(v3);
+        }
 
     }
 
@@ -887,8 +855,8 @@ public class Sphere extends CircleNew{
         glBindBuffer(GL_ARRAY_BUFFER, nbo);
         glBufferData(GL_ARRAY_BUFFER, Utils.listoFloat(normal), GL_STATIC_DRAW);
 
-        uniformsMap.createUniform("lightColor");
-        uniformsMap.createUniform("lightPos");
+//        uniformsMap.createUniform("lightColor");
+//        uniformsMap.createUniform("lightPos");
     }
 
     @Override
@@ -899,8 +867,48 @@ public class Sphere extends CircleNew{
         glBindBuffer(GL_ARRAY_BUFFER, nbo);
         glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
 
-        uniformsMap.setUniform("lightColor",new Vector3f(1.0f,1.0f,0.0f));
-        uniformsMap.setUniform("lightPos",new Vector3f(1.0f,1.0f,0.0f));
+        //directional Light
+        uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f,-1.0f,-0.3f));
+        uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f,0.05f,0.05f));
+        uniformsMap.setUniform("dirLight.diffuse", new Vector3f(0.4f,0.4f,0.4f));
+        uniformsMap.setUniform("dirLight.specular", new Vector3f(0.5f,0.5f,0.5f));
+
+        //Posisi Point Light
+        Vector3f[] _pointLightPositions ={
+                new Vector3f(0.7f, 0.2f,2.0f),
+                new Vector3f(2.3f,-3.3f,-4.0f),
+                new Vector3f(-4.0f,2.0f,-12.0f),
+                new Vector3f(0.0f,0.0f,-3.0f)
+        };
+        for(int i = 0; i< _pointLightPositions.length;i++){
+            uniformsMap.setUniform("pointLights["+i+"].position",_pointLightPositions[i]);
+            uniformsMap.setUniform("pointLights["+i+"].ambient", new Vector3f(0.05f,0.05f,0.05f));
+            uniformsMap.setUniform("pointLights["+i+"].diffuse", new Vector3f(0.8f,0.8f,0.8f));
+            uniformsMap.setUniform("pointLights["+i+"].specular", new Vector3f(1.0f,1.0f,1.0f));
+            uniformsMap.setUniform("pointLights["+i+"].constant", 1.0f );
+            uniformsMap.setUniform("pointLights["+i+"].linear", 0.09f);
+            uniformsMap.setUniform("pointLights["+i+"].quadratic", 0.032f);
+        }
+
+        //spotLight
+
+        uniformsMap.setUniform("spotLight.position",camera.getPosition()); // Buat mengikuti camera
+        uniformsMap.setUniform("spotLight.direction", camera.getDirection());
+        uniformsMap.setUniform("spotLight.ambient",new Vector3f(0.0f,0.0f,0.0f));
+        uniformsMap.setUniform("spotLight.diffuse", new Vector3f(1.0f,1.0f,1.0f));
+        uniformsMap.setUniform("spotLight.specular", new Vector3f(1.0f,1.0f,1.0f));
+        uniformsMap.setUniform("spotLight.cutOff", (float)Math.cos(Math.toRadians(12.5f)));
+        uniformsMap.setUniform("spotLight.outerCutOff",(float)Math.cos(Math.toRadians(12.5f)));
+
+        uniformsMap.setUniform("spotLight.constant", 1.0f );
+        uniformsMap.setUniform("spotLight.linear", 0.09f);
+        uniformsMap.setUniform("spotLight.quadratic", 0.032f);
+
+
+
+//        uniformsMap.setUniform("lightColor",new Vector3f(1.0f,1.0f,0.0f));
+//        uniformsMap.setUniform("lightPos",new Vector3f(1.0f,1.0f,0.0f));
+        uniformsMap.setUniform("viewPos", camera.getPosition());
 
     }
 

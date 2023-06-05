@@ -1668,10 +1668,6 @@ public class Main {
         }
         if (window.isKeyPressed(GLFW_KEY_LEFT_SHIFT)){
             camera.moveForward(move);
-            for (Object2d object: flepi2){
-                Vector3f wa = object.getMatrix().transformPosition(new Vector3f(0.0f,0.0f,0.0f));
-                object.translateObject(0.0f,0.0f,-move);
-            }
 
         }
         if (window.isKeyPressed(GLFW_KEY_M)){
@@ -1679,10 +1675,6 @@ public class Main {
         }
         if (window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)){
             camera.moveBackwards(move);
-            for (Object2d object: flepi2){
-                Vector3f wa = object.getMatrix().transformPosition(new Vector3f(0.0f,0.0f,0.0f));
-                object.translateObject(0.0f,0.0f,move);
-            }
         }
 
         if (window.getMouseInput().isLeftButtonPressed()){

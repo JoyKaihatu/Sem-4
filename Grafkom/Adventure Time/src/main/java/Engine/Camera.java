@@ -27,8 +27,52 @@ public class Camera {
         recalculate();
     }
 
+    public void setDirection(Vector3f direction) {
+        this.direction = direction;
+    }
+
+    public void setPosition(Vector3f position) {
+        this.position = position;
+    }
+
+    public Vector3f getRight() {
+        return right;
+    }
+
+    public void setRight(Vector3f right) {
+        this.right = right;
+    }
+
+    public Vector2f getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(Vector2f rotation) {
+        this.rotation = rotation;
+    }
+
+    public Vector3f getUp() {
+        return up;
+    }
+
+    public void setUp(Vector3f up) {
+        this.up = up;
+    }
+
+    public Vector3f getKoor() {
+        return koor;
+    }
+
+    public void setKoor(Vector3f koor) {
+        this.koor = koor;
+    }
+
     public Vector3f getPosition() {
         return position;
+    }
+
+    public Vector3f getDirection() {
+        return direction;
     }
 
     public Matrix4f getViewMatrix() {

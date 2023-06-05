@@ -32,9 +32,9 @@ public class Object extends ShaderProgram{
         this.vertices = vertices;
         setupVAOVBO();
         uniformsMap = new UniformsMap(getProgramId());
-        uniformsMap.createUniform(
-                "uni_color");
-        uniformsMap.createUniform("model");
+//        uniformsMap.createUniform(
+//                "uni_color");
+//        uniformsMap.createUniform("model");
         this.color = color;
         model = new Matrix4f().identity();
     }
@@ -124,7 +124,7 @@ public class Object extends ShaderProgram{
         //GL_TRIANGLES
         //GL_TRIANGLE_FAN
         //GL_POINT
-        glDrawArrays(GL_POLYGON,
+        glDrawArrays(GL_TRIANGLES,
                 0,
                 vertices.size());
     }

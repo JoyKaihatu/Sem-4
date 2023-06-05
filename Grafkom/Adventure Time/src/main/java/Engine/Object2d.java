@@ -42,10 +42,10 @@ public class Object2d extends ShaderProgram implements Cloneable{
         this.vertices = vertices;
 //        setupVAOVBO();
         uniformsMap = new UniformsMap(getProgramId());
-        uniformsMap.createUniform("uni_color");
-        uniformsMap.createUniform("model");
-        uniformsMap.createUniform("projection");
-        uniformsMap.createUniform("view");
+//        uniformsMap.createUniform("uni_color");
+//        uniformsMap.createUniform("model");
+//        uniformsMap.createUniform("projection");
+//        uniformsMap.createUniform("view");
         this.color = color;
         model = new Matrix4f().identity();
         childObject =  new ArrayList<>();
@@ -153,7 +153,7 @@ public class Object2d extends ShaderProgram implements Cloneable{
             //GL_TRIANGLES
             //GL_TRIANGLE_FAN
             //GL_POINT
-            System.out.println(childObject.size());
+
 
             glDrawArrays(GL_TRIANGLES,0,vertices.size());
             for (Object2d child:childObject){
@@ -210,14 +210,11 @@ public class Object2d extends ShaderProgram implements Cloneable{
     public int  getIndex(float x, float y){
         int index = 0;
         for(int i = 0; i < vertices.size(); i++){
-            System.out.println(vertices.get(i).x + "Vertices X");
-            System.out.println(vertices.get(i).y + "Vertices Y");
             if(vertices.get(i).x == x && vertices.get(i).y == y){
                 break;
             }
             index++;
         }
-        System.out.println(index);
         return index;
 
     }

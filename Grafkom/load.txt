@@ -1,0 +1,67 @@
+public void loadObject(){
+        System.out.println("Code done");
+        vertices.clear();
+        Vector3f temp = new Vector3f();
+        ArrayList<Vector3f> tempVertices = new ArrayList<>();
+
+        Model n = null;
+
+        try {
+            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\grafkom-uts\\Adventure Time\\Kotak.obj"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        normal = n.normals;
+        tempVertices = n.vertices;
+
+        //kotak belakang
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(2));
+
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(3));
+        vertices.add(tempVertices.get(0));
+        //kotak depan
+        vertices.add(tempVertices.get(4));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(6));
+
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(4));
+        //kotak samping kiri
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(4));
+
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(4));
+        //kotak samping kanan
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(2));
+
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(3));
+        vertices.add(tempVertices.get(7));
+        //kotak bawah
+        vertices.add(tempVertices.get(1));
+        vertices.add(tempVertices.get(5));
+        vertices.add(tempVertices.get(6));
+
+        vertices.add(tempVertices.get(6));
+        vertices.add(tempVertices.get(2));
+        vertices.add(tempVertices.get(1));
+        //kotak atas
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(4));
+        vertices.add(tempVertices.get(7));
+
+        vertices.add(tempVertices.get(7));
+        vertices.add(tempVertices.get(0));
+        vertices.add(tempVertices.get(3));
+
+    }
