@@ -1,5 +1,6 @@
 package Engine;
 
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import java.io.IOException;
@@ -29,7 +30,15 @@ public class Utils {
         }
         return arr;
     }
-
+    public static float[] listoFloat2f(List<Vector2f> arraylist){
+        float[] arr = new float[arraylist.size()*2];
+        int index = 0;
+        for(int i = 0;i<arraylist.size();i++){
+            arr[index++] = arraylist.get(i).x;
+            arr[index++] = arraylist.get(i).y;
+        }
+        return arr;
+    }
     public static int[] listoInt(List<Integer> arraylist){
         int[] arr = new int[arraylist.size()];
         for(int i = 0;i<arraylist.size();i++){

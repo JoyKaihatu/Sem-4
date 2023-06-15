@@ -1,5 +1,6 @@
 package Engine;
 
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
@@ -19,7 +20,9 @@ public class Sphere extends CircleNew{
     int stackCount;
     Float radiusZ;
     List<Vector3f> normal;
+    List<Vector2f> texture;
     int nbo;
+
 
     public Sphere(List<ShaderModuleData> shaderModuleDataList,
                   List<Vector3f> vertices, Vector4f color,
@@ -665,13 +668,14 @@ public class Sphere extends CircleNew{
         System.out.println("Code done");
         vertices.clear();
         normal = new ArrayList<>();
+        texture = new ArrayList<>();
         Vector3f temp = new Vector3f();
         ArrayList<Vector3f> tempVertices = new ArrayList<>();
 
         Model n = null;
 
         try {
-            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\Grafkom\\Adventure Time\\src\\aset\\LuffyTes.obj"));
+            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\Grafkom\\Adventure Time\\src\\aset\\rubiks_cube.obj"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -684,14 +688,20 @@ public class Sphere extends CircleNew{
             normal.add(n1);
             Vector3f v1 = n.vertices.get((int) face.vertex.x - 1);
             vertices.add(v1);
+//            Vector2f t1 = n.textures.get((int) face.texture.x - 1);
+//            texture.add(t1);
             Vector3f n2 = n.normals.get((int) face.normal.y - 1);
             normal.add(n2);
             Vector3f v2 = n.vertices.get((int) face.vertex.y - 1);
             vertices.add(v2);
+//            Vector2f t2 = n.textures.get((int) face.texture.y - 1);
+//            texture.add(t2);
             Vector3f n3 = n.normals.get((int) face.normal.z - 1);
             normal.add(n3);
             Vector3f v3 = n.vertices.get((int) face.vertex.z - 1);
             vertices.add(v3);
+//            Vector2f t3 = n.textures.get((int) face.texture.z - 1);
+//            texture.add(t3);
         }
 
     }
@@ -854,6 +864,8 @@ public class Sphere extends CircleNew{
         nbo = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, nbo);
         glBufferData(GL_ARRAY_BUFFER, Utils.listoFloat(normal), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, Utils.listoFloat2f(texture), GL_STATIC_DRAW);
+
 
 //        uniformsMap.createUniform("lightColor");
 //        uniformsMap.createUniform("lightPos");
@@ -866,6 +878,8 @@ public class Sphere extends CircleNew{
         glEnableVertexAttribArray(1);
         glBindBuffer(GL_ARRAY_BUFFER, nbo);
         glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
+        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(2,2,GL_FLOAT,false,0,0);
 
         //directional Light
         uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f,-1.0f,-0.3f));

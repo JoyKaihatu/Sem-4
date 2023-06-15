@@ -1546,7 +1546,7 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
                 ),
                 new ArrayList<>(),
-                new Vector4f(0.0f,1.0f,0.0f,1.0f),
+                new Vector4f(0.0f,1f,0.0f,1.0f),
                 Arrays.asList(0.0f,0.0f,0.0f),
                 0.125f,
                 0.125f,

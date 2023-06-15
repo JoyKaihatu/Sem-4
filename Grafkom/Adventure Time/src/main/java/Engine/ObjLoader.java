@@ -48,13 +48,20 @@ public class ObjLoader {
                     Float.parseFloat(line.split("\\s+")[2].split("/")[0]), // Y
                     Float.parseFloat(line.split("\\s+")[3].split("/")[0])  // Z
                 );
+                Vector3f textureIndices = new Vector3f(
+                    Float.parseFloat(line.split("\\s+")[1].split("/")[1]), // X
+                    Float.parseFloat(line.split("\\s+")[2].split("/")[1]), // Y
+                    Float.parseFloat(line.split("\\s+")[3].split("/")[1])  // Z
+                );
                 Vector3f normalIndices = new Vector3f
                 (
                     Float.parseFloat(line.split("\\s+")[1].split("/")[2]), // X
                     Float.parseFloat(line.split("\\s+")[2].split("/")[2]), // Y
                     Float.parseFloat(line.split("\\s+")[3].split("/")[2])  // Z
                 );
-                m.faces.add(new Face(vertexIndices, normalIndices));
+
+
+                m.faces.add(new Face(vertexIndices, normalIndices, textureIndices));
             }
             else if(line.startsWith("l "))
             {
