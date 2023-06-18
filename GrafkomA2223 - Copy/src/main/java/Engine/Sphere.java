@@ -3,8 +3,6 @@ package Engine;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,45 +26,9 @@ public class Sphere extends Circle{
         this.radiusZ = radiusZ;
         this.stackCount = stackCount;
         this.sectorCount = sectorCount;
-//        createBoxVertices();
+        createBoxVertices();
 //        createSphere();
-        loadObject();
         setupVAOVBO();
-    }
-
-    public void loadObject(){
-        System.out.println("Code done");
-        vertices.clear();
-        normal = new ArrayList<>();
-        Vector3f temp = new Vector3f();
-        ArrayList<Vector3f> tempVertices = new ArrayList<>();
-
-        Model n = new Model();
-
-        try {
-            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\GrafkomA2223 - Copy\\src\\Aset\\rubiks_cube.obj"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-        for (Face face : n.faces){
-            Vector3f n1 = n.normals.get((int) face.normal.x - 1);
-            normal.add(n1);
-            Vector3f v1 = n.vertices.get((int) face.vertex.x - 1);
-            vertices.add(v1);
-            Vector3f n2 = n.normals.get((int) face.normal.y - 1);
-            normal.add(n2);
-            Vector3f v2 = n.vertices.get((int) face.vertex.y - 1);
-            vertices.add(v2);
-            Vector3f n3 = n.normals.get((int) face.normal.z - 1);
-            normal.add(n3);
-            Vector3f v3 = n.vertices.get((int) face.vertex.z - 1);
-            vertices.add(v3);
-        }
-
     }
     public void createBox(){
         Vector3f temp = new Vector3f();
@@ -363,6 +325,35 @@ public class Sphere extends Circle{
         uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f,0.05f,0.05f));
         uniformsMap.setUniform("dirLight.diffuse", new Vector3f(0.4f,0.4f,0.4f));
         uniformsMap.setUniform("dirLight.specular", new Vector3f(0.5f,0.5f,0.5f));
+        //posisi pointLight
+        Vector3f[] _pointLightPositions = {
+            new Vector3f(0.7f, 0.2f, 2.0f),
+            new Vector3f(2.3f, -3.3f, -4.0f),
+            new Vector3f(-4.0f, 2.0f, -12.0f),
+            new Vector3f(0.0f, 0.0f, -3.0f)
+            };
+        for(int i = 0;i< _pointLightPositions.length;i++){
+            uniformsMap.setUniform("pointLights["+ i +"].position",_pointLightPositions[i]);
+            uniformsMap.setUniform("pointLights["+ i +"].ambient", new Vector3f(0.05f,0.05f,0.05f));
+            uniformsMap.setUniform("pointLights["+ i +"].diffuse", new Vector3f(0.8f,0.8f,0.8f));
+            uniformsMap.setUniform("pointLights["+ i +"].specular", new Vector3f(1.0f,1.0f,1.0f));
+            uniformsMap.setUniform("pointLights["+ i +"].constant",1.0f );
+            uniformsMap.setUniform("pointLights["+ i +"].linear", 0.09f);
+            uniformsMap.setUniform("pointLights["+ i +"].quadratic", 0.032f);
+
+        }
+
+        //spotlight
+        uniformsMap.setUniform("spotLight.position",camera.getPosition());
+        uniformsMap.setUniform("spotLight.direction",camera.getDirection());
+        uniformsMap.setUniform("spotLight.ambient",new Vector3f(0.0f,0.0f,0.0f));
+        uniformsMap.setUniform("spotLight.diffuse",new Vector3f(1.0f,1.0f,1.0f));
+        uniformsMap.setUniform("spotLight.specular",new Vector3f(1.0f,1.0f,1.0f));
+        uniformsMap.setUniform("spotLight.constant",1.0f);
+        uniformsMap.setUniform("spotLight.linear",0.09f);
+        uniformsMap.setUniform("spotLight.quadratic",0.032f);
+        uniformsMap.setUniform("spotLight.cutOff",(float)Math.cos(Math.toRadians(12.5f)));
+        uniformsMap.setUniform("spotLight.outerCutOff",(float)Math.cos(Math.toRadians(12.5f)));
 
         uniformsMap.setUniform("viewPos",camera.getPosition());
     }

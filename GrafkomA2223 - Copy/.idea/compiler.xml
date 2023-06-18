@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="GrafkomA2223" />
-        <module name="GrafkomA2223 - Copy" />
         <module name="GrafkomA" />
       </profile>
     </annotationProcessing>
