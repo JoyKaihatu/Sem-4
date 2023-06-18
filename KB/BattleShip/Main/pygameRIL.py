@@ -12,88 +12,33 @@ pygame.display.set_caption("Battleship")
 
 class Util:
 
-    def CekOutOfBound(self, positionX, positionY):
-        pass
+    def CekOutOfBound(self, positionX, positionY, ShipCount, PosisiAwal):
+        print("Masuk sini")
+        print("positionX: ", positionX)
+        print("positionY: ", positionY)
+        print("posisi awal: ",PosisiAwal)
+        a, b = PosisiAwal
+        print(a, b)
+
+        if positionY >= 330 or positionY <= 30 or positionX >= 360 or positionX <= 60:
+            print("masuk sini")
+            x, y = PosisiAwal
+            posAkhirX = positionX - x
+            posAkhirY = positionY - y
+            print(posAkhirX, posAkhirY)
+            print("x,y", x, y)
+            if ShipCount == 0:
+                Ship.ship1Rec.move_ip(-posAkhirX, -posAkhirY)
+            if ShipCount == 1:
+                Ship.ship3Rec.move_ip(-posAkhirX, -posAkhirY)
+            if ShipCount == 2:
+                Ship.ship5Rec.move_ip(-posAkhirX, -posAkhirY)
 
     def SnapToGridHorizontal(self, positionX, positionY, ShipCount):
         pass
+
     def SnapToGrid(self, positionX, positionY, ShipCount):
-        x = 0
-        y = 0
-        if ShipCount == 0:
-            if 45 <= positionX <= 375 and 15 <= positionY <= 345:
-                temp1 = positionX % 30
-                temp2 = positionY % 30
-
-                posXBaru = positionX - temp1
-                posYBaru = positionY - temp2
-
-                tempX = posXBaru + 15
-                tempY = posYBaru + 15
-
-                if tempX <= 60:
-                    x = -30
-                if tempY <= 30:
-                    y = -30
-                if tempX >= 360:
-                    x = 30
-                if tempY >= 330:
-                    y = 30
-
-                Ship.ship1Rec.move_ip(-temp1 + 15 - x,-temp2 + 15 - y)
-
-        elif ShipCount == 1:
-            if 45 <= positionX <= 375 and 15 <= positionY <= 345:
-                temp1 = positionX % 30
-                temp2 = positionY % 30
-
-                posXBaru = positionX - temp1
-                posYBaru = positionY - temp2
-
-                tempX = posXBaru + 15
-                tempY = posYBaru + 15
-
-                if tempX <= 60:
-                    x = -30
-                if tempX >= 360:
-                    x = 30
-                if tempY >=300:
-                    y = 30
-                if tempY <= 60:
-                    y = -30
-
-
-
-
-
-                Ship.ship3Rec.move_ip(-temp1 + 15 - x, -temp2 + 15 - y)
-
-
-        elif ShipCount == 2:
-            if 60 <= positionX <= 360 and 30 <= positionY <= 330:
-                temp1 = positionX % 30
-                temp2 = positionY % 30
-
-                posXBaru = positionX - temp1
-                posYBaru = positionY - temp2
-
-                tempX = posXBaru + 15
-                tempY = posYBaru + 15
-
-                if tempX <= 60:
-                    x = -30
-                if tempX >= 360:
-                    x = 30
-
-                if tempY >=300:
-                    y = 30
-                if tempY <= 90:
-                    y = -30
-                if tempY >= 270:
-                    y = 30
-
-
-                Ship.ship5Rec.move_ip(-temp1 + 15 - x, -temp2 + 15 - y)
+        pass
 
 
 class ship:
@@ -283,7 +228,8 @@ KapalOnDrag = 10
 util = Util()
 Board1 = board(60, 30)
 Board2 = board(420, 30)
-
+simpan = 0
+BukanSimpan = 0
 Ship = ship()
 Board1.isi_board()
 pprint.pp(Board1.boardLogic)
@@ -300,7 +246,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1:
                 print("Ship1: ")
@@ -314,32 +259,44 @@ while running:
             if Ship.ship1Rec.collidepoint(event.pos):
                 moving = True
                 KapalOnDrag = 1
+                simpan = Ship.ship1Rec.center
+                print(simpan)
+                print(Ship.ship1Rec.x, Ship.ship1Rec.y)
+
             elif Ship.ship3Rec.collidepoint(event.pos):
                 moving = True
                 KapalOnDrag = 2
+                BukanSimpan = Ship.ship3Rec.center
             elif Ship.ship5Rec.collidepoint(event.pos):
                 moving = True
                 KapalOnDrag = 3
+                simpan = Ship.ship5Rec.center
 
-        if event.type == pygame.MOUSEBUTTONUP:
+        if event.type == pygame.MOUSEBUTTONUP and moving is True:
             moving = False
-            x,y = Ship.ship1Rec.center
-            util.SnapToGrid(x,y, 0)
-            x,y = Ship.ship3Rec.center
-            util.SnapToGrid(x,y, 1)
-            x,y = Ship.ship5Rec.center
-            util.SnapToGrid(x,y, 2)
+            x, y = Ship.ship1Rec.center
+            if KapalOnDrag == 1:
+                util.CekOutOfBound(x, y, 0, simpan)
+
+            x, y = Ship.ship3Rec.center
+            if KapalOnDrag == 2:
+                print("siman: ", simpan)
+                Util.CekOutOfBound(x, y, 1, simpan)
+            x, y = Ship.ship5Rec.center
+            if KapalOnDrag == 3:
+                util.CekOutOfBound(x, y, 2, simpan)
 
         if event.type == pygame.MOUSEMOTION and moving:
             if KapalOnDrag == 1:
                 Ship.ship1Rec.move_ip(event.rel)
-                print(Ship.ship1Rec.center)
+                # print(Ship.ship1Rec.center)
             elif KapalOnDrag == 2:
+
                 Ship.ship3Rec.move_ip(event.rel)
-                print(Ship.ship3Rec.center)
+                # print(Ship.ship3Rec.center)
             elif KapalOnDrag == 3:
                 Ship.ship5Rec.move_ip(event.rel)
-                print(Ship.ship5Rec.center)
+                # print(Ship.ship5Rec.center)
 
     Ship.load()
     Board1.render()
