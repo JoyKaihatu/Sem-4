@@ -23,6 +23,7 @@ matrixB = [27,-61.5,-21.5]
 
 y = gaussian_elimination(matrix,matrixB)
 
+print(y)
 
 
 

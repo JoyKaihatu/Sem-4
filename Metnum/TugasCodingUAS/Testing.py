@@ -1,5 +1,5 @@
 import numpy as np
-import GaussElimination3Method as GA
+import NaiveGaussElimnation as GA
 
 def cholesky_factorization(A):
     n = len(A)

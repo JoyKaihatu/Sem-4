@@ -50,4 +50,5 @@ matrixB = [27,-61.5,-21.5]
 
 x = LUSolve(matrix,matrixB)
 
+print(x)
 

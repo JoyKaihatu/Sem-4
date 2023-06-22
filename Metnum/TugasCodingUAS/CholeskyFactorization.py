@@ -35,3 +35,5 @@ matrixB = [27,-61.5,-21.5]
 
 
 z = solve_linear_equation(matrix,matrixB)
+
+print(z)
