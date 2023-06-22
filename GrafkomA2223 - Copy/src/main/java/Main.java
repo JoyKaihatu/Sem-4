@@ -122,15 +122,24 @@ public class Main {
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
                         new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
                 ),
-                new ArrayList<>(),
-                new Vector4f(0.0f,1.0f,0.0f,1.0f),
+                new ArrayList<>(List.of(
+                        new Vector3f(0.5f,-0.5f,0.5f),
+                        new Vector3f(0.5f,0.5f,0.5f),
+                        new Vector3f(-0.5f,0.5f,0.5f),
+                        new Vector3f(-0.5f,-0.5f,0.5f)
+                )),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
                 Arrays.asList(0.0f,0.0f,0.0f),
                 0.125f,
                 0.125f,
                 0.125f,
+                "E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\GrafkomA2223 - Copy\\src\\Aset\\Lantai with tembok.obj",
+                new ArrayList<>(),
                 36,
-                18
+                18,
+                3
         ));
+        objects.get(0).scaleObject(0.5f,0.5f,0.5f);
 //        objects.get(0).translateObject(0.5f,0.0f,0.0f);
 //        objects.get(0).scaleObject(1f,1f,1f);
 //
@@ -188,10 +197,10 @@ public class Main {
     }
     public void input(){
         float move = 0.01f;
-        if (window.isKeyPressed(GLFW_KEY_W)) {
+        if (window.isKeyPressed(GLFW_KEY_LEFT_SHIFT)) {
             camera.moveForward(move);
         }
-        if (window.isKeyPressed(GLFW_KEY_S)) {
+        if (window.isKeyPressed(GLFW_KEY_LEFT_CONTROL)) {
             camera.moveBackwards(move);
         }
         if (window.isKeyPressed(GLFW_KEY_A)) {
@@ -199,6 +208,12 @@ public class Main {
         }
         if (window.isKeyPressed(GLFW_KEY_D)) {
             camera.moveRight(move);
+        }
+        if (window.isKeyPressed(GLFW_KEY_W)){
+            camera.moveUp(move);
+        }
+        if (window.isKeyPressed(GLFW_KEY_S)){
+            camera.moveDown(move);
         }
         if(mouseInput.isLeftButtonPressed()){
             Vector2f displayVec = window.getMouseInput().getDisplVec();

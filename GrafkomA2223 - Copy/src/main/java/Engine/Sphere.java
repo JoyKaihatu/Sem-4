@@ -3,6 +3,8 @@ package Engine;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,17 +21,70 @@ public class Sphere extends Circle{
     int stackCount;
     int sectorCount;
     List<Vector3f> normal;
-    int nbo;
+    int nbo,pick;
+    String path;
     public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ,
-                  int sectorCount,int stackCount) {
+                  String path, List<Vector3f> normal,
+                  int sectorCount,int stackCount,int pick) {
         super(shaderModuleDataList, vertices, color, centerPoint, radiusX, radiusY);
         this.radiusZ = radiusZ;
         this.stackCount = stackCount;
         this.sectorCount = sectorCount;
-        createBoxVertices();
-//        createSphere();
+        this.path = path;
+        this.normal = normal;
+        this.vertices = vertices;
+        if (pick == 1){
+            createBoxVertices();
+        }
+        if (pick == 2){
+            createSphere();
+        }
+        if(pick == 3){
+            loadObject();
+
+        }
         setupVAOVBO();
     }
+
+
+    public void loadObject(){
+        System.out.println("Code done");
+        vertices.clear();
+        normal = new ArrayList<>();
+        Vector3f temp = new Vector3f();
+        ArrayList<Vector3f> tempVertices = new ArrayList<>();
+
+        Model n = new Model();
+
+        try {
+            n = ObjLoader.loadModel(new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        for (Face face : n.faces){
+            Vector3f n1 = n.normals.get((int) face.normal.x - 1);
+            normal.add(n1);
+            Vector3f v1 = n.vertices.get((int) face.vertex.x - 1);
+            vertices.add(v1);
+            Vector3f n2 = n.normals.get((int) face.normal.y - 1);
+            normal.add(n2);
+            Vector3f v2 = n.vertices.get((int) face.vertex.y - 1);
+            vertices.add(v2);
+
+            Vector3f n3 = n.normals.get((int) face.normal.z - 1);
+            normal.add(n3);
+            Vector3f v3 = n.vertices.get((int) face.vertex.z - 1);
+            vertices.add(v3);
+
+        }
+
+    }
+
+
     public void createBox(){
         Vector3f temp = new Vector3f();
         ArrayList<Vector3f> tempVertices = new ArrayList<>();
@@ -321,7 +376,7 @@ public class Sphere extends Circle{
                 false,
                 0, 0);
         //directional Light
-        uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f,-1.0f,-0.3f));
+        uniformsMap.setUniform("dirLight.direction", new Vector3f(-1f,-.5f,-0.0f));
         uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f,0.05f,0.05f));
         uniformsMap.setUniform("dirLight.diffuse", new Vector3f(0.4f,0.4f,0.4f));
         uniformsMap.setUniform("dirLight.specular", new Vector3f(0.5f,0.5f,0.5f));
