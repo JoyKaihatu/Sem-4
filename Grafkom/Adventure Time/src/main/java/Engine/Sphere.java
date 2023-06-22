@@ -32,6 +32,7 @@ public class Sphere extends CircleNew{
         this.radiusZ = radiusZ;
         this.stackCount = sectorCount;
         this.sectorCount = sectorCount;
+        this.color = color;
 
 //        if (pilih == 0){
 //            Ellipsoid();
@@ -880,6 +881,8 @@ public class Sphere extends CircleNew{
         glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
         glEnableVertexAttribArray(2);
         glVertexAttribPointer(2,2,GL_FLOAT,false,0,0);
+
+        uniformsMap.setUniform("uni_color",color);
 
         //directional Light
         uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f,-1.0f,-0.3f));

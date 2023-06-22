@@ -115,7 +115,7 @@ public class Object2d extends ShaderProgram implements Cloneable{
     public void drawSetup(Camera camera, Projection projection){
         bind();
 
-        uniformsMap.setUniform("uni_color",color);
+
         uniformsMap.setUniform(
                 "model", model);
         uniformsMap.setUniform("view", camera.getViewMatrix());

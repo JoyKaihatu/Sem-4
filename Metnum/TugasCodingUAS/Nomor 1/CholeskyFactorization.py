@@ -1,5 +1,4 @@
 import numpy as np
-
 def cholesky_factorization(A):
     n = len(A)
     L = [[0.0] * n for _ in range(n)]
@@ -20,11 +19,11 @@ def solve_linear_equation(A, b):
     y = [0.0] * n
     x = [0.0] * n
 
-    # Forward substitution: Ly = b
+    # Proses 2.1: Forward substitution: Ly = b
     for i in range(n):
         y[i] = (b[i] - sum(L[i][j] * y[j] for j in range(i))) / L[i][i]
 
-    # Backward substitution: L^T x = y
+    # Proses2.2 : Backward substitution: L^T x = y
     for i in range(n - 1, -1, -1):
         x[i] = (y[i] - sum(L[j][i] * x[j] for j in range(i + 1, n))) / L[i][i]
 

@@ -1,5 +1,4 @@
 import numpy as np
-
 def lu_decomposition(matrix):
     n = len(matrix)
     lower = np.zeros((n, n))
@@ -44,8 +43,7 @@ def inverse_matrix(matrix):
     return inv_matrix
 
 
-A = np.array([[3, -0.1, -0.2], [0.1, 7, -0.3], [0.3, -0.2, 10]])
-b = np.array([7.85, -19.3, 71.4])
-c = np.array([[3,-0.1,-0.2,7.85],[0.1,7,-0.3,-19.3],[0.3,-0.2,10,71.4]])
+matrix = np.array([[10,2,-1],[-3,-6,2],[1,1,5]])
+matrixB = np.array([27,-61.5,-21.5])
 
-print(inverse_matrix(A))
+print(inverse_matrix(matrix))
