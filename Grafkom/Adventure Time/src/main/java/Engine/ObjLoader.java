@@ -14,7 +14,6 @@ public class ObjLoader {
         // \\s+ ==> Untuk catch multiple whitespace
         while((line = reader.readLine()) != null)
         {   //Parse
-
             // Vector Titik Biasa
             if(line.startsWith("v "))
             {

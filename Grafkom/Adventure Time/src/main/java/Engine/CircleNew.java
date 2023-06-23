@@ -15,10 +15,9 @@ public class CircleNew extends Object2d {
     double x,y;
 
     public CircleNew(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color,
-                  List<Float> centerPoint, Float radiusX, Float radiusY){
+                  List<Float> centerPoint){
         super(shaderModuleDataList, vertices, color);
-        this.radiusX = radiusX;
-        this.radiusY = radiusY;
+
         this.centerPoint =  centerPoint;
 //        this.offset = offset;
 ////        if (pick == 0){

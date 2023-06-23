@@ -3,7 +3,6 @@ package Engine;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -14,6 +13,7 @@ import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
+import static org.lwjgl.opengles.GLES20.glGenerateMipmap;
 
 public class Sphere extends CircleNew{
     int sectorCount;
@@ -22,17 +22,20 @@ public class Sphere extends CircleNew{
     List<Vector3f> normal;
     List<Vector2f> texture;
     int nbo;
+    int data;
+    List<Float> centerpoint;
+    String path;
 
+    int tekstur;
 
     public Sphere(List<ShaderModuleData> shaderModuleDataList,
                   List<Vector3f> vertices, Vector4f color,
-                  List<Float> centerPoint, Float radiusX,Float radiusY
-            ,Float radiusZ, int sectorCount, int stackCount){
-        super(shaderModuleDataList, vertices, color, centerPoint, radiusX,radiusY);
-        this.radiusZ = radiusZ;
-        this.stackCount = sectorCount;
-        this.sectorCount = sectorCount;
+                  List<Float> centerPoint,String path){
+        super(shaderModuleDataList, vertices, color, centerPoint);
+
         this.color = color;
+        this.centerpoint = centerPoint;
+        this.path = path;
 
 //        if (pilih == 0){
 //            Ellipsoid();
@@ -676,7 +679,7 @@ public class Sphere extends CircleNew{
         Model n = null;
 
         try {
-            n = ObjLoader.loadModel(new File("E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\Grafkom\\Adventure Time\\src\\aset\\rubiks_cube.obj"));
+            n = ObjLoader.loadModel(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -686,20 +689,38 @@ public class Sphere extends CircleNew{
 
         for (Face face : n.faces){
             Vector3f n1 = n.normals.get((int) face.normal.x - 1);
+//            n1.x = n1.x + centerpoint.get(0);
+//            n1.y = n1.y + centerpoint.get(1);
+//            n1.z = n1.z + centerpoint.get(2);
             normal.add(n1);
             Vector3f v1 = n.vertices.get((int) face.vertex.x - 1);
+//            v1.x = v1.x + centerpoint.get(0);
+//            v1.y = v1.y + centerpoint.get(1);
+//            v1.z = v1.z + centerpoint.get(2);
             vertices.add(v1);
 //            Vector2f t1 = n.textures.get((int) face.texture.x - 1);
 //            texture.add(t1);
             Vector3f n2 = n.normals.get((int) face.normal.y - 1);
+//            n2.x = n2.x + centerpoint.get(0);
+//            n2.y = n2.y + centerpoint.get(1);
+//            n2.z = n2.z + centerpoint.get(2);
             normal.add(n2);
             Vector3f v2 = n.vertices.get((int) face.vertex.y - 1);
+//            v2.x = v2.x + centerpoint.get(0);
+//            v2.y = v2.y + centerpoint.get(1);
+//            v2.z = v2.z + centerpoint.get(2);
             vertices.add(v2);
 //            Vector2f t2 = n.textures.get((int) face.texture.y - 1);
 //            texture.add(t2);
             Vector3f n3 = n.normals.get((int) face.normal.z - 1);
+//            n3.x = n3.x + centerpoint.get(0);
+//            n3.y = n3.y + centerpoint.get(1);
+//            n3.z = n3.z + centerpoint.get(2);
             normal.add(n3);
             Vector3f v3 = n.vertices.get((int) face.vertex.z - 1);
+//            v3.x = v3.x + centerpoint.get(0);
+//            v3.y = v3.y + centerpoint.get(1);
+//            v3.z = v3.z + centerpoint.get(2);
             vertices.add(v3);
 //            Vector2f t3 = n.textures.get((int) face.texture.z - 1);
 //            texture.add(t3);
@@ -863,6 +884,7 @@ public class Sphere extends CircleNew{
         super.setupVAOVBO();
 
         nbo = glGenBuffers();
+
         glBindBuffer(GL_ARRAY_BUFFER, nbo);
         glBufferData(GL_ARRAY_BUFFER, Utils.listoFloat(normal), GL_STATIC_DRAW);
         glBufferData(GL_ARRAY_BUFFER, Utils.listoFloat2f(texture), GL_STATIC_DRAW);
@@ -879,13 +901,13 @@ public class Sphere extends CircleNew{
         glEnableVertexAttribArray(1);
         glBindBuffer(GL_ARRAY_BUFFER, nbo);
         glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
-        glEnableVertexAttribArray(2);
-        glVertexAttribPointer(2,2,GL_FLOAT,false,0,0);
+
+
 
         uniformsMap.setUniform("uni_color",color);
 
         //directional Light
-        uniformsMap.setUniform("dirLight.direction", new Vector3f(-0.2f,-1.0f,-0.3f));
+        uniformsMap.setUniform("dirLight.direction", new Vector3f(0.0f,0.0f,0.0f));
         uniformsMap.setUniform("dirLight.ambient", new Vector3f(0.05f,0.05f,0.05f));
         uniformsMap.setUniform("dirLight.diffuse", new Vector3f(0.4f,0.4f,0.4f));
         uniformsMap.setUniform("dirLight.specular", new Vector3f(0.5f,0.5f,0.5f));

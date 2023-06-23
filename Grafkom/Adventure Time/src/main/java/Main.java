@@ -84,6 +84,8 @@ public class Main {
         GL.createCapabilities();
         camera.setPosition(0,0,1.0f);
         glEnable(GL_DEPTH_TEST);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         glDepthMask(true);
         glDepthFunc(GL_LEQUAL);
@@ -1540,19 +1542,28 @@ public class Main {
 //        }
 //
 
+//        objects.add(new Sphere(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.0f,1f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,4.0f),
+//                0.125f,
+//                0.125f,
+//                0.125f,
+//                36,
+//                18,
+//                "E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\Grafkom\\Adventure Time\\src\\aset\\Kubus1TOP.obj"
+//        ));
+
         objects.add(new Sphere(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
+                shader,
                 new ArrayList<>(),
                 new Vector4f(0.0f,1f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.125f,
-                0.125f,
-                0.125f,
-                36,
-                18
+                Arrays.asList(0.0f,0.0f,4.0f),
+                "E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\Grafkom\\Adventure Time\\src\\aset\\Kubus1Bottom.obj"
         ));
 
 

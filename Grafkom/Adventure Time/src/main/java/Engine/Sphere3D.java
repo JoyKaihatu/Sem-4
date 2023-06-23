@@ -16,7 +16,7 @@ public class Sphere3D extends CircleNew{
                     List<Vector3f> vertices, Vector4f color,
                     List<Float> centerPoint, Float radiusX, Float radiusY
             , Float radiusZ, int sectorCount, int stackCount, int pilih) {
-        super(shaderModuleDataList, vertices, color, centerPoint, radiusX,radiusY);
+        super(shaderModuleDataList, vertices, color, centerPoint);
         this.sectorCount = sectorCount;
         this.stackCount = stackCount;
         this.radiusZ = radiusZ;

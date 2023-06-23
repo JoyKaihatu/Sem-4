@@ -22,27 +22,15 @@ public class Sphere extends Circle{
     int sectorCount;
     List<Vector3f> normal;
     int nbo,pick;
+    int tekstur;
     String path;
-    public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ,
-                  String path, List<Vector3f> normal,
-                  int sectorCount,int stackCount,int pick) {
-        super(shaderModuleDataList, vertices, color, centerPoint, radiusX, radiusY);
-        this.radiusZ = radiusZ;
-        this.stackCount = stackCount;
-        this.sectorCount = sectorCount;
+    public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Vector3f> normal,
+                  String path) {
+        super(shaderModuleDataList, vertices, color);
         this.path = path;
         this.normal = normal;
         this.vertices = vertices;
-        if (pick == 1){
-            createBoxVertices();
-        }
-        if (pick == 2){
-            createSphere();
-        }
-        if(pick == 3){
-            loadObject();
-
-        }
+        loadObject();
         setupVAOVBO();
     }
 
@@ -355,6 +343,8 @@ public class Sphere extends Circle{
 
         //set nbo
         nbo = glGenBuffers();
+
+
         glBindBuffer(GL_ARRAY_BUFFER, nbo);
         glBufferData(GL_ARRAY_BUFFER,
                 Utils.listoFloat(normal),
@@ -370,6 +360,7 @@ public class Sphere extends Circle{
 
         // Bind VBO
         glEnableVertexAttribArray(1);
+
         glBindBuffer(GL_ARRAY_BUFFER, nbo);
         glVertexAttribPointer(1, 3,
                 GL_FLOAT,

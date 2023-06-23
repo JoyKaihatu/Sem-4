@@ -1,0 +1,14 @@
+# Blender MTL File: 'untitled.blend'
+# Material Count: 1
+
+newmtl M_sofa_3230_fabric.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Bump -bm 0.320000 C:\\Users\\ANDREA~1\\AppData\\Local\\media\\node\\Локальный диск\\Work\\Polonskaya\\Marine_House_№1\\Ref\\Textures\\Lr\\Fabric\\Tex_Armchair_fabric_Nrmal.png
+map_Kd C:\\Users\\ANDREA~1\\AppData\\Local\\media\\node\\Локальный диск\\Work\\Polonskaya\\Marine_House_№1\\Ref\\Textures\\Lr\\Fabric\\Tex_Sofa_fabric_W_Diffuse.png

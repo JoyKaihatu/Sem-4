@@ -1,0 +1,14 @@
+# Blender MTL File: 'untitled.blend'
+# Material Count: 1
+
+newmtl Madeira.001
+Ns 575.999996
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump -bm 0.100000 C:\\Users\\ANDREA~1\\AppData\\Local\\Texturas\\revestmad\\madeira\\NormalMap (1).png
+map_Kd C:\\Users\\ANDREA~1\\AppData\\Local\\Texturas\\revestmad\\madeira\\wood _texture3200.jpg

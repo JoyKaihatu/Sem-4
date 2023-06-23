@@ -1,7 +1,6 @@
 import Engine.*;
 import Engine.Object;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL;
 
@@ -32,6 +31,14 @@ public class Main {
     public void init(){
         window.init();
         GL.createCapabilities();
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        glDepthMask(true);
+        glDepthFunc(GL_LEQUAL);
+        glDepthRange(0.0f, 0.5f);
+
         mouseInput = window.getMouseInput();
         camera.setPosition(0,0,1.0f);
         camera.setRotation((float)Math.toRadians(0.0f),(float)Math.toRadians(30.0f));
@@ -117,86 +124,406 @@ public class Main {
 //            new ArrayList<>(),
 //            new Vector4f(0.0f,1.0f,1.0f,1.0f)
 //        ));
+        List<ShaderProgram.ShaderModuleData> shader = Arrays.asList(
+                //shaderFile lokasi menyesuaikan objectnya
+                new ShaderProgram.ShaderModuleData
+                        ("resources/shaders/scene.vert"
+                                , GL_VERTEX_SHADER),
+                new ShaderProgram.ShaderModuleData
+                        ("resources/shaders/scene.frag"
+                                , GL_FRAGMENT_SHADER)
+        );
         objects.add(new Sphere(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(List.of(
-                        new Vector3f(0.5f,-0.5f,0.5f),
-                        new Vector3f(0.5f,0.5f,0.5f),
-                        new Vector3f(-0.5f,0.5f,0.5f),
-                        new Vector3f(-0.5f,-0.5f,0.5f)
-                )),
-                new Vector4f(1.0f,1.0f,1.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.125f,
-                0.125f,
-                0.125f,
-                "E:\\Bahan Kuliah (Semester 4) Git\\Sem-4\\GrafkomA2223 - Copy\\src\\Aset\\Lantai with tembok.obj",
+                shader,
                 new ArrayList<>(),
-                36,
-                18,
-                3
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Dalam/a.obj"
+
         ));
-        objects.get(0).scaleObject(0.5f,0.5f,0.5f);
-//        objects.get(0).translateObject(0.5f,0.0f,0.0f);
-//        objects.get(0).scaleObject(1f,1f,1f);
-//
-//        objects.get(0).getChildObject().add(new Sphere(
-//                Arrays.asList(
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//                ),
-//                new ArrayList<>(),
-//                new Vector4f(0.0f,1.0f,0.0f,1.0f),
-//                Arrays.asList(0.0f,0.0f,0.0f),
-//                0.125f,
-//                0.125f,
-//                0.125f,
-//                36,
-//                18
-//        ));
-//        objects.get(0).getChildObject().get(0).translateObject(0.25f,0.0f,0.0f);
-////        objects.get(0).getChildObject().get(0).setCenterPoint(Arrays.asList(0.25f,0.0f,0.0f));
-//
-//        objects.get(0).getChildObject().add(new Sphere(
-//                Arrays.asList(
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//                ),
-//                new ArrayList<>(),
-//                new Vector4f(0.0f,1.0f,0.0f,1.0f),
-//                Arrays.asList(0.0f,0.0f,0.0f),
-//                0.125f,
-//                0.125f,
-//                0.125f,
-//                36,
-//                18
-//        ));
-//        objects.get(0).getChildObject().get(1).translateObject(0.5f,0.0f,0.0f);
-////        objects.get(0).getChildObject().get(1).setCenterPoint(Arrays.asList(0.5f,0.0f,0.0f));
-//
-//        objects.get(0).getChildObject().get(1).getChildObject().add(new Sphere(
-//                Arrays.asList(
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-//                ),
-//                new ArrayList<>(),
-//                new Vector4f(0.0f,1.0f,0.0f,1.0f),
-//                Arrays.asList(0.0f,0.0f,0.0f),
-//                0.125f,
-//                0.125f,
-//                0.125f,
-//                36,
-//                18
-//        ));
-//        objects.get(0).getChildObject().get(1).getChildObject().get(0).scaleObject(0.5f,0.5f,0.5f);
-//        objects.get(0).getChildObject().get(1).getChildObject().get(0).translateObject(0.5f,-0.1f,0.0f);
-////        objects.get(0).getChildObject().get(1).getChildObject().get(0).setCenterPoint(Arrays.asList(0.5f,-0.1f,0.0f));
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Dalam/b.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Dalam/c.obj"
+
+        ));
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Dalam/d.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Dalam/e.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Dalam/f.obj"
+
+        ));
+
+        // Bangunan Luar
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/0.obj"
+
+        ));
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/0-5.obj"
+
+        ));
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/a.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/b.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/c.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/d.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/e.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/f.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/g.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/h.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Env/Bangunan Luar/i.obj"
+
+        ));
+
+        // Lemari Kayu
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Lemari Kayu/Lemari Kayu.obj"
+
+        ));
+
+        // Lemari Pakaian
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Lemari Pakaian/Lemari Pakaian.obj"
+
+        ));
+
+        // Meja Gaming
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Gaming/CPU.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Gaming/headset.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Gaming/keyboard.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Gaming/monitor.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Gaming/mouse.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Gaming/mousepad.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Gaming/table.obj"
+
+        ));
+
+        // Meja Makan
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Makan/Bunga.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Makan/Kursi.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Makan/Meja Besar.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Makan/Meja 1.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Makan/Tempat Minum 1.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Makan/Tempat Minum 2.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja Makan/Vas.obj"
+
+        ));
+
+        // Meja TV
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Meja TV/Meja TV.obj"
+
+        ));
+
+        // Sofa
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Sofa/Bantal Sofa.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Sofa/Sofa.obj"
+
+        ));
+
+        // Tempat Tidur
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Tempat Tdr/Bantal.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Tempat Tdr/Kasur.obj"
+
+        ));
+
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Tempat Tdr/Penyangga.obj"
+
+        ));
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/Tempat Tdr/Seprai.obj"
+
+        ));
+
+        // TV
+
+        objects.add(new Sphere(
+                shader,
+                new ArrayList<>(),
+                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+                new ArrayList<>(),
+                "resources/Aset/ABlend/TV/TV.obj"
+
+        ));
+
+
+
+
+
+
+
+
     }
     public void input(){
-        float move = 0.01f;
+        float move = 0.1f;
         if (window.isKeyPressed(GLFW_KEY_LEFT_SHIFT)) {
             camera.moveForward(move);
         }
