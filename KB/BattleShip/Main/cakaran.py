@@ -1,9 +1,12 @@
-import random
+import numpy as np
 
-tes = [i for i in range(1,27)]
+x = np.array([[1,2,3],
+              [4,5,6],
+              [7,8,9]
+              ])
 
-print(tes)
+rowsum = np.sum(x,axis=1)
+colsum = np.sum(x,axis=0)
 
-for i in range(13):
-    a = random.randint(0,len(tes)-1)
-    print(tes.pop(a))
+print(np.argmax(rowsum), np.max(rowsum))
+print(np.argmax(colsum), np.max(colsum))

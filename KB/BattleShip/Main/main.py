@@ -129,6 +129,7 @@ class AI:
             return row, column
         elif onHitStatus is True and sinkStatus is False and self.firstContactFlag is True:
             row, column = self.focusFire()
+            self.lastMove = row,column
             return row, column
 
     def normalMove(self):
