@@ -323,6 +323,20 @@ class board:
                 break
             j = j + 1
 
+    def PutRanjau(self, x, y):
+        coorX = self.boardCoor[0]
+        coorY = self.boardCoor[1]
+
+        if x <= (30 * 10) + coorX and y <= (30 * 10) + coorY:
+            x = x - coorX
+            y = y - coorY
+            indexHor = np.floor_divide(x, 30)
+            indexVer = np.floor_divide(y, 30)
+            if indexHor < 0 or indexVer < 0:
+                return
+
+            self.boardLogic[indexVer][indexHor] = 'R'
+
     def torpedo(self, row, column, axis):
         coorX = self.boardCoor[0]
         coorY = self.boardCoor[1]
@@ -421,19 +435,6 @@ class board:
             self.boardLogic[row][column] = 'O'
             return False, False
 
-    def PutRanjau(self, x, y):
-        coorX = self.boardCoor[0]
-        coorY = self.boardCoor[1]
-
-        if x <= (30 * 10) + coorX and y <= (30 * 10) + coorY:
-            x = x - coorX
-            y = y - coorY
-            indexHor = np.floor_divide(x, 30)
-            indexVer = np.floor_divide(y, 30)
-            if indexHor < 0 or indexVer < 0:
-                return
-
-            self.boardLogic[indexVer][indexHor] = 'R'
 
     def isi_board(self):
         ship_list = ['C', 'S', 'D']

@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 
 def f(x):
     return x**3 - 6*x**2 + 11*x - 6.1
+        # -12-21*x+18*x**2-2.75*x**3
+        # x**3 - 6*x**2 + 11*x - 6.1
 
 # Metode Graphical
 def graphical_method():
@@ -21,8 +23,8 @@ def graphical_method():
 
 # Metode Bisection
 def bisection_method(a, b):
-    max_iter = 100
-    tolerance = 0.0005
+    max_iter = 10
+    tolerance = 0.01
 
     # cek apakah interval dapat diaplikasikan
     if f(a) * f(b) >= 0:
@@ -95,7 +97,7 @@ def fixed_point_iteration_method(g, x0):
 
 # Metode Newton-Raphson
 def newton_raphson_method(f, f_prime, x0):
-    max_iter = 100
+    max_iter = 3
     tolerance = 0.0005
 
     iterasi = 1
@@ -127,30 +129,30 @@ def modified_secant_method(f, x0, p):
 
 # Metode Graphical
 graphical_method()
-
-# Menentukan initial guess untuk metode lainnya
-initial_guess = 2.5
-
-# Metode Bisection
-a, b = 2, 3
-root_bisection = bisection_method(a, b)
-print("Metode Bisection: x =", root_bisection)
-
-# Metode False Position
-root_false_position = false_position_method(a, b)
-print("Metode False Position: x =", root_false_position)
-
-# Metode Simple Fixed-Point Iteration
-g = lambda x: (x**3 - 6*x**2 + 6.1) / 11
-root_fixed_point_iteration = fixed_point_iteration_method(g, initial_guess)
-print("Metode Simple Fixed-Point Iteration: x =", root_fixed_point_iteration)
-
+#
+# # Menentukan initial guess untuk metode lainnya
+initial_guess = 3.5
+#
+# # Metode Bisection
+# a, b = 2, 3
+# root_bisection = bisection_method(a, b)
+# print("Metode Bisection: x =", root_bisection)
+#
+# # Metode False Position
+# root_false_position = false_position_method(a, b)
+# print("Metode False Position: x =", root_false_position)
+#
+# # Metode Simple Fixed-Point Iteration
+# g = lambda x: (x**3 - 6*x**2 + 6.1) / 11
+# root_fixed_point_iteration = fixed_point_iteration_method(g, initial_guess)
+# print("Metode Simple Fixed-Point Iteration: x =", root_fixed_point_iteration)
+#
 # Metode Newton-Raphson
-f_prime = lambda x: 3*x**2 - 12*x + 11
+f_prime = lambda x: x**3 - 6*x**2 + 11*x - 6.1
 root_newton_raphson = newton_raphson_method(f, f_prime, initial_guess)
 print("Metode Newton-Raphson: x =", root_newton_raphson)
-
-# Metode Modified Secant
-p = 0.01
-root_modified_secant = modified_secant_method(f, initial_guess, p)
-print("Metode Modified Secant: x =", root_modified_secant)
+#
+# # Metode Modified Secant
+# p = 0.01
+# root_modified_secant = modified_secant_method(f, initial_guess, p)
+# print("Metode Modified Secant: x =", root_modified_secant)
