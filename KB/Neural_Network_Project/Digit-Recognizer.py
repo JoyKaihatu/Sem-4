@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
+
 data = pd.read_csv('Digit-Recognizer_Dataset/train.csv')
 
 data = np.array(data)
@@ -165,7 +166,9 @@ def test_prediction(index, W1, b1, W2, b2 ,count = 0):
 
 
 
-W1, b1, W2, b2 = init_params()
-
+W1, b1, W2, b2 = getSavedWeights()
+Z1, A1, Z2, A2 = forward_prop(W1, b1, W2, b2, X_train)
+dW1, db1, dW2, db2 = back_prop(Z1, A1, Z2, A2, W2, X_train, Y_train)
+print("Accuracy: ", get_accuracy(get_predictions(A2), Y_train))
 for i in range(4):
     test_prediction(i, W1, b1, W2, b2)
