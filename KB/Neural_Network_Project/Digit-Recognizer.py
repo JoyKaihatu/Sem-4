@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
+from PIL import Image
 from matplotlib import pyplot as plt
+from matplotlib import image as mpimg
+
 
 
 data = pd.read_csv('Digit-Recognizer_Dataset/train.csv')
@@ -84,6 +87,7 @@ def update_params(W1, b1, W2, b2, dW1, db1, dW2, db2, alpha):
 
 
 def get_predictions(A2):
+    print("A2: ", A2)
     return np.argmax(A2, 0)
 
 
@@ -152,6 +156,7 @@ def make_predictions(X, W1, b1, W2, b2):
 
 def test_prediction(index, W1, b1, W2, b2 ,count = 0):
     current_image = X_train[:, index, None]
+    print(current_image)
     prediction = make_predictions(X_train[:, index, None], W1, b1, W2, b2)
     A2 = forward_prop(W1, b1, W2, b2, current_image)
     label = Y_train[index]
@@ -165,10 +170,38 @@ def test_prediction(index, W1, b1, W2, b2 ,count = 0):
     plt.show()
 
 
+def test_prediction_image(index, W1, b1, W2, b2,image ,count = 0):
+    im = Image.open(image).convert('L')
+    newsize = (28, 28)
+    im1 = im.resize(newsize)
+    flat = np.array(im1)
+    flat_im = flat.flatten()
+
+    for i in range(len(flat_im)):
+        flat_im[i] = abs(flat_im[i] - 255)
+    flat_im = flat_im/255.
+    flat_im = flat_im.T
+    print(flat_im)
+    current_image = flat_im
+    prediction = make_predictions(current_image, W1, b1, W2, b2)
+    A2 = forward_prop(W1, b1, W2, b2, current_image)
+    # label = Y_train[index]
+    print("Prediction: ", prediction)
+    # print("Label: ", label)
+    print()
+
+    current_image = current_image.reshape((28, 28)) * 255
+    plt.gray()
+    plt.imshow(current_image, interpolation='nearest')
+    plt.show()
+
+
 
 W1, b1, W2, b2 = getSavedWeights()
-Z1, A1, Z2, A2 = forward_prop(W1, b1, W2, b2, X_train)
-dW1, db1, dW2, db2 = back_prop(Z1, A1, Z2, A2, W2, X_train, Y_train)
-print("Accuracy: ", get_accuracy(get_predictions(A2), Y_train))
-for i in range(4):
-    test_prediction(i, W1, b1, W2, b2)
+# Z1, A1, Z2, A2 = forward_prop(W1, b1, W2, b2, X_train)
+# dW1, db1, dW2, db2 = back_prop(Z1, A1, Z2, A2, W2, X_train, Y_train)
+# print("Accuracy: ", get_accuracy(get_predictions(A2), Y_train))
+# for i in range(1):
+#     test_prediction(i, W1, b1, W2, b2)
+path = 'Digit-Recognizer_Dataset/numpy-array/Untitled2.png'
+test_prediction_image(0,W1,b1,W2,b2,path)
